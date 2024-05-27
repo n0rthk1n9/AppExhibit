@@ -1,5 +1,5 @@
 //
-//  CreateApp.swift
+//  CreateAppView.swift
 //  AppExhibit
 //
 //  Created by Jan Armbrust on 27.05.24.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct CreateApp: View {
+struct CreateAppView: View {
   @Environment(\.dismiss) var dismiss
 
   @State private var appItem = AppItem()
@@ -26,5 +26,5 @@ struct CreateApp: View {
 }
 
 #Preview {
-  CreateApp()
+  CreateAppView()
 }
