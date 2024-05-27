@@ -13,6 +13,7 @@
 		57D7F8372C04E04B00294392 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 57D7F8362C04E04B00294392 /* Assets.xcassets */; };
 		57D7F83A2C04E04B00294392 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 57D7F8392C04E04B00294392 /* Preview Assets.xcassets */; };
 		57D7F8412C04EB0200294392 /* CreateAppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D7F8402C04EB0200294392 /* CreateAppView.swift */; };
+		57D7F8432C05117000294392 /* AppDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D7F8422C05117000294392 /* AppDetailView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +24,7 @@
 		57D7F8362C04E04B00294392 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		57D7F8392C04E04B00294392 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		57D7F8402C04EB0200294392 /* CreateAppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAppView.swift; sourceTree = "<group>"; };
+		57D7F8422C05117000294392 /* AppDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +59,7 @@
 			children = (
 				57D7F8302C04E04900294392 /* AppExhibitApp.swift */,
 				57D7F8322C04E04900294392 /* ContentView.swift */,
+				57D7F8422C05117000294392 /* AppDetailView.swift */,
 				57D7F8402C04EB0200294392 /* CreateAppView.swift */,
 				57D7F8342C04E04900294392 /* AppItem.swift */,
 				57D7F8362C04E04B00294392 /* Assets.xcassets */,
@@ -145,6 +148,7 @@
 			files = (
 				57D7F8332C04E04900294392 /* ContentView.swift in Sources */,
 				57D7F8352C04E04900294392 /* AppItem.swift in Sources */,
+				57D7F8432C05117000294392 /* AppDetailView.swift in Sources */,
 				57D7F8312C04E04900294392 /* AppExhibitApp.swift in Sources */,
 				57D7F8412C04EB0200294392 /* CreateAppView.swift in Sources */,
 			);

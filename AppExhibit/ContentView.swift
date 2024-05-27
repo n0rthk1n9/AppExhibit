@@ -23,7 +23,7 @@ struct ContentView: View {
         .onDelete(perform: deleteItems)
       }
       .navigationDestination(for: AppItem.self) { item in
-        Text(item.name)
+        AppDetailView(item: item)
       }
       .toolbar {
         ToolbarItem {
