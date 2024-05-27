@@ -18,20 +18,18 @@ struct ContentView: View {
     NavigationStack {
       List {
         ForEach(items) { item in
-          NavigationLink {
-            Text(item.name)
-          } label: {
-            Text(item.name)
-          }
+          NavigationLink(item.name, value: item)
         }
         .onDelete(perform: deleteItems)
       }
+      .navigationDestination(for: AppItem.self) { item in
+        Text(item.name)
+      }
       .toolbar {
-        ToolbarItem(placement: .navigationBarTrailing) {
-          EditButton()
-        }
         ToolbarItem {
-          Button(action: addItem) {
+          Button(
+            action: { showCreateAppSheet.toggle() }
+          ) {
             Label("Add Item", systemImage: "plus")
           }
         }
@@ -40,13 +38,6 @@ struct ContentView: View {
         CreateAppView()
           .presentationDetents([.medium])
       }
-    }
-  }
-
-  private func addItem() {
-    withAnimation {
-      let newItem = AppItem(name: "Test")
-      modelContext.insert(newItem)
     }
   }
 
