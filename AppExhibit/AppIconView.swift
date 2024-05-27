@@ -9,15 +9,16 @@ import SwiftUI
 
 struct AppIconView: View {
   let appIcon: UIImage
+  var size: CGFloat = 128
 
   var body: some View {
     ZStack {
       Image(uiImage: appIcon)
         .resizable()
         .scaledToFill()
-        .frame(width: 128, height: 128)
+        .frame(width: size, height: size)
         .clipShape(
-          RoundedRectangle(cornerRadius: 25.6, style: .continuous)
+          RoundedRectangle(cornerRadius: 0.2 * size, style: .continuous)
         )
     }
     .padding()

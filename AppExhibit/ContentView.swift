@@ -21,7 +21,7 @@ struct ContentView: View {
           NavigationLink(value: item) {
             HStack {
               if let appIconData = item.icon, let appIcon = UIImage(data: appIconData) {
-                AppIconView(appIcon: appIcon)
+                AppIconView(appIcon: appIcon, size: 64)
               }
               Text(item.name)
             }
