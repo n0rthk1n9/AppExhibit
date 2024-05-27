@@ -10,9 +10,11 @@ import SwiftData
 
 @Model
 final class AppItem {
-  var timestamp: Date
+  var icon: Data?
+  var name: String
+  var qrCode: Data?
 
-  init(timestamp: Date) {
-    self.timestamp = timestamp
+  init(name: String) {
+    self.name = name
   }
 }
