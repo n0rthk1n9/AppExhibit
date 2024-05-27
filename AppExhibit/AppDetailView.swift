@@ -13,10 +13,7 @@ struct AppDetailView: View {
   var body: some View {
     VStack {
       if let appIconData = item.icon, let appIcon = UIImage(data: appIconData) {
-        Image(uiImage: appIcon)
-          .resizable()
-          .scaledToFit()
-          .frame(width: 128, height: 128)
+        AppIconView(appIcon: appIcon)
       }
       Text(item.name)
     }

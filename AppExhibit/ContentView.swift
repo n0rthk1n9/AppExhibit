@@ -18,7 +18,14 @@ struct ContentView: View {
     NavigationStack {
       List {
         ForEach(items) { item in
-          NavigationLink(item.name, value: item)
+          NavigationLink(value: item) {
+            HStack {
+              if let appIconData = item.icon, let appIcon = UIImage(data: appIconData) {
+                AppIconView(appIcon: appIcon)
+              }
+              Text(item.name)
+            }
+          }
         }
         .onDelete(perform: deleteItems)
       }

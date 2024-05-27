@@ -20,10 +20,7 @@ struct CreateAppView: View {
       List {
         Section {
           if let appIconData = newAppItem.icon, let appIcon = UIImage(data: appIconData) {
-            Image(uiImage: appIcon)
-              .resizable()
-              .scaledToFit()
-              .frame(width: 128, height: 128)
+            AppIconView(appIcon: appIcon)
           }
           PhotosPicker(
             selection: $selectedPhoto,
