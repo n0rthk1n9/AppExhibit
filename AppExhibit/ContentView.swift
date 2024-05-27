@@ -43,7 +43,6 @@ struct ContentView: View {
       }
       .sheet(isPresented: $showCreateAppSheet) {
         CreateAppView()
-          .presentationDetents([.medium])
       }
     }
   }
