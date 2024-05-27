@@ -5,57 +5,61 @@
 //  Created by Jan Armbrust on 27.05.24.
 //
 
-import SwiftUI
 import SwiftData
+import SwiftUI
 
 struct ContentView: View {
-    @Environment(\.modelContext) private var modelContext
-    @Query private var items: [AppItem]
+  @Environment(\.modelContext) private var modelContext
+  @Query private var items: [AppItem]
 
-    var body: some View {
-        NavigationSplitView {
-            List {
-                ForEach(items) { item in
-                    NavigationLink {
-                        Text("Item at \(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))")
-                    } label: {
-                        Text(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))
-                    }
-                }
-                .onDelete(perform: deleteItems)
-            }
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
-                }
-                ToolbarItem {
-                    Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
-                    }
-                }
-            }
-        } detail: {
-            Text("Select an item")
-        }
-    }
+  @State private var showCreateAppSheet = false
 
-    private func addItem() {
-        withAnimation {
-            let newItem = AppItem(timestamp: Date())
-            modelContext.insert(newItem)
+  var body: some View {
+    NavigationStack {
+      List {
+        ForEach(items) { item in
+          NavigationLink {
+            Text(item.name)
+          } label: {
+            Text(item.name)
+          }
         }
+        .onDelete(perform: deleteItems)
+      }
+      .toolbar {
+        ToolbarItem(placement: .navigationBarTrailing) {
+          EditButton()
+        }
+        ToolbarItem {
+          Button(action: addItem) {
+            Label("Add Item", systemImage: "plus")
+          }
+        }
+      }
+      .sheet(isPresented: $showCreateAppSheet) {
+        CreateApp()
+          .presentationDetents([.medium])
+      }
     }
+  }
 
-    private func deleteItems(offsets: IndexSet) {
-        withAnimation {
-            for index in offsets {
-                modelContext.delete(items[index])
-            }
-        }
+  private func addItem() {
+    withAnimation {
+      let newItem = AppItem(name: "Test")
+      modelContext.insert(newItem)
     }
+  }
+
+  private func deleteItems(offsets: IndexSet) {
+    withAnimation {
+      for index in offsets {
+        modelContext.delete(items[index])
+      }
+    }
+  }
 }
 
 #Preview {
-    ContentView()
-        .modelContainer(for: AppItem.self, inMemory: true)
+  ContentView()
+    .modelContainer(for: AppItem.self, inMemory: true)
 }
