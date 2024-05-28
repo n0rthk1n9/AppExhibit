@@ -13,6 +13,7 @@ struct CreateAppView: View {
   @Environment(\.modelContext) private var modelContext
   @Environment(\.dismiss) var dismiss
 
+  @State private var viewModel = CreateAppViewModel()
   @State private var newAppItem = AppItem()
   @State private var selectedPhoto: PhotosPickerItem?
   @State private var appStoreLinkQRCode = UIImage()
@@ -79,6 +80,9 @@ struct CreateAppView: View {
           appStoreLinkQRCode = generateQRCode(from: newAppStoreLink)
           newAppItem.qrCode = appStoreLinkQRCode.pngData()
         }
+      }
+      .task {
+        await viewModel.getResults()
       }
     }
   }
