@@ -25,6 +25,21 @@ struct CreateAppView: View {
     NavigationStack {
       List {
         Section {
+          TextField("App Store Link", text: $newAppItem.appStoreLink)
+          Button("Fetch app data") {
+            if !newAppItem.appStoreLink.isEmpty {
+              var appID = ""
+              Task {
+                appID = viewModel.extractAppID(from: newAppItem.appStoreLink) ?? ""
+                await viewModel.getAppDetails(for: appID)
+                newAppItem.name = viewModel.appDetails.first?.trackCensoredName ?? ""
+                await viewModel.getAppIcon()
+                newAppItem.icon = viewModel.appIcon
+              }
+            }
+          }
+        }
+        Section {
           if let appIconData = newAppItem.icon, let appIcon = UIImage(data: appIconData) {
             AppIconView(appIcon: appIcon)
           }
@@ -49,23 +64,6 @@ struct CreateAppView: View {
         }
         Section {
           TextField("App Name", text: $newAppItem.name)
-        }
-        Section {
-          TextField("App Store Link", text: $newAppItem.appStoreLink)
-        }
-        Section {
-          Button("Fetch app data") {
-            if !newAppItem.appStoreLink.isEmpty {
-              var appID = ""
-              Task {
-                appID = viewModel.extractAppID(from: newAppItem.appStoreLink) ?? ""
-                await viewModel.getAppDetails(for: appID)
-                newAppItem.name = viewModel.appDetails.first?.trackCensoredName ?? ""
-                await viewModel.getAppIcon()
-                newAppItem.icon = viewModel.appIcon
-              }
-            }
-          }
         }
         if !newAppItem.appStoreLink.isEmpty {
           Section {
