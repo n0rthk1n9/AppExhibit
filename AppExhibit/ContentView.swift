@@ -13,6 +13,8 @@ struct ContentView: View {
   @Query private var items: [AppItem]
 
   @State private var showCreateAppSheet = false
+  @State private var showPhotoZoomableSheet = false
+  @State var selectedAppStoreLinkQRCodeData: Data? = nil
 
   var body: some View {
     NavigationStack {
@@ -24,13 +26,11 @@ struct ContentView: View {
                 AppIconView(appIcon: appIcon, size: 64)
               }
               Text(item.name)
-              if let appStoreLinkQRCodeData = item.qrCode,
-                 let appStoreLinkQRCode = UIImage(data: appStoreLinkQRCodeData)
-              {
+              if let appStoreLinkQRCodeData = item.qrCode {
                 Spacer()
                 Image(systemName: "qrcode")
                   .onTapGesture {
-                    print("tapped")
+                    selectedAppStoreLinkQRCodeData = appStoreLinkQRCodeData
                   }
                   .padding(.trailing)
               }
@@ -53,6 +53,23 @@ struct ContentView: View {
       }
       .sheet(isPresented: $showCreateAppSheet) {
         CreateAppView()
+      }
+      .sheet(isPresented: $showPhotoZoomableSheet) {
+        if let selectedAppStoreLinkQRCodeData {
+          PhotoZoomableView(appStoreLinkQRCodeData: selectedAppStoreLinkQRCodeData)
+            .presentationBackground(.ultraThinMaterial)
+            .presentationCornerRadius(16)
+        }
+      }
+      .task(id: selectedAppStoreLinkQRCodeData) {
+        if selectedAppStoreLinkQRCodeData != nil {
+          showPhotoZoomableSheet.toggle()
+        }
+      }
+      .onChange(of: showPhotoZoomableSheet) { _, newValue in
+        if newValue == false {
+          selectedAppStoreLinkQRCodeData = nil
+        }
       }
     }
   }

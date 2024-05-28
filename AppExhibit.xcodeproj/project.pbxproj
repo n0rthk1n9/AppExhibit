@@ -15,6 +15,8 @@
 		57D7F8412C04EB0200294392 /* CreateAppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D7F8402C04EB0200294392 /* CreateAppView.swift */; };
 		57D7F8432C05117000294392 /* AppDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D7F8422C05117000294392 /* AppDetailView.swift */; };
 		57D7F8452C05138100294392 /* AppIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D7F8442C05138100294392 /* AppIconView.swift */; };
+		57D7F8472C05E6DB00294392 /* PhotoZoomableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D7F8462C05E6DB00294392 /* PhotoZoomableView.swift */; };
+		57D7F8492C05E7CB00294392 /* PhotoZoomableContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D7F8482C05E7CB00294392 /* PhotoZoomableContainerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +29,8 @@
 		57D7F8402C04EB0200294392 /* CreateAppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAppView.swift; sourceTree = "<group>"; };
 		57D7F8422C05117000294392 /* AppDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDetailView.swift; sourceTree = "<group>"; };
 		57D7F8442C05138100294392 /* AppIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIconView.swift; sourceTree = "<group>"; };
+		57D7F8462C05E6DB00294392 /* PhotoZoomableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoZoomableView.swift; sourceTree = "<group>"; };
+		57D7F8482C05E7CB00294392 /* PhotoZoomableContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoZoomableContainerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +65,8 @@
 			children = (
 				57D7F8302C04E04900294392 /* AppExhibitApp.swift */,
 				57D7F8322C04E04900294392 /* ContentView.swift */,
+				57D7F8462C05E6DB00294392 /* PhotoZoomableView.swift */,
+				57D7F8482C05E7CB00294392 /* PhotoZoomableContainerView.swift */,
 				57D7F8422C05117000294392 /* AppDetailView.swift */,
 				57D7F8442C05138100294392 /* AppIconView.swift */,
 				57D7F8402C04EB0200294392 /* CreateAppView.swift */,
@@ -149,10 +155,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				57D7F8492C05E7CB00294392 /* PhotoZoomableContainerView.swift in Sources */,
 				57D7F8332C04E04900294392 /* ContentView.swift in Sources */,
 				57D7F8352C04E04900294392 /* AppItem.swift in Sources */,
 				57D7F8432C05117000294392 /* AppDetailView.swift in Sources */,
 				57D7F8312C04E04900294392 /* AppExhibitApp.swift in Sources */,
+				57D7F8472C05E6DB00294392 /* PhotoZoomableView.swift in Sources */,
 				57D7F8412C04EB0200294392 /* CreateAppView.swift in Sources */,
 				57D7F8452C05138100294392 /* AppIconView.swift in Sources */,
 			);
