@@ -39,6 +39,7 @@ struct ContentView: View {
         }
         .onDelete(perform: deleteItems)
       }
+      .navigationTitle("App Exhibit")
       .navigationDestination(for: AppItem.self) { item in
         AppDetailView(item: item)
       }
