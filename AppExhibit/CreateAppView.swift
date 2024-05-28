@@ -53,6 +53,18 @@ struct CreateAppView: View {
         Section {
           TextField("App Store Link", text: $newAppItem.appStoreLink)
         }
+        Section {
+          Button("Fetch app data") {
+            if !newAppItem.appStoreLink.isEmpty {
+              var appID = ""
+              Task {
+                appID = viewModel.extractAppID(from: newAppItem.appStoreLink) ?? ""
+                await viewModel.getAppDetails(for: appID)
+                newAppItem.name = viewModel.appDetails.first?.trackCensoredName ?? ""
+              }
+            }
+          }
+        }
         if !newAppItem.appStoreLink.isEmpty {
           Section {
             Image(uiImage: appStoreLinkQRCode)
@@ -80,9 +92,6 @@ struct CreateAppView: View {
           appStoreLinkQRCode = generateQRCode(from: newAppStoreLink)
           newAppItem.qrCode = appStoreLinkQRCode.pngData()
         }
-      }
-      .task {
-        await viewModel.getResults()
       }
     }
   }
