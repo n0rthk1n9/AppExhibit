@@ -10,6 +10,7 @@ import Foundation
 @Observable
 class CreateAppViewModel {
   var appDetails: [ITunesAPIResult] = []
+  var appIcon: Data?
   var isLoading = false
 
   @ObservationIgnored
@@ -27,7 +28,6 @@ class CreateAppViewModel {
       let fetchedAppDetails = try await iTunesAPIService.fetchAppDetails(for: id)
 
       appDetails = fetchedAppDetails
-      print("loaded from web \(appDetails.first?.artworkUrl100)")
 
     } catch {
       print(error)
@@ -59,5 +59,24 @@ class CreateAppViewModel {
     }
 
     return nil
+  }
+
+  @MainActor
+  func getAppIcon() async {
+    isLoading = true
+
+    do {
+      if !appDetails.isEmpty {
+        var appIconURL: URL?
+        if let appIconURLString = appDetails.first?.artworkUrl100 {
+          appIconURL = URL(string: appIconURLString)
+        }
+        if let appIconURL {
+          (appIcon, _) = try await URLSession.shared.data(from: appIconURL)
+        }
+      }
+    } catch {
+      print(error)
+    }
   }
 }

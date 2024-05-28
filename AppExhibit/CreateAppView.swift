@@ -61,6 +61,8 @@ struct CreateAppView: View {
                 appID = viewModel.extractAppID(from: newAppItem.appStoreLink) ?? ""
                 await viewModel.getAppDetails(for: appID)
                 newAppItem.name = viewModel.appDetails.first?.trackCensoredName ?? ""
+                await viewModel.getAppIcon()
+                newAppItem.icon = viewModel.appIcon
               }
             }
           }
