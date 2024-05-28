@@ -15,13 +15,13 @@ struct AppIconView: View {
     ZStack {
       Image(uiImage: appIcon)
         .resizable()
-        .scaledToFill()
+        .scaledToFit()
         .frame(width: size, height: size)
         .clipShape(
           RoundedRectangle(cornerRadius: 0.2 * size, style: .continuous)
         )
     }
-    .padding()
+    .padding(.trailing)
   }
 }
 
