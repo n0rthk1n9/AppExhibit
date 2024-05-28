@@ -12,9 +12,11 @@ import SwiftData
 final class AppItem {
   var icon: Data?
   var name: String
+  var appStoreLink: String
   var qrCode: Data?
 
-  init(name: String = "") {
+  init(name: String = "", appStoreLink: String = "") {
     self.name = name
+    self.appStoreLink = appStoreLink
   }
 }

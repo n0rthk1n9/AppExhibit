@@ -5,6 +5,7 @@
 //  Created by Jan Armbrust on 27.05.24.
 //
 
+import CoreImage.CIFilterBuiltins
 import PhotosUI
 import SwiftUI
 
@@ -14,6 +15,10 @@ struct CreateAppView: View {
 
   @State private var newAppItem = AppItem()
   @State private var selectedPhoto: PhotosPickerItem?
+  @State private var appStoreLinkQRCode = UIImage()
+
+  let context = CIContext()
+  let filter = CIFilter.qrCodeGenerator()
 
   var body: some View {
     NavigationStack {
@@ -45,6 +50,18 @@ struct CreateAppView: View {
           TextField("App Name", text: $newAppItem.name)
         }
         Section {
+          TextField("App Store Link", text: $newAppItem.appStoreLink)
+        }
+        if !newAppItem.appStoreLink.isEmpty {
+          Section {
+            Image(uiImage: appStoreLinkQRCode)
+              .interpolation(.none)
+              .resizable()
+              .scaledToFit()
+              .frame(width: 200, height: 200)
+          }
+        }
+        Section {
           Button("Create") {
             addAppItem()
             dismiss()
@@ -57,6 +74,12 @@ struct CreateAppView: View {
           newAppItem.icon = appIconData
         }
       }
+      .onChange(of: newAppItem.appStoreLink) { _, newAppStoreLink in
+        withAnimation {
+          appStoreLinkQRCode = generateQRCode(from: newAppStoreLink)
+          newAppItem.qrCode = appStoreLinkQRCode.pngData()
+        }
+      }
     }
   }
 
@@ -64,6 +87,18 @@ struct CreateAppView: View {
     withAnimation {
       modelContext.insert(newAppItem)
     }
+  }
+
+  private func generateQRCode(from appStoreLink: String) -> UIImage {
+    filter.message = Data(appStoreLink.utf8)
+
+    if let outputImage = filter.outputImage {
+      if let cgImage = context.createCGImage(outputImage, from: outputImage.extent) {
+        return UIImage(cgImage: cgImage)
+      }
+    }
+
+    return UIImage(systemName: "xmark.circle") ?? UIImage()
   }
 }
 

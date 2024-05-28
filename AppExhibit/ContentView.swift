@@ -24,6 +24,16 @@ struct ContentView: View {
                 AppIconView(appIcon: appIcon, size: 64)
               }
               Text(item.name)
+              if let appStoreLinkQRCodeData = item.qrCode,
+                 let appStoreLinkQRCode = UIImage(data: appStoreLinkQRCodeData)
+              {
+                Spacer()
+                Image(systemName: "qrcode")
+                  .onTapGesture {
+                    print("tapped")
+                  }
+                  .padding(.trailing)
+              }
             }
           }
         }
