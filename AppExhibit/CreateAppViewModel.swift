@@ -5,6 +5,7 @@
 //  Created by Jan Armbrust on 28.05.24.
 //
 
+import Combine
 import Foundation
 
 @Observable
@@ -12,10 +13,16 @@ class CreateAppViewModel {
   var appDetails: [ITunesAPIResult] = []
   var appIcon: Data?
   var screenshots: [Data] = []
+  var apps: [ITunesAPIResult] = []
+  var searchTerm: String = ""
+
   var isLoading = false
 
   @ObservationIgnored
   private let iTunesAPIService: ITunesAPIServiceProtocol
+
+  @ObservationIgnored
+  var searchTask: Task<Void, Never>?
 
   init(iTunesAPIService: ITunesAPIServiceProtocol = ITunesAPIService()) {
     self.iTunesAPIService = iTunesAPIService
@@ -29,6 +36,21 @@ class CreateAppViewModel {
       let fetchedAppDetails = try await iTunesAPIService.fetchAppDetails(for: id)
 
       appDetails = fetchedAppDetails
+
+    } catch {
+      print(error)
+    }
+    isLoading = false
+  }
+
+  @MainActor
+  func getApps(for searchTerm: String) async {
+    isLoading = true
+
+    do {
+      let fetchedApps = try await iTunesAPIService.fetchApps(for: searchTerm)
+
+      apps = fetchedApps
 
     } catch {
       print(error)

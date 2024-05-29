@@ -12,9 +12,10 @@ struct ITunesAPIResult: Codable, Equatable, Hashable {
   let artworkUrl100: String
   let description: String
   let screenshotUrls: [String]
+  let trackViewUrl: String
 
   enum CodingKeys: String, CodingKey {
-    case artworkUrl100, trackCensoredName, description, screenshotUrls
+    case artworkUrl100, trackCensoredName, description, screenshotUrls, trackViewUrl
   }
 }
 
@@ -27,14 +28,16 @@ extension ITunesAPIResult {
     screenshotUrls: [String] =
       [
         "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource112/v4/3b/05/2c/3b052c20-2da3-7d1a-334a-f16d81c7717b/6bdd7a89-d533-4429-bbed-2f6860a08064_1.png/392x696bb.png"
-      ]
+      ],
+    trackViewUrl: String = "https://apps.apple.com/us/app/postmates-food-delivery/id512393983?uo=4"
 
   ) -> ITunesAPIResult {
     ITunesAPIResult(
       trackCensoredName: trackCensoredName,
       artworkUrl100: artworkUrl100,
       description: description,
-      screenshotUrls: screenshotUrls
+      screenshotUrls: screenshotUrls,
+      trackViewUrl: trackViewUrl
     )
   }
 
@@ -46,7 +49,8 @@ extension ITunesAPIResult {
       screenshotUrls:
       [
         "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource112/v4/3b/05/2c/3b052c20-2da3-7d1a-334a-f16d81c7717b/6bdd7a89-d533-4429-bbed-2f6860a08064_1.png/392x696bb.png"
-      ]
+      ],
+      trackViewUrl: "https://apps.apple.com/us/app/postmates-food-delivery/id512393983?uo=4"
     )
   }
 }

@@ -23,6 +23,17 @@ struct CreateAppView: View {
 
   var body: some View {
     NavigationStack {
+      List(viewModel.apps, id: \.self) { app in
+        Text(app.trackCensoredName)
+          .onTapGesture {
+            newAppItem.appStoreLink = app.trackViewUrl
+            Task {
+              await fetchAppDetails()
+            }
+            viewModel.searchTerm = ""
+          }
+      }
+      .searchable(text: $viewModel.searchTerm)
       List {
         Section {
           TextField("App Store Link", text: $newAppItem.appStoreLink)
@@ -86,6 +97,14 @@ struct CreateAppView: View {
         withAnimation {
           appStoreLinkQRCode = generateQRCode(from: newAppStoreLink)
           newAppItem.qrCode = appStoreLinkQRCode.pngData()
+        }
+      }
+      .task(id: viewModel.searchTerm) {
+        viewModel.searchTask?.cancel()
+
+        viewModel.searchTask = Task {
+          try? await Task.sleep(nanoseconds: 300_000_000)
+          await viewModel.getApps(for: viewModel.searchTerm)
         }
       }
     }

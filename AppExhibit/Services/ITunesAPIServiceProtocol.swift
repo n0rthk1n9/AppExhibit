@@ -9,4 +9,5 @@ import Foundation
 
 protocol ITunesAPIServiceProtocol {
   func fetchAppDetails(for id: String) async throws -> [ITunesAPIResult]
+  func fetchApps(for searchTerm: String) async throws -> [ITunesAPIResult]
 }
