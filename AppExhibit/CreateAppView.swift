@@ -28,13 +28,8 @@ struct CreateAppView: View {
           TextField("App Store Link", text: $newAppItem.appStoreLink)
           Button("Fetch app data") {
             if !newAppItem.appStoreLink.isEmpty {
-              var appID = ""
               Task {
-                appID = viewModel.extractAppID(from: newAppItem.appStoreLink) ?? ""
-                await viewModel.getAppDetails(for: appID)
-                newAppItem.name = viewModel.appDetails.first?.trackCensoredName ?? ""
-                await viewModel.getAppIcon()
-                newAppItem.icon = viewModel.appIcon
+                await fetchAppDetails()
               }
             }
           }
@@ -112,6 +107,15 @@ struct CreateAppView: View {
     }
 
     return UIImage(systemName: "xmark.circle") ?? UIImage()
+  }
+
+  private func fetchAppDetails() async {
+    var appID = ""
+    appID = viewModel.extractAppID(from: newAppItem.appStoreLink) ?? ""
+    await viewModel.getAppDetails(for: appID)
+    newAppItem.name = viewModel.appDetails.first?.trackCensoredName ?? ""
+    await viewModel.getAppIcon()
+    newAppItem.icon = viewModel.appIcon
   }
 }
 
