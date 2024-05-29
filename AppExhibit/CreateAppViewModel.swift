@@ -11,6 +11,7 @@ import Foundation
 class CreateAppViewModel {
   var appDetails: [ITunesAPIResult] = []
   var appIcon: Data?
+  var screenshots: [Data] = []
   var isLoading = false
 
   @ObservationIgnored
@@ -78,5 +79,24 @@ class CreateAppViewModel {
     } catch {
       print(error)
     }
+  }
+
+  @MainActor
+  func getScreenshots() async {
+    isLoading = true
+
+    do {
+      if let screenshotUrls = appDetails.first?.screenshotUrls {
+        for screenshotUrlString in screenshotUrls {
+          if let screenshotURL = URL(string: screenshotUrlString) {
+            let (screenshotData, _) = try await URLSession.shared.data(from: screenshotURL)
+            screenshots.append(screenshotData)
+          }
+        }
+      }
+    } catch {
+      print(error)
+    }
+    isLoading = false
   }
 }

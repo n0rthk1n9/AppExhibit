@@ -116,6 +116,9 @@ struct CreateAppView: View {
     newAppItem.name = viewModel.appDetails.first?.trackCensoredName ?? ""
     await viewModel.getAppIcon()
     newAppItem.icon = viewModel.appIcon
+    newAppItem.appStoreDescription = viewModel.appDetails.first?.description ?? ""
+    await viewModel.getScreenshots()
+    newAppItem.screenshots = viewModel.screenshots
   }
 }
 

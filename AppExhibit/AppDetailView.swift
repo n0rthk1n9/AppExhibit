@@ -10,20 +10,50 @@ import SwiftUI
 struct AppDetailView: View {
   let item: AppItem
 
+  @State private var showPhotoZoomableSheet = false
+
   var body: some View {
-    VStack {
-      if let appIconData = item.icon, let appIcon = UIImage(data: appIconData) {
-        AppIconView(appIcon: appIcon)
+    ScrollView {
+      VStack(alignment: .leading) {
+        HStack(alignment: .top) {
+          if let appIconData = item.icon, let appIcon = UIImage(data: appIconData) {
+            AppIconView(appIcon: appIcon)
+          }
+          Image(systemName: "qrcode")
+            .font(.largeTitle)
+            .onTapGesture {
+              showPhotoZoomableSheet.toggle()
+            }
+        }
+        .padding(.bottom)
+        if let screenshots = item.screenshots {
+          ScrollView(.horizontal, showsIndicators: false) {
+            HStack(spacing: 8) {
+              ForEach(0 ..< screenshots.count, id: \.self) { index in
+                if let screenshot = UIImage(data: screenshots[index]) {
+                  Image(uiImage: screenshot)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(height: 400)
+                    .cornerRadius(20)
+                }
+              }
+            }
+          }
+          .padding(.bottom)
+        }
+        Text(item.appStoreDescription ?? "")
       }
-      if let appStoreLinkQRCodeData = item.qrCode, let appStoreLinkQRCode = UIImage(data: appStoreLinkQRCodeData) {
-        Image(uiImage: appStoreLinkQRCode)
-          .interpolation(.none)
-          .resizable()
-          .scaledToFit()
-          .frame(width: 200, height: 200)
-      }
-      Text(item.name)
+      .padding()
     }
+    .sheet(isPresented: $showPhotoZoomableSheet) {
+      if let qrCode = item.qrCode {
+        PhotoZoomableView(appStoreLinkQRCodeData: qrCode)
+          .presentationBackground(.ultraThinMaterial)
+          .presentationCornerRadius(16)
+      }
+    }
+    .navigationTitle(item.name)
   }
 }
 

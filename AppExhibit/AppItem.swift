@@ -14,6 +14,8 @@ final class AppItem {
   var name: String
   var appStoreLink: String
   var qrCode: Data?
+  var appStoreDescription: String?
+  var screenshots: [Data]?
 
   init(name: String = "", appStoreLink: String = "") {
     self.name = name
