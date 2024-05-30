@@ -26,7 +26,23 @@ struct FindByAppNameView: View {
             viewModel.searchTerm = ""
           }
         } label: {
-          Text(app.trackCensoredName)
+          HStack {
+            if let appIconURL = URL(string: app.artworkUrl100) {
+              AsyncImage(url: appIconURL) { image in
+                image
+                  .resizable()
+                  .scaledToFit()
+                  .frame(width: 32, height: 32)
+                  .clipShape(
+                    RoundedRectangle(cornerRadius: 0.2 * 32, style: .continuous)
+                  )
+              } placeholder: {
+                ProgressView()
+              }
+              .padding(.trailing)
+            }
+            Text(app.trackCensoredName)
+          }
         }
       }
       .searchable(text: $viewModel.searchTerm)
