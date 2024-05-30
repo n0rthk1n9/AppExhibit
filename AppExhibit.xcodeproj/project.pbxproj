@@ -14,7 +14,7 @@
 		57D7F8352C04E04900294392 /* AppItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D7F8342C04E04900294392 /* AppItem.swift */; };
 		57D7F8372C04E04B00294392 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 57D7F8362C04E04B00294392 /* Assets.xcassets */; };
 		57D7F83A2C04E04B00294392 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 57D7F8392C04E04B00294392 /* Preview Assets.xcassets */; };
-		57D7F8412C04EB0200294392 /* CreateAppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D7F8402C04EB0200294392 /* CreateAppView.swift */; };
+		57D7F8412C04EB0200294392 /* AddAppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D7F8402C04EB0200294392 /* AddAppView.swift */; };
 		57D7F8432C05117000294392 /* AppDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D7F8422C05117000294392 /* AppDetailView.swift */; };
 		57D7F8452C05138100294392 /* AppIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D7F8442C05138100294392 /* AppIconView.swift */; };
 		57D7F8472C05E6DB00294392 /* PhotoZoomableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D7F8462C05E6DB00294392 /* PhotoZoomableView.swift */; };
@@ -23,7 +23,7 @@
 		57D7F84F2C05FD3200294392 /* ITunesAPIResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D7F84E2C05FD3200294392 /* ITunesAPIResult.swift */; };
 		57D7F8512C05FD5A00294392 /* ITunesAPIResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D7F8502C05FD5A00294392 /* ITunesAPIResults.swift */; };
 		57D7F8532C05FF4400294392 /* ITunesAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D7F8522C05FF4400294392 /* ITunesAPIService.swift */; };
-		57D7F8552C0602EE00294392 /* CreateAppViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D7F8542C0602EE00294392 /* CreateAppViewModel.swift */; };
+		57D7F8552C0602EE00294392 /* AddAppViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D7F8542C0602EE00294392 /* AddAppViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,7 +35,7 @@
 		57D7F8342C04E04900294392 /* AppItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppItem.swift; sourceTree = "<group>"; };
 		57D7F8362C04E04B00294392 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		57D7F8392C04E04B00294392 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		57D7F8402C04EB0200294392 /* CreateAppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAppView.swift; sourceTree = "<group>"; };
+		57D7F8402C04EB0200294392 /* AddAppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAppView.swift; sourceTree = "<group>"; };
 		57D7F8422C05117000294392 /* AppDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDetailView.swift; sourceTree = "<group>"; };
 		57D7F8442C05138100294392 /* AppIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIconView.swift; sourceTree = "<group>"; };
 		57D7F8462C05E6DB00294392 /* PhotoZoomableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoZoomableView.swift; sourceTree = "<group>"; };
@@ -44,7 +44,7 @@
 		57D7F84E2C05FD3200294392 /* ITunesAPIResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ITunesAPIResult.swift; sourceTree = "<group>"; };
 		57D7F8502C05FD5A00294392 /* ITunesAPIResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ITunesAPIResults.swift; sourceTree = "<group>"; };
 		57D7F8522C05FF4400294392 /* ITunesAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ITunesAPIService.swift; sourceTree = "<group>"; };
-		57D7F8542C0602EE00294392 /* CreateAppViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAppViewModel.swift; sourceTree = "<group>"; };
+		57D7F8542C0602EE00294392 /* AddAppViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAppViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,8 +85,8 @@
 				57D7F8442C05138100294392 /* AppIconView.swift */,
 				5759C4E82C08756E00294392 /* FindByAppNameView.swift */,
 				5759C4EA2C08835900294392 /* FindByAppStoreLinkView.swift */,
-				57D7F8402C04EB0200294392 /* CreateAppView.swift */,
-				57D7F8542C0602EE00294392 /* CreateAppViewModel.swift */,
+				57D7F8402C04EB0200294392 /* AddAppView.swift */,
+				57D7F8542C0602EE00294392 /* AddAppViewModel.swift */,
 				57D7F8342C04E04900294392 /* AppItem.swift */,
 				57D7F84D2C05FCD400294392 /* Models */,
 				57D7F84A2C05FC2100294392 /* Services */,
@@ -198,13 +198,13 @@
 				5759C4E92C08756E00294392 /* FindByAppNameView.swift in Sources */,
 				57D7F8352C04E04900294392 /* AppItem.swift in Sources */,
 				57D7F84C2C05FCB800294392 /* ITunesAPIServiceProtocol.swift in Sources */,
-				57D7F8552C0602EE00294392 /* CreateAppViewModel.swift in Sources */,
+				57D7F8552C0602EE00294392 /* AddAppViewModel.swift in Sources */,
 				57D7F8432C05117000294392 /* AppDetailView.swift in Sources */,
 				57D7F8312C04E04900294392 /* AppExhibitApp.swift in Sources */,
 				57D7F8472C05E6DB00294392 /* PhotoZoomableView.swift in Sources */,
 				57D7F8532C05FF4400294392 /* ITunesAPIService.swift in Sources */,
 				57D7F8512C05FD5A00294392 /* ITunesAPIResults.swift in Sources */,
-				57D7F8412C04EB0200294392 /* CreateAppView.swift in Sources */,
+				57D7F8412C04EB0200294392 /* AddAppView.swift in Sources */,
 				5759C4EB2C08835900294392 /* FindByAppStoreLinkView.swift in Sources */,
 				57D7F8452C05138100294392 /* AppIconView.swift in Sources */,
 			);

@@ -69,7 +69,7 @@ struct ContentView: View {
         }
       }
       .sheet(isPresented: $showCreateAppSheet) {
-        CreateAppView(newAppItem: .constant(AppItem()))
+        AddAppView(newAppItem: .constant(AppItem()))
       }
       .sheet(isPresented: $showFindByAppNameSheet) {
         FindByAppNameView()

@@ -1,5 +1,5 @@
 //
-//  CreateAppView.swift
+//  AddAppView.swift
 //  AppExhibit
 //
 //  Created by Jan Armbrust on 27.05.24.
@@ -9,11 +9,11 @@ import CoreImage.CIFilterBuiltins
 import PhotosUI
 import SwiftUI
 
-struct CreateAppView: View {
+struct AddAppView: View {
   @Environment(\.modelContext) private var modelContext
   @Environment(\.dismiss) var dismiss
 
-  @State private var viewModel = CreateAppViewModel()
+  @State private var viewModel = AddAppViewModel()
   @Binding var newAppItem: AppItem
   @State private var selectedPhoto: PhotosPickerItem?
   @State private var appStoreLinkQRCode = UIImage()
@@ -110,6 +110,6 @@ struct CreateAppView: View {
 }
 
 #Preview {
-  CreateAppView(newAppItem: .constant(AppItem()))
+  AddAppView(newAppItem: .constant(AppItem()))
     .modelContainer(for: AppItem.self, inMemory: true)
 }

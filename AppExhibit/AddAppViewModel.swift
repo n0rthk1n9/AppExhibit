@@ -1,5 +1,5 @@
 //
-//  CreateAppViewModel.swift
+//  AddAppViewModel.swift
 //  AppExhibit
 //
 //  Created by Jan Armbrust on 28.05.24.
@@ -9,7 +9,7 @@ import Combine
 import Foundation
 
 @Observable
-class CreateAppViewModel {
+class AddAppViewModel {
   var appDetails: [ITunesAPIResult] = []
   var appIcon: Data?
   var screenshots: [Data] = []

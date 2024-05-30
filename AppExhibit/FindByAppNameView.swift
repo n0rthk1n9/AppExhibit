@@ -10,14 +10,14 @@ import SwiftUI
 struct FindByAppNameView: View {
   @Environment(\.dismiss) private var dismiss
 
-  @State private var viewModel = CreateAppViewModel()
+  @State private var viewModel = AddAppViewModel()
   @State private var newAppItem = AppItem()
 
   var body: some View {
     NavigationStack {
       List(viewModel.apps, id: \.self) { app in
         NavigationLink {
-          CreateAppView(newAppItem: $newAppItem) {
+          AddAppView(newAppItem: $newAppItem) {
             dismiss()
           }
           .task {

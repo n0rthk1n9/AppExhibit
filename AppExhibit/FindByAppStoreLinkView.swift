@@ -10,7 +10,7 @@ import SwiftUI
 struct FindByAppStoreLinkView: View {
   @Environment(\.dismiss) private var dismiss
 
-  @State private var viewModel = CreateAppViewModel()
+  @State private var viewModel = AddAppViewModel()
   @State private var newAppItem = AppItem()
   @State private var showCreateAppView = false
 
@@ -33,7 +33,7 @@ struct FindByAppStoreLinkView: View {
       }
       .navigationTitle("Paste Link")
       .navigationDestination(isPresented: $showCreateAppView) {
-        CreateAppView(newAppItem: $newAppItem) {
+        AddAppView(newAppItem: $newAppItem) {
           dismiss()
           showCreateAppView = false
         }
