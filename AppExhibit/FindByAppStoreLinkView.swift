@@ -43,13 +43,22 @@ struct FindByAppStoreLinkView: View {
 
   private func fetchAppDetails() async {
     let appID = viewModel.extractAppID(from: newAppItem.appStoreLink) ?? ""
+
     await viewModel.getAppDetails(for: appID)
-    newAppItem.name = viewModel.appDetails.first?.trackCensoredName ?? ""
+    Task { @MainActor in
+      newAppItem.name = viewModel.appDetails.first?.trackCensoredName ?? ""
+    }
+
     await viewModel.getAppIcon()
-    newAppItem.icon = viewModel.appIcon
-    newAppItem.appStoreDescription = viewModel.appDetails.first?.description ?? ""
+    Task { @MainActor in
+      newAppItem.icon = viewModel.appIcon
+      newAppItem.appStoreDescription = viewModel.appDetails.first?.description ?? ""
+    }
+
     await viewModel.getScreenshots()
-    newAppItem.screenshots = viewModel.screenshots
+    Task { @MainActor in
+      newAppItem.screenshots = viewModel.screenshots
+    }
   }
 }
 

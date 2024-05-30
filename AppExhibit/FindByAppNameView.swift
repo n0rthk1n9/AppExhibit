@@ -46,9 +46,11 @@ struct FindByAppNameView: View {
           }
         }
       }
-      .searchable(text: $viewModel.searchTerm)
       .navigationTitle("Find App by name")
-      .task(id: viewModel.searchTerm) {
+    }
+    .searchable(text: $viewModel.searchTerm)
+    .task(id: viewModel.searchTerm) {
+      if !viewModel.searchTerm.isEmpty {
         viewModel.searchTask?.cancel()
 
         viewModel.searchTask = Task {
