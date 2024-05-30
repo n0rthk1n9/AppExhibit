@@ -38,6 +38,7 @@ struct FindByAppStoreLinkView: View {
           showCreateAppView = false
         }
       }
+      .showCustomAlert(alert: $viewModel.error)
     }
   }
 

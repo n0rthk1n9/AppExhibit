@@ -17,6 +17,7 @@ class AddAppViewModel {
   var appStoreLink: String = ""
 
   var isLoading = false
+  var error: AppExhibitError?
 
   @ObservationIgnored
   private let iTunesAPIService: ITunesAPIServiceProtocol
@@ -37,9 +38,15 @@ class AddAppViewModel {
 
       appDetails = fetchedAppDetails
 
+    } catch let error as AppExhibitError {
+      self.error = error
     } catch {
-      print(error)
+      if (error as? URLError)?.code == .cancelled {
+        return
+      }
+      self.error = .other(error: error)
     }
+
     isLoading = false
   }
 
@@ -52,9 +59,15 @@ class AddAppViewModel {
 
       apps = fetchedApps
 
+    } catch let error as AppExhibitError {
+      self.error = error
     } catch {
-      print(error)
+      if (error as? URLError)?.code == .cancelled {
+        return
+      }
+      self.error = .other(error: error)
     }
+
     isLoading = false
   }
 
@@ -76,8 +89,14 @@ class AddAppViewModel {
           }
         }
       }
+    } catch let error as AppExhibitError {
+      self.error = error
+      return nil
     } catch {
-      print("Invalid regular expression")
+      if (error as? URLError)?.code == .cancelled {
+        return nil
+      }
+      self.error = .other(error: error)
       return nil
     }
 
@@ -98,9 +117,16 @@ class AddAppViewModel {
           (appIcon, _) = try await URLSession.shared.data(from: appIconURL)
         }
       }
+    } catch let error as AppExhibitError {
+      self.error = error
     } catch {
-      print(error)
+      if (error as? URLError)?.code == .cancelled {
+        return
+      }
+      self.error = .other(error: error)
     }
+
+    isLoading = false
   }
 
   @MainActor
@@ -118,9 +144,15 @@ class AddAppViewModel {
           }
         }
       }
+    } catch let error as AppExhibitError {
+      self.error = error
     } catch {
-      print(error)
+      if (error as? URLError)?.code == .cancelled {
+        return
+      }
+      self.error = .other(error: error)
     }
+
     isLoading = false
   }
 }

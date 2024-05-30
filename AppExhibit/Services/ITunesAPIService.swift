@@ -25,7 +25,7 @@ struct ITunesAPIService: ITunesAPIServiceProtocol {
     ]
 
     guard let url = urlComponents.url else {
-      throw URLError(.cancelled)
+      throw AppExhibitError.invalidURL
     }
 
     let request = URLRequest(url: url)
@@ -33,7 +33,7 @@ struct ITunesAPIService: ITunesAPIServiceProtocol {
     do {
       let (data, response) = try await session.data(for: request)
       guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
-        throw URLError(.cancelled)
+        throw AppExhibitError.invalidResponseCode
       }
 
       let iTunesAPIResults = try JSONDecoder().decode(ITunesAPIResults.self, from: data)
@@ -56,7 +56,7 @@ struct ITunesAPIService: ITunesAPIServiceProtocol {
     ]
 
     guard let url = urlComponents.url else {
-      throw URLError(.cancelled)
+      throw AppExhibitError.invalidURL
     }
 
     let request = URLRequest(url: url)
@@ -64,7 +64,7 @@ struct ITunesAPIService: ITunesAPIServiceProtocol {
     do {
       let (data, response) = try await session.data(for: request)
       guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
-        throw URLError(.cancelled)
+        throw AppExhibitError.invalidResponseCode
       }
 
       let iTunesAPIResults = try JSONDecoder().decode(ITunesAPIResults.self, from: data)

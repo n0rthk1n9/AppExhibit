@@ -47,6 +47,7 @@ struct FindByAppNameView: View {
         }
       }
       .navigationTitle("Find App by name")
+      .showCustomAlert(alert: $viewModel.error)
     }
     .searchable(text: $viewModel.searchTerm)
     .task(id: viewModel.searchTerm) {
