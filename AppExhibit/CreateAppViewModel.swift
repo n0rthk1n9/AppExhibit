@@ -15,6 +15,7 @@ class CreateAppViewModel {
   var screenshots: [Data] = []
   var apps: [ITunesAPIResult] = []
   var searchTerm: String = ""
+  var appStoreLink: String = ""
 
   var isLoading = false
 

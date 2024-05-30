@@ -14,26 +14,16 @@ struct CreateAppView: View {
   @Environment(\.dismiss) var dismiss
 
   @State private var viewModel = CreateAppViewModel()
-  @State private var newAppItem = AppItem()
+  @Binding var newAppItem: AppItem
   @State private var selectedPhoto: PhotosPickerItem?
   @State private var appStoreLinkQRCode = UIImage()
 
   let context = CIContext()
   let filter = CIFilter.qrCodeGenerator()
+  var onCreate: (() -> Void)?
 
   var body: some View {
     NavigationStack {
-      List(viewModel.apps, id: \.self) { app in
-        Text(app.trackCensoredName)
-          .onTapGesture {
-            newAppItem.appStoreLink = app.trackViewUrl
-            Task {
-              await fetchAppDetails()
-            }
-            viewModel.searchTerm = ""
-          }
-      }
-      .searchable(text: $viewModel.searchTerm)
       List {
         Section {
           TextField("App Store Link", text: $newAppItem.appStoreLink)
@@ -71,19 +61,14 @@ struct CreateAppView: View {
         Section {
           TextField("App Name", text: $newAppItem.name)
         }
-        if !newAppItem.appStoreLink.isEmpty {
-          Section {
-            Image(uiImage: appStoreLinkQRCode)
-              .interpolation(.none)
-              .resizable()
-              .scaledToFit()
-              .frame(width: 200, height: 200)
-          }
-        }
         Section {
           Button("Create") {
             addAppItem()
-            dismiss()
+            if let onCreate {
+              onCreate()
+            } else {
+              dismiss()
+            }
           }
         }
       }
@@ -141,7 +126,7 @@ struct CreateAppView: View {
   }
 }
 
-#Preview {
-  CreateAppView()
-    .modelContainer(for: AppItem.self, inMemory: true)
-}
+// #Preview {
+//  CreateAppView()
+//    .modelContainer(for: AppItem.self, inMemory: true)
+// }
