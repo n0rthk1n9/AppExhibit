@@ -22,13 +22,13 @@ struct FindByAppStoreLinkView: View {
           .padding()
 
         Button("Fetch app data") {
-          if !newAppItem.appStoreLink.isEmpty {
-            Task {
-              await fetchAppDetails()
-              showCreateAppView = true
-            }
+          Task {
+            await fetchAppDetails()
+            showCreateAppView = true
           }
         }
+        .buttonStyle(.borderedProminent)
+        .disabled(newAppItem.appStoreLink.isEmpty)
         .padding()
       }
       .navigationTitle("Paste Link")
