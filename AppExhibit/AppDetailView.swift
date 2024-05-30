@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct AppDetailView: View {
+  @Environment(\.openURL) var openURL
+
   let item: AppItem
 
   @State private var showPhotoZoomableSheet = false
@@ -19,11 +21,21 @@ struct AppDetailView: View {
           if let appIconData = item.icon, let appIcon = UIImage(data: appIconData) {
             AppIconView(appIcon: appIcon)
           }
-          Image(systemName: "qrcode")
-            .font(.largeTitle)
-            .onTapGesture {
-              showPhotoZoomableSheet.toggle()
+          VStack(alignment: .leading) {
+            Image(systemName: "qrcode")
+              .font(.largeTitle)
+              .onTapGesture {
+                showPhotoZoomableSheet.toggle()
+              }
+              .padding(.bottom)
+            Button("Go to App Store Page") {
+              if let appStoreLink = URL(string: item.appStoreLink) {
+                openURL(appStoreLink)
+              }
             }
+            .buttonStyle(.borderedProminent)
+            .buttonBorderShape(.capsule)
+          }
         }
         .padding(.bottom)
         if let screenshots = item.screenshots {

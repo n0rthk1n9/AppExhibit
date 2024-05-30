@@ -76,7 +76,6 @@ struct ContentView: View {
       }
       .sheet(isPresented: $showFindByAppStoreLinkSheet) {
         FindByAppStoreLinkView()
-          .presentationDetents([.medium])
       }
       .sheet(isPresented: $showPhotoZoomableSheet) {
         if let selectedAppStoreLinkQRCodeData {
