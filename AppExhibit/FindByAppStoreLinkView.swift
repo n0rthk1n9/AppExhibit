@@ -21,7 +21,7 @@ struct FindByAppStoreLinkView: View {
           .textFieldStyle(RoundedBorderTextFieldStyle())
           .padding()
 
-        Button("Fetch app data") {
+        Button("Find") {
           Task {
             await fetchAppDetails()
             showCreateAppView = true
@@ -31,7 +31,7 @@ struct FindByAppStoreLinkView: View {
         .disabled(newAppItem.appStoreLink.isEmpty)
         .padding()
       }
-      .navigationTitle("Paste Link")
+      .navigationTitle("Find App by link")
       .navigationDestination(isPresented: $showCreateAppView) {
         AddAppView(newAppItem: $newAppItem) {
           dismiss()

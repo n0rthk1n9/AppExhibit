@@ -56,7 +56,7 @@ struct AddAppView: View {
             TextField("App Store or TestFlight Link", text: $newAppItem.appStoreLink)
           }
         }
-        Button("Create") {
+        Button("Add") {
           addAppItem()
           if let onCreate {
             onCreate()
@@ -67,7 +67,7 @@ struct AddAppView: View {
         .disabled(newAppItem.appStoreLink.isEmpty && newAppItem.name.isEmpty)
         .buttonStyle(.borderedProminent)
       }
-      .navigationTitle("Create App")
+      .navigationTitle("Add App")
       .task(id: selectedPhoto) {
         if let appIconData = try? await selectedPhoto?.loadTransferable(type: Data.self) {
           newAppItem.icon = appIconData
