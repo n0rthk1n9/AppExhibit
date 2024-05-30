@@ -38,6 +38,7 @@ struct FindByAppNameView: View {
                   )
               } placeholder: {
                 ProgressView()
+                  .frame(width: 32, height: 32)
               }
               .padding(.trailing)
             }
