@@ -1,5 +1,5 @@
 //
-//  SearchAppNameView.swift
+//  FindByAppNameView.swift
 //  AppExhibit
 //
 //  Created by Jan Armbrust on 30.05.24.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SearchAppNameView: View {
+struct FindByAppNameView: View {
   @Environment(\.dismiss) private var dismiss
 
   @State private var viewModel = CreateAppViewModel()
@@ -55,5 +55,5 @@ struct SearchAppNameView: View {
 }
 
 #Preview {
-  SearchAppNameView()
+  FindByAppNameView()
 }

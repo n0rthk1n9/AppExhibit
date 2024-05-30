@@ -67,7 +67,7 @@ struct ContentView: View {
         CreateAppView(newAppItem: .constant(AppItem()))
       }
       .sheet(isPresented: $showSearchAppSheet) {
-        SearchAppNameView()
+        FindByAppNameView()
       }
       .sheet(isPresented: $showPhotoZoomableSheet) {
         if let selectedAppStoreLinkQRCodeData {
