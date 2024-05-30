@@ -24,43 +24,48 @@ struct CreateAppView: View {
 
   var body: some View {
     NavigationStack {
-      List {
-        Section {
-          if let appIconData = newAppItem.icon, let appIcon = UIImage(data: appIconData) {
-            AppIconView(appIcon: appIcon)
+      VStack {
+        Form {
+          Section {
+            TextField("App Name", text: $newAppItem.name)
           }
-          PhotosPicker(
-            selection: $selectedPhoto,
-            matching: .images,
-            photoLibrary: .shared()
-          ) {
-            Label("Select App Icon", systemImage: "photo")
-          }
-          if newAppItem.icon != nil {
-            Button(role: .destructive) {
-              withAnimation {
-                selectedPhoto = nil
-                newAppItem.icon = nil
+          Section {
+            if let appIconData = newAppItem.icon, let appIcon = UIImage(data: appIconData) {
+              AppIconView(appIcon: appIcon)
+            }
+            PhotosPicker(
+              selection: $selectedPhoto,
+              matching: .images,
+              photoLibrary: .shared()
+            ) {
+              Label("Select App Icon", systemImage: "photo")
+            }
+            if newAppItem.icon != nil {
+              Button(role: .destructive) {
+                withAnimation {
+                  selectedPhoto = nil
+                  newAppItem.icon = nil
+                }
+              } label: {
+                Label("Remove App Icon", systemImage: "xmark")
+                  .foregroundStyle(.red)
               }
-            } label: {
-              Label("Remove App Icon", systemImage: "xmark")
-                .foregroundStyle(.red)
             }
           }
-        }
-        Section {
-          TextField("App Name", text: $newAppItem.name)
-        }
-        Section {
-          Button("Create") {
-            addAppItem()
-            if let onCreate {
-              onCreate()
-            } else {
-              dismiss()
-            }
+          Section {
+            TextField("App Store or TestFlight Link", text: $newAppItem.appStoreLink)
           }
         }
+        Button("Create") {
+          addAppItem()
+          if let onCreate {
+            onCreate()
+          } else {
+            dismiss()
+          }
+        }
+        .disabled(newAppItem.appStoreLink.isEmpty && newAppItem.name.isEmpty)
+        .buttonStyle(.borderedProminent)
       }
       .navigationTitle("Create App")
       .task(id: selectedPhoto) {
