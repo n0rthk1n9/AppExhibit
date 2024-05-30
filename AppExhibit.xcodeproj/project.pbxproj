@@ -58,6 +58,45 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		578881F72C08E65D00294392 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				57D7F8322C04E04900294392 /* ContentView.swift */,
+				57D7F8422C05117000294392 /* AppDetailView.swift */,
+				578881F82C08E66D00294392 /* AddAppViews */,
+				578881F92C08E69300294392 /* GeneralViews */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		578881F82C08E66D00294392 /* AddAppViews */ = {
+			isa = PBXGroup;
+			children = (
+				5759C4E82C08756E00294392 /* FindByAppNameView.swift */,
+				5759C4EA2C08835900294392 /* FindByAppStoreLinkView.swift */,
+				57D7F8402C04EB0200294392 /* AddAppView.swift */,
+			);
+			path = AddAppViews;
+			sourceTree = "<group>";
+		};
+		578881F92C08E69300294392 /* GeneralViews */ = {
+			isa = PBXGroup;
+			children = (
+				57D7F8482C05E7CB00294392 /* PhotoZoomableContainerView.swift */,
+				57D7F8462C05E6DB00294392 /* PhotoZoomableView.swift */,
+				57D7F8442C05138100294392 /* AppIconView.swift */,
+			);
+			path = GeneralViews;
+			sourceTree = "<group>";
+		};
+		578881FA2C08E6CA00294392 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				57D7F8542C0602EE00294392 /* AddAppViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		57D7F8242C04E04900294392 = {
 			isa = PBXGroup;
 			children = (
@@ -78,16 +117,8 @@
 			isa = PBXGroup;
 			children = (
 				57D7F8302C04E04900294392 /* AppExhibitApp.swift */,
-				57D7F8322C04E04900294392 /* ContentView.swift */,
-				57D7F8462C05E6DB00294392 /* PhotoZoomableView.swift */,
-				57D7F8482C05E7CB00294392 /* PhotoZoomableContainerView.swift */,
-				57D7F8422C05117000294392 /* AppDetailView.swift */,
-				57D7F8442C05138100294392 /* AppIconView.swift */,
-				5759C4E82C08756E00294392 /* FindByAppNameView.swift */,
-				5759C4EA2C08835900294392 /* FindByAppStoreLinkView.swift */,
-				57D7F8402C04EB0200294392 /* AddAppView.swift */,
-				57D7F8542C0602EE00294392 /* AddAppViewModel.swift */,
-				57D7F8342C04E04900294392 /* AppItem.swift */,
+				578881F72C08E65D00294392 /* Views */,
+				578881FA2C08E6CA00294392 /* ViewModels */,
 				57D7F84D2C05FCD400294392 /* Models */,
 				57D7F84A2C05FC2100294392 /* Services */,
 				57D7F8362C04E04B00294392 /* Assets.xcassets */,
@@ -116,6 +147,7 @@
 		57D7F84D2C05FCD400294392 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				57D7F8342C04E04900294392 /* AppItem.swift */,
 				57D7F84E2C05FD3200294392 /* ITunesAPIResult.swift */,
 				57D7F8502C05FD5A00294392 /* ITunesAPIResults.swift */,
 			);
