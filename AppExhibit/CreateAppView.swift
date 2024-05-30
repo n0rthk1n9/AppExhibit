@@ -26,16 +26,6 @@ struct CreateAppView: View {
     NavigationStack {
       List {
         Section {
-          TextField("App Store Link", text: $newAppItem.appStoreLink)
-          Button("Fetch app data") {
-            if !newAppItem.appStoreLink.isEmpty {
-              Task {
-                await fetchAppDetails()
-              }
-            }
-          }
-        }
-        Section {
           if let appIconData = newAppItem.icon, let appIcon = UIImage(data: appIconData) {
             AppIconView(appIcon: appIcon)
           }
@@ -84,12 +74,12 @@ struct CreateAppView: View {
           newAppItem.qrCode = appStoreLinkQRCode.pngData()
         }
       }
-      .task(id: viewModel.searchTerm) {
-        viewModel.searchTask?.cancel()
-
-        viewModel.searchTask = Task {
-          try? await Task.sleep(nanoseconds: 300_000_000)
-          await viewModel.getApps(for: viewModel.searchTerm)
+      .onAppear {
+        if !newAppItem.appStoreLink.isEmpty {
+          withAnimation {
+            appStoreLinkQRCode = generateQRCode(from: newAppItem.appStoreLink)
+            newAppItem.qrCode = appStoreLinkQRCode.pngData()
+          }
         }
       }
     }
@@ -112,21 +102,9 @@ struct CreateAppView: View {
 
     return UIImage(systemName: "xmark.circle") ?? UIImage()
   }
-
-  private func fetchAppDetails() async {
-    var appID = ""
-    appID = viewModel.extractAppID(from: newAppItem.appStoreLink) ?? ""
-    await viewModel.getAppDetails(for: appID)
-    newAppItem.name = viewModel.appDetails.first?.trackCensoredName ?? ""
-    await viewModel.getAppIcon()
-    newAppItem.icon = viewModel.appIcon
-    newAppItem.appStoreDescription = viewModel.appDetails.first?.description ?? ""
-    await viewModel.getScreenshots()
-    newAppItem.screenshots = viewModel.screenshots
-  }
 }
 
-// #Preview {
-//  CreateAppView()
-//    .modelContainer(for: AppItem.self, inMemory: true)
-// }
+#Preview {
+  CreateAppView(newAppItem: .constant(AppItem()))
+    .modelContainer(for: AppItem.self, inMemory: true)
+}

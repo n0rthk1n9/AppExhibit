@@ -13,7 +13,8 @@ struct ContentView: View {
   @Query private var items: [AppItem]
 
   @State private var showCreateAppSheet = false
-  @State private var showSearchAppSheet = false
+  @State private var showFindByAppNameSheet = false
+  @State private var showFindByAppStoreLinkSheet = false
   @State private var showPhotoZoomableSheet = false
   @State var selectedAppStoreLinkQRCodeData: Data? = nil
 
@@ -48,16 +49,20 @@ struct ContentView: View {
         ToolbarItem {
           Menu {
             Button {
+              showFindByAppNameSheet.toggle()
+            } label: {
+              Label("Add by search", systemImage: "magnifyingglass")
+            }
+            Button {
+              showFindByAppStoreLinkSheet.toggle()
+            } label: {
+              Label("Add by App Store link", systemImage: "link")
+            }
+            Button {
               showCreateAppSheet.toggle()
             } label: {
               Label("Add manually", systemImage: "plus")
             }
-            Button {
-              showSearchAppSheet.toggle()
-            } label: {
-              Label("Add by search", systemImage: "magnifyingglass")
-            }
-
           } label: {
             Label("Add App", systemImage: "plus")
           }
@@ -66,8 +71,12 @@ struct ContentView: View {
       .sheet(isPresented: $showCreateAppSheet) {
         CreateAppView(newAppItem: .constant(AppItem()))
       }
-      .sheet(isPresented: $showSearchAppSheet) {
+      .sheet(isPresented: $showFindByAppNameSheet) {
         FindByAppNameView()
+      }
+      .sheet(isPresented: $showFindByAppStoreLinkSheet) {
+        FindByAppStoreLinkView()
+          .presentationDetents([.medium])
       }
       .sheet(isPresented: $showPhotoZoomableSheet) {
         if let selectedAppStoreLinkQRCodeData {

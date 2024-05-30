@@ -108,6 +108,8 @@ class CreateAppViewModel {
   func getScreenshots() async {
     isLoading = true
 
+    screenshots = []
+
     do {
       if let screenshotUrls = appDetails.first?.screenshotUrls {
         for screenshotUrlString in screenshotUrls {

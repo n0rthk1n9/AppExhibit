@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5759C4E92C08756E00294392 /* FindByAppNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5759C4E82C08756E00294392 /* FindByAppNameView.swift */; };
+		5759C4EB2C08835900294392 /* FindByAppStoreLinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5759C4EA2C08835900294392 /* FindByAppStoreLinkView.swift */; };
 		57D7F8312C04E04900294392 /* AppExhibitApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D7F8302C04E04900294392 /* AppExhibitApp.swift */; };
 		57D7F8332C04E04900294392 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D7F8322C04E04900294392 /* ContentView.swift */; };
 		57D7F8352C04E04900294392 /* AppItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D7F8342C04E04900294392 /* AppItem.swift */; };
@@ -27,6 +28,7 @@
 
 /* Begin PBXFileReference section */
 		5759C4E82C08756E00294392 /* FindByAppNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindByAppNameView.swift; sourceTree = "<group>"; };
+		5759C4EA2C08835900294392 /* FindByAppStoreLinkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindByAppStoreLinkView.swift; sourceTree = "<group>"; };
 		57D7F82D2C04E04900294392 /* AppExhibit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppExhibit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		57D7F8302C04E04900294392 /* AppExhibitApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppExhibitApp.swift; sourceTree = "<group>"; };
 		57D7F8322C04E04900294392 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -82,6 +84,7 @@
 				57D7F8422C05117000294392 /* AppDetailView.swift */,
 				57D7F8442C05138100294392 /* AppIconView.swift */,
 				5759C4E82C08756E00294392 /* FindByAppNameView.swift */,
+				5759C4EA2C08835900294392 /* FindByAppStoreLinkView.swift */,
 				57D7F8402C04EB0200294392 /* CreateAppView.swift */,
 				57D7F8542C0602EE00294392 /* CreateAppViewModel.swift */,
 				57D7F8342C04E04900294392 /* AppItem.swift */,
@@ -202,6 +205,7 @@
 				57D7F8532C05FF4400294392 /* ITunesAPIService.swift in Sources */,
 				57D7F8512C05FD5A00294392 /* ITunesAPIResults.swift in Sources */,
 				57D7F8412C04EB0200294392 /* CreateAppView.swift in Sources */,
+				5759C4EB2C08835900294392 /* FindByAppStoreLinkView.swift in Sources */,
 				57D7F8452C05138100294392 /* AppIconView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
