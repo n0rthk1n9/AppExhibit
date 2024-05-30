@@ -21,25 +21,42 @@ struct ContentView: View {
   var body: some View {
     NavigationStack {
       List {
-        ForEach(items) { item in
-          NavigationLink(value: item) {
-            HStack {
-              if let appIconData = item.icon, let appIcon = UIImage(data: appIconData) {
-                AppIconView(appIcon: appIcon, size: 64)
-              }
-              Text(item.name)
-              if let appStoreLinkQRCodeData = item.qrCode {
-                Spacer()
-                Image(systemName: "qrcode")
-                  .onTapGesture {
-                    selectedAppStoreLinkQRCodeData = appStoreLinkQRCodeData
-                  }
-                  .padding(.trailing)
+        if items.isEmpty {
+          ContentUnavailableView {
+            Label("Add your first app", systemImage: "app.fill")
+          } description: {
+            Text(
+              "Add all your precious apps you want to easily share with the people around you just by tapping the + button"
+            )
+          } actions: {
+            Button {
+              showFindByAppNameSheet.toggle()
+            } label: {
+              Image(systemName: "plus")
+            }
+          }
+
+        } else {
+          ForEach(items) { item in
+            NavigationLink(value: item) {
+              HStack {
+                if let appIconData = item.icon, let appIcon = UIImage(data: appIconData) {
+                  AppIconView(appIcon: appIcon, size: 64)
+                }
+                Text(item.name)
+                if let appStoreLinkQRCodeData = item.qrCode {
+                  Spacer()
+                  Image(systemName: "qrcode")
+                    .onTapGesture {
+                      selectedAppStoreLinkQRCodeData = appStoreLinkQRCodeData
+                    }
+                    .padding(.trailing)
+                }
               }
             }
           }
+          .onDelete(perform: deleteItems)
         }
-        .onDelete(perform: deleteItems)
       }
       .navigationTitle("App Exhibit")
       .navigationDestination(for: AppItem.self) { item in
