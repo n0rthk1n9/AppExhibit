@@ -33,7 +33,7 @@ struct FindByAppStoreLinkView: View {
       }
       .navigationTitle("Find App by link")
       .navigationDestination(isPresented: $showCreateAppView) {
-        AddAppView(newAppItem: $newAppItem) {
+        AddAppView(viewModel: $viewModel, newAppItem: $newAppItem) {
           dismiss()
           showCreateAppView = false
         }

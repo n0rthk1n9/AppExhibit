@@ -17,7 +17,7 @@ struct FindByAppNameView: View {
     NavigationStack {
       List(viewModel.apps, id: \.self) { app in
         NavigationLink {
-          AddAppView(newAppItem: $newAppItem) {
+          AddAppView(viewModel: $viewModel, newAppItem: $newAppItem) {
             dismiss()
           }
           .task {

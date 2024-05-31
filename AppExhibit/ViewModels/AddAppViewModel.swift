@@ -17,6 +17,7 @@ class AddAppViewModel {
   var appStoreLink: String = ""
 
   var isLoading = false
+  var isLoadingScreenshots = false
   var error: AppExhibitError?
 
   @ObservationIgnored
@@ -131,7 +132,7 @@ class AddAppViewModel {
 
   @MainActor
   func getScreenshots() async {
-    isLoading = true
+    isLoadingScreenshots = true
 
     screenshots = []
 
@@ -153,6 +154,6 @@ class AddAppViewModel {
       self.error = .other(error: error)
     }
 
-    isLoading = false
+    isLoadingScreenshots = false
   }
 }

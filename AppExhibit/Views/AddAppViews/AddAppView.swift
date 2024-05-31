@@ -13,7 +13,7 @@ struct AddAppView: View {
   @Environment(\.modelContext) private var modelContext
   @Environment(\.dismiss) var dismiss
 
-  @State private var viewModel = AddAppViewModel()
+  @Binding var viewModel: AddAppViewModel
   @Binding var newAppItem: AppItem
   @State private var selectedPhoto: PhotosPickerItem?
   @State private var appStoreLinkQRCode = UIImage()
@@ -56,16 +56,26 @@ struct AddAppView: View {
             TextField("App Store or TestFlight Link", text: $newAppItem.appStoreLink)
           }
         }
-        Button("Add") {
+        Button {
           addAppItem()
           if let onCreate {
             onCreate()
           } else {
             dismiss()
           }
+        } label: {
+          if viewModel.isLoadingScreenshots {
+            ProgressView {
+              Text("Loading screenshots")
+            }
+          } else {
+            Text("Add")
+          }
         }
-        .disabled(newAppItem.appStoreLink.isEmpty && newAppItem.name.isEmpty)
+        .disabled(newAppItem.name.isEmpty || newAppItem.appStoreLink.isEmpty || viewModel.isLoading || viewModel
+          .isLoadingScreenshots)
         .buttonStyle(.borderedProminent)
+        .padding()
       }
       .navigationTitle("Add App")
       .task(id: selectedPhoto) {
@@ -110,6 +120,6 @@ struct AddAppView: View {
 }
 
 #Preview {
-  AddAppView(newAppItem: .constant(AppItem()))
+  AddAppView(viewModel: .constant(AddAppViewModel()), newAppItem: .constant(AppItem()))
     .modelContainer(for: AppItem.self, inMemory: true)
 }
