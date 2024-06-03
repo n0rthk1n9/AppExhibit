@@ -22,7 +22,7 @@ struct AppDetailView: View {
             AppIconView(appIcon: appIcon)
           }
           VStack(alignment: .leading) {
-            HStack {
+            HStack(alignment: .top) {
               Image(systemName: "qrcode")
                 .font(.largeTitle)
                 .onTapGesture {
@@ -30,11 +30,8 @@ struct AppDetailView: View {
                 }
                 .padding(.bottom)
               if let appStoreUrl = URL(string: item.appStoreLink) {
-                ShareLink(
-                  item: appStoreUrl,
-                  subject: Text("Share link"),
-                  message: Text("Check out the 100 Days of SwiftUI!")
-                )
+                ShareLink("Share link", item: appStoreUrl)
+                  .font(.title3)
               }
             }
             Button("Go to App Store Page") {
