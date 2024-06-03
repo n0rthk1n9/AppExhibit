@@ -22,12 +22,21 @@ struct AppDetailView: View {
             AppIconView(appIcon: appIcon)
           }
           VStack(alignment: .leading) {
-            Image(systemName: "qrcode")
-              .font(.largeTitle)
-              .onTapGesture {
-                showPhotoZoomableSheet.toggle()
+            HStack {
+              Image(systemName: "qrcode")
+                .font(.largeTitle)
+                .onTapGesture {
+                  showPhotoZoomableSheet.toggle()
+                }
+                .padding(.bottom)
+              if let appStoreUrl = URL(string: item.appStoreLink) {
+                ShareLink(
+                  item: appStoreUrl,
+                  subject: Text("Share link"),
+                  message: Text("Check out the 100 Days of SwiftUI!")
+                )
               }
-              .padding(.bottom)
+            }
             Button("Go to App Store Page") {
               if let appStoreLink = URL(string: item.appStoreLink) {
                 openURL(appStoreLink)
