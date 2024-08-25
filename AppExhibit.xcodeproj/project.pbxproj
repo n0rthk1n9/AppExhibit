@@ -28,6 +28,7 @@
 		579ADD382C0E573200294392 /* AppIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D7F8442C05138100294392 /* AppIconView.swift */; };
 		579ADD392C0E620400294392 /* Binding+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578882032C08EA2E00294392 /* Binding+Extension.swift */; };
 		579ADD3A2C0E620700294392 /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578882012C08E97C00294392 /* View+Extension.swift */; };
+		57B8B0AB2C78C90000294392 /* FreemiumKit in Frameworks */ = {isa = PBXBuildFile; productRef = 57B8B0AA2C78C90000294392 /* FreemiumKit */; };
 		57D7F8312C04E04900294392 /* AppExhibitApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D7F8302C04E04900294392 /* AppExhibitApp.swift */; };
 		57D7F8332C04E04900294392 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D7F8322C04E04900294392 /* ContentView.swift */; };
 		57D7F8352C04E04900294392 /* AppItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D7F8342C04E04900294392 /* AppItem.swift */; };
@@ -113,6 +114,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				57B8B0AB2C78C90000294392 /* FreemiumKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -308,6 +310,9 @@
 				Base,
 			);
 			mainGroup = 57D7F8242C04E04900294392;
+			packageReferences = (
+				57B8B0A92C78C90000294392 /* XCRemoteSwiftPackageReference "FreemiumKit" */,
+			);
 			productRefGroup = 57D7F82E2C04E04900294392 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -602,7 +607,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = dev.xbow.AppExhibit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -639,7 +644,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = dev.xbow.AppExhibit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -680,6 +685,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		57B8B0A92C78C90000294392 /* XCRemoteSwiftPackageReference "FreemiumKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/FlineDev/FreemiumKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.7.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		57B8B0AA2C78C90000294392 /* FreemiumKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 57B8B0A92C78C90000294392 /* XCRemoteSwiftPackageReference "FreemiumKit" */;
+			productName = FreemiumKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 57D7F8252C04E04900294392 /* Project object */;
 }
