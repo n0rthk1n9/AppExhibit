@@ -5,6 +5,7 @@
 //  Created by Jan Armbrust on 27.05.24.
 //
 
+import FreemiumKit
 import SwiftData
 import SwiftUI
 
@@ -21,7 +22,7 @@ struct ContentView: View {
   var body: some View {
     NavigationStack {
       List {
-        if items.isEmpty {
+        if self.items.isEmpty {
           ContentUnavailableView {
             Label("Add your first app", systemImage: "app.fill")
           } description: {
@@ -30,14 +31,14 @@ struct ContentView: View {
             )
           } actions: {
             Button {
-              showFindByAppNameSheet.toggle()
+              self.showFindByAppNameSheet.toggle()
             } label: {
               Image(systemName: "plus")
             }
           }
 
         } else {
-          ForEach(items) { item in
+          ForEach(self.items) { item in
             NavigationLink(value: item) {
               HStack {
                 if let appIconData = item.icon, let appIcon = UIImage(data: appIconData) {
@@ -48,14 +49,14 @@ struct ContentView: View {
                   Spacer()
                   Image(systemName: "qrcode")
                     .onTapGesture {
-                      selectedAppStoreLinkQRCodeData = appStoreLinkQRCodeData
+                      self.selectedAppStoreLinkQRCodeData = appStoreLinkQRCodeData
                     }
                     .padding(.trailing)
                 }
               }
             }
           }
-          .onDelete(perform: deleteItems)
+          .onDelete(perform: self.deleteItems)
         }
       }
       .navigationTitle("App Exhibit")
@@ -64,51 +65,77 @@ struct ContentView: View {
       }
       .toolbar {
         ToolbarItem {
-          Menu {
-            Button {
-              showFindByAppNameSheet.toggle()
-            } label: {
-              Label("Add by search", systemImage: "magnifyingglass")
+          if self.items.count >= 1 {
+            PaidFeatureView {
+              Menu {
+                Button {
+                  self.showFindByAppNameSheet.toggle()
+                } label: {
+                  Label("Add by search", systemImage: "magnifyingglass")
+                }
+                Button {
+                  self.showFindByAppStoreLinkSheet.toggle()
+                } label: {
+                  Label("Add by App Store link", systemImage: "link")
+                }
+                Button {
+                  self.showCreateAppSheet.toggle()
+                } label: {
+                  Label("Add manually", systemImage: "plus")
+                }
+              } label: {
+                Label("Add App", systemImage: "plus")
+              }
+            } lockedView: {
+              Label("Add App", systemImage: "lock")
             }
-            Button {
-              showFindByAppStoreLinkSheet.toggle()
+          } else {
+            Menu {
+              Button {
+                self.showFindByAppNameSheet.toggle()
+              } label: {
+                Label("Add by search", systemImage: "magnifyingglass")
+              }
+              Button {
+                self.showFindByAppStoreLinkSheet.toggle()
+              } label: {
+                Label("Add by App Store link", systemImage: "link")
+              }
+              Button {
+                self.showCreateAppSheet.toggle()
+              } label: {
+                Label("Add manually", systemImage: "plus")
+              }
             } label: {
-              Label("Add by App Store link", systemImage: "link")
+              Label("Add App", systemImage: "plus")
             }
-            Button {
-              showCreateAppSheet.toggle()
-            } label: {
-              Label("Add manually", systemImage: "plus")
-            }
-          } label: {
-            Label("Add App", systemImage: "plus")
           }
         }
       }
-      .sheet(isPresented: $showCreateAppSheet) {
+      .sheet(isPresented: self.$showCreateAppSheet) {
         AddAppView(viewModel: .constant(AddAppViewModel()), newAppItem: .constant(AppItem()))
       }
-      .sheet(isPresented: $showFindByAppNameSheet) {
+      .sheet(isPresented: self.$showFindByAppNameSheet) {
         FindByAppNameView()
       }
-      .sheet(isPresented: $showFindByAppStoreLinkSheet) {
+      .sheet(isPresented: self.$showFindByAppStoreLinkSheet) {
         FindByAppStoreLinkView()
       }
-      .sheet(isPresented: $showPhotoZoomableSheet) {
+      .sheet(isPresented: self.$showPhotoZoomableSheet) {
         if let selectedAppStoreLinkQRCodeData {
           PhotoZoomableView(appStoreLinkQRCodeData: selectedAppStoreLinkQRCodeData)
             .presentationBackground(.ultraThinMaterial)
             .presentationCornerRadius(16)
         }
       }
-      .task(id: selectedAppStoreLinkQRCodeData) {
-        if selectedAppStoreLinkQRCodeData != nil {
-          showPhotoZoomableSheet.toggle()
+      .task(id: self.selectedAppStoreLinkQRCodeData) {
+        if self.selectedAppStoreLinkQRCodeData != nil {
+          self.showPhotoZoomableSheet.toggle()
         }
       }
-      .onChange(of: showPhotoZoomableSheet) { _, newValue in
+      .onChange(of: self.showPhotoZoomableSheet) { _, newValue in
         if newValue == false {
-          selectedAppStoreLinkQRCodeData = nil
+          self.selectedAppStoreLinkQRCodeData = nil
         }
       }
     }
@@ -117,7 +144,7 @@ struct ContentView: View {
   private func deleteItems(offsets: IndexSet) {
     withAnimation {
       for index in offsets {
-        modelContext.delete(items[index])
+        self.modelContext.delete(self.items[index])
       }
     }
   }

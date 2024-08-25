@@ -1,0 +1,15 @@
+{
+  "originHash" : "00db71d38409083bfb7f6fe63a249cdb8ebb52a4e7960624762be6a4de44ee66",
+  "pins" : [
+    {
+      "identity" : "freemiumkit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/FlineDev/FreemiumKit.git",
+      "state" : {
+        "revision" : "965d3fffe7bf2ce428d3dd6eaded2293665c64b9",
+        "version" : "1.7.1"
+      }
+    }
+  ],
+  "version" : 3
+}
