@@ -18,6 +18,7 @@ struct ContentView: View {
   @State private var showFindByAppStoreLinkSheet = false
   @State private var showPhotoZoomableSheet = false
   @State var selectedAppStoreLinkQRCodeData: Data? = nil
+  @State var showPaywall: Bool = false
 
   var body: some View {
     NavigationStack {
@@ -65,53 +66,52 @@ struct ContentView: View {
       }
       .toolbar {
         ToolbarItem {
-          if self.items.count >= 1 {
-            PaidFeatureView {
-              Menu {
-                Button {
-                  self.showFindByAppNameSheet.toggle()
-                } label: {
-                  Label("Add by search", systemImage: "magnifyingglass")
-                }
-                Button {
-                  self.showFindByAppStoreLinkSheet.toggle()
-                } label: {
-                  Label("Add by App Store link", systemImage: "link")
-                }
-                Button {
-                  self.showCreateAppSheet.toggle()
-                } label: {
-                  Label("Add manually", systemImage: "plus")
-                }
-              } label: {
-                Label("Add App", systemImage: "plus")
-              }
-            } lockedView: {
-              Label("Add App", systemImage: "lock")
-            }
-          } else {
-            Menu {
-              Button {
+          Menu {
+            Button {
+              if self.items.isEmpty || FreemiumKit.shared.hasPurchased {
                 self.showFindByAppNameSheet.toggle()
-              } label: {
-                Label("Add by search", systemImage: "magnifyingglass")
-              }
-              Button {
-                self.showFindByAppStoreLinkSheet.toggle()
-              } label: {
-                Label("Add by App Store link", systemImage: "link")
-              }
-              Button {
-                self.showCreateAppSheet.toggle()
-              } label: {
-                Label("Add manually", systemImage: "plus")
+              } else {
+                self.showPaywall = true
               }
             } label: {
-              Label("Add App", systemImage: "plus")
+              if self.items.isEmpty || FreemiumKit.shared.hasPurchased {
+                Label("Add by search", systemImage: "magnifyingglass")
+              } else {
+                Label("Add by search", systemImage: "lock")
+              }
             }
+            Button {
+              if self.items.isEmpty || FreemiumKit.shared.hasPurchased {
+                self.showFindByAppStoreLinkSheet.toggle()
+              } else {
+                self.showPaywall = true
+              }
+            } label: {
+              if self.items.isEmpty || FreemiumKit.shared.hasPurchased {
+                Label("Add by App Store link", systemImage: "link")
+              } else {
+                Label("Add by App Store link", systemImage: "lock")
+              }
+            }
+            Button {
+              if self.items.isEmpty || FreemiumKit.shared.hasPurchased {
+                self.showCreateAppSheet.toggle()
+              } else {
+                self.showPaywall = true
+              }
+            } label: {
+              if self.items.isEmpty || FreemiumKit.shared.hasPurchased {
+                Label("Add manually", systemImage: "plus")
+              } else {
+                Label("Add manually", systemImage: "lock")
+              }
+            }
+          } label: {
+            Label("Add App", systemImage: "plus")
           }
         }
       }
+      .paywall(isPresented: self.$showPaywall)
       .sheet(isPresented: self.$showCreateAppSheet) {
         AddAppView(viewModel: .constant(AddAppViewModel()), newAppItem: .constant(AppItem()))
       }
