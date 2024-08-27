@@ -1,0 +1,270 @@
+{
+  "appPolicies" : {
+    "eula" : "",
+    "policies" : [
+      {
+        "locale" : "en_US",
+        "policyText" : "",
+        "policyURL" : ""
+      }
+    ]
+  },
+  "identifier" : "4718F4E8",
+  "nonRenewingSubscriptions" : [
+
+  ],
+  "products" : [
+    {
+      "displayPrice" : "2.99",
+      "familyShareable" : false,
+      "internalID" : "6657989149",
+      "localizations" : [
+        {
+          "description" : "Hozzáférés Pro funkciókhoz.",
+          "displayName" : "Pro Élettartam",
+          "locale" : "hu"
+        },
+        {
+          "description" : "Acces la funcțiile Pro.",
+          "displayName" : "Pro Pe viață",
+          "locale" : "ro"
+        },
+        {
+          "description" : "Acesso aos recursos Pro.",
+          "displayName" : "Pro Vitalício",
+          "locale" : "pt_BR"
+        },
+        {
+          "description" : "Pääsy Pro ominaisuuksiin.",
+          "displayName" : "Pro Elinikä",
+          "locale" : "fi"
+        },
+        {
+          "description" : "Access to Pro features.",
+          "displayName" : "Pro Lifetime",
+          "locale" : "en_US"
+        },
+        {
+          "description" : "Access to Pro features.",
+          "displayName" : "Pro Lifetime",
+          "locale" : "en_AU"
+        },
+        {
+          "description" : "Πρόσβαση στις Pro λειτουργίες.",
+          "displayName" : "Pro Διάρκεια ζωής",
+          "locale" : "el"
+        },
+        {
+          "description" : "Pristup Pro značajkama.",
+          "displayName" : "Pro Doživotno",
+          "locale" : "hr"
+        },
+        {
+          "description" : "Akses ke fitur Pro.",
+          "displayName" : "Pro Seumur hidup",
+          "locale" : "id"
+        },
+        {
+          "description" : "Pro özellikleri.",
+          "displayName" : "Pro Ömür boyu",
+          "locale" : "tr"
+        },
+        {
+          "description" : "Akses semua Pro ciri.",
+          "displayName" : "Pro Seumur hidup",
+          "locale" : "ms"
+        },
+        {
+          "description" : "Tillgång till Pro funktioner.",
+          "displayName" : "Pro Livstid",
+          "locale" : "sv"
+        },
+        {
+          "description" : "Accés a Pro.",
+          "displayName" : "Pro Per a vida",
+          "locale" : "ca"
+        },
+        {
+          "description" : "Prístup k Pro funkciám.",
+          "displayName" : "Pro Na celý život",
+          "locale" : "sk"
+        },
+        {
+          "description" : "訪問Pro功能。",
+          "displayName" : "Pro 終身",
+          "locale" : "zh_CN"
+        },
+        {
+          "description" : "Acesso às funcionalidades Pro.",
+          "displayName" : "Pro Vitalício",
+          "locale" : "pt_PT"
+        },
+        {
+          "description" : "Dostęp do Pro funkcji.",
+          "displayName" : "Pro Dożywotnio",
+          "locale" : "pl"
+        },
+        {
+          "description" : "Access to Pro features.",
+          "displayName" : "Pro Lifetime",
+          "locale" : "en_CA"
+        },
+        {
+          "description" : "Pro 기능 접근.",
+          "displayName" : "Pro 평생",
+          "locale" : "ko"
+        },
+        {
+          "description" : "Adgang til Pro funktioner.",
+          "displayName" : "Pro Livstid",
+          "locale" : "da"
+        },
+        {
+          "description" : "Pro機能へのアクセス。",
+          "displayName" : "Pro 生涯",
+          "locale" : "ja"
+        },
+        {
+          "description" : "Accesso a Pro funzionalità.",
+          "displayName" : "Pro A vita",
+          "locale" : "it"
+        },
+        {
+          "description" : "Truy cập tính năng Pro.",
+          "displayName" : "Pro Trọn đời",
+          "locale" : "vi"
+        },
+        {
+          "description" : "גישה לכל Pro תכונות.",
+          "displayName" : "Pro לכל החיים",
+          "locale" : "he"
+        },
+        {
+          "description" : "Доступ до Pro функцій.",
+          "displayName" : "Pro Довічно",
+          "locale" : "uk"
+        },
+        {
+          "description" : "Access to Pro features.",
+          "displayName" : "Pro Lifetime",
+          "locale" : "en_GB"
+        },
+        {
+          "description" : "Accès aux fonctionnalités Pro.",
+          "displayName" : "Pro À vie",
+          "locale" : "fr"
+        },
+        {
+          "description" : "Toegang tot Pro functies.",
+          "displayName" : "Pro Levenslang",
+          "locale" : "nl"
+        },
+        {
+          "description" : "Acceso a las funciones Pro.",
+          "displayName" : "Pro De por vida",
+          "locale" : "es_ES"
+        },
+        {
+          "description" : "Přístup ke Pro funkcím.",
+          "displayName" : "Pro Doživotní",
+          "locale" : "cs"
+        },
+        {
+          "description" : "Pro सुविधाएँ।",
+          "displayName" : "Pro आजीवन",
+          "locale" : "hi"
+        },
+        {
+          "description" : "เข้าถึงคุณสมบัติ Pro.",
+          "displayName" : "Pro ตลอดชีพ",
+          "locale" : "th"
+        },
+        {
+          "description" : "Доступ к функциям Pro.",
+          "displayName" : "Pro Пожизненно",
+          "locale" : "ru"
+        },
+        {
+          "description" : "كل ميزات Pro.",
+          "displayName" : "Pro مدى الحياة",
+          "locale" : "ar"
+        },
+        {
+          "description" : "Zugriff auf Pro Funktionen.",
+          "displayName" : "Pro Lebenszeit",
+          "locale" : "de"
+        },
+        {
+          "description" : "Acceso a las funciones Pro.",
+          "displayName" : "Pro De por vida",
+          "locale" : "es_MX"
+        }
+      ],
+      "productID" : "AppExhibit.Pro.Lifetime",
+      "referenceName" : "Pro Lifetime",
+      "type" : "NonConsumable"
+    }
+  ],
+  "settings" : {
+    "_applicationInternalID" : "6503256642",
+    "_developerTeamID" : "G7HRH2B3C7",
+    "_failTransactionsEnabled" : false,
+    "_lastSynchronizedDate" : 746454749.30313098,
+    "_locale" : "en_US",
+    "_storefront" : "USA",
+    "_storeKitErrors" : [
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Load Products"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Purchase"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Verification"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "App Store Sync"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Subscription Status"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "App Transaction"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Manage Subscriptions Sheet"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Refund Request Sheet"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Offer Code Redeem Sheet"
+      }
+    ]
+  },
+  "subscriptionGroups" : [
+
+  ],
+  "version" : {
+    "major" : 4,
+    "minor" : 0
+  }
+}
