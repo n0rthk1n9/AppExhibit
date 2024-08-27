@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5726DA932C7DFEDA00294392 /* AppExhibit.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 5726DA922C7DFEDA00294392 /* AppExhibit.storekit */; };
 		5759C4E92C08756E00294392 /* FindByAppNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5759C4E82C08756E00294392 /* FindByAppNameView.swift */; };
 		5759C4EB2C08835900294392 /* FindByAppStoreLinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5759C4EA2C08835900294392 /* FindByAppStoreLinkView.swift */; };
 		578881FC2C08E74C00294392 /* AppExhibitAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578881FB2C08E74C00294392 /* AppExhibitAlert.swift */; };
@@ -71,6 +72,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		5726DA922C7DFEDA00294392 /* AppExhibit.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = AppExhibit.storekit; sourceTree = "<group>"; };
 		5759C4E82C08756E00294392 /* FindByAppNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindByAppNameView.swift; sourceTree = "<group>"; };
 		5759C4EA2C08835900294392 /* FindByAppStoreLinkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindByAppStoreLinkView.swift; sourceTree = "<group>"; };
 		578881FB2C08E74C00294392 /* AppExhibitAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppExhibitAlert.swift; sourceTree = "<group>"; };
@@ -211,6 +213,7 @@
 				578882002C08E95900294392 /* Extensions */,
 				57D7F8362C04E04B00294392 /* Assets.xcassets */,
 				57D7F8382C04E04B00294392 /* Preview Content */,
+				5726DA922C7DFEDA00294392 /* AppExhibit.storekit */,
 			);
 			path = AppExhibit;
 			sourceTree = "<group>";
@@ -336,6 +339,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				57D7F83A2C04E04B00294392 /* Preview Assets.xcassets in Resources */,
+				5726DA932C7DFEDA00294392 /* AppExhibit.storekit in Resources */,
 				57D7F8372C04E04B00294392 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -407,7 +411,7 @@
 				CODE_SIGN_ENTITLEMENTS = ShareExtension/ShareExtension.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = G7HRH2B3C7;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ShareExtension/Info.plist;
@@ -419,7 +423,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = dev.xbow.AppExhibit.ShareExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -435,7 +439,7 @@
 				CODE_SIGN_ENTITLEMENTS = ShareExtension/ShareExtension.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = G7HRH2B3C7;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ShareExtension/Info.plist;
@@ -447,7 +451,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = dev.xbow.AppExhibit.ShareExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -589,7 +593,7 @@
 				CODE_SIGN_ENTITLEMENTS = AppExhibit/AppExhibit.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_ASSET_PATHS = "\"AppExhibit/Preview Content\"";
 				DEVELOPMENT_TEAM = G7HRH2B3C7;
 				ENABLE_PREVIEWS = YES;
@@ -626,7 +630,7 @@
 				CODE_SIGN_ENTITLEMENTS = AppExhibit/AppExhibit.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_ASSET_PATHS = "\"AppExhibit/Preview Content\"";
 				DEVELOPMENT_TEAM = G7HRH2B3C7;
 				ENABLE_PREVIEWS = YES;
