@@ -25,7 +25,7 @@ struct AppExhibitApp: App {
   }()
 
   init() {
-    FreemiumKit.shared.lastPaidRelease(version: "1.1", buildNum: 1)
+    FreemiumKit.shared.lastPaidRelease(version: "1.1", buildNum: 6)
   }
 
   var body: some Scene {
