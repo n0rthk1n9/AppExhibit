@@ -30,7 +30,7 @@ struct AppExhibitApp: App {
 
   var body: some Scene {
     WindowGroup {
-      ContentView()
+      MainView()
         .environmentObject(FreemiumKit.shared)
     }
     .modelContainer(self.sharedModelContainer)

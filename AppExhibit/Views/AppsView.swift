@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  AppsView.swift
 //  AppExhibit
 //
 //  Created by Jan Armbrust on 27.05.24.
@@ -9,7 +9,7 @@ import FreemiumKit
 import SwiftData
 import SwiftUI
 
-struct ContentView: View {
+struct AppsView: View {
   @Environment(\.modelContext) private var modelContext
   @Query private var items: [AppItem]
 
@@ -125,6 +125,6 @@ struct ContentView: View {
 }
 
 #Preview {
-  ContentView()
+  AppsView()
     .modelContainer(for: AppItem.self, inMemory: true)
 }

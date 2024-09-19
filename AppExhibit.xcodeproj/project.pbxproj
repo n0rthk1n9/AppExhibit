@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		5726DA932C7DFEDA00294392 /* AppExhibit.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 5726DA922C7DFEDA00294392 /* AppExhibit.storekit */; };
 		5739AA082C9C4C62001EC327 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 57D7F8362C04E04B00294392 /* Assets.xcassets */; };
+		5739AA0B2C9C6BC8001EC327 /* FreemiumKit in Frameworks */ = {isa = PBXBuildFile; productRef = 5739AA0A2C9C6BC8001EC327 /* FreemiumKit */; };
+		5739AA0D2C9C7F2B001EC327 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5739AA0C2C9C7F2B001EC327 /* SettingsView.swift */; };
+		5739AA0F2C9C7F5E001EC327 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5739AA0E2C9C7F5E001EC327 /* MainView.swift */; };
 		5759C4E92C08756E00294392 /* FindByAppNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5759C4E82C08756E00294392 /* FindByAppNameView.swift */; };
 		5759C4EB2C08835900294392 /* FindByAppStoreLinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5759C4EA2C08835900294392 /* FindByAppStoreLinkView.swift */; };
 		578881FC2C08E74C00294392 /* AppExhibitAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578881FB2C08E74C00294392 /* AppExhibitAlert.swift */; };
@@ -32,7 +35,7 @@
 		579ADD3A2C0E620700294392 /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578882012C08E97C00294392 /* View+Extension.swift */; };
 		57B8B0AB2C78C90000294392 /* FreemiumKit in Frameworks */ = {isa = PBXBuildFile; productRef = 57B8B0AA2C78C90000294392 /* FreemiumKit */; };
 		57D7F8312C04E04900294392 /* AppExhibitApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D7F8302C04E04900294392 /* AppExhibitApp.swift */; };
-		57D7F8332C04E04900294392 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D7F8322C04E04900294392 /* ContentView.swift */; };
+		57D7F8332C04E04900294392 /* AppsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D7F8322C04E04900294392 /* AppsView.swift */; };
 		57D7F8352C04E04900294392 /* AppItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D7F8342C04E04900294392 /* AppItem.swift */; };
 		57D7F8372C04E04B00294392 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 57D7F8362C04E04B00294392 /* Assets.xcassets */; };
 		57D7F83A2C04E04B00294392 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 57D7F8392C04E04B00294392 /* Preview Assets.xcassets */; };
@@ -74,6 +77,8 @@
 
 /* Begin PBXFileReference section */
 		5726DA922C7DFEDA00294392 /* AppExhibit.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = AppExhibit.storekit; sourceTree = "<group>"; };
+		5739AA0C2C9C7F2B001EC327 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		5739AA0E2C9C7F5E001EC327 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		5759C4E82C08756E00294392 /* FindByAppNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindByAppNameView.swift; sourceTree = "<group>"; };
 		5759C4EA2C08835900294392 /* FindByAppStoreLinkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindByAppStoreLinkView.swift; sourceTree = "<group>"; };
 		578881FB2C08E74C00294392 /* AppExhibitAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppExhibitAlert.swift; sourceTree = "<group>"; };
@@ -89,7 +94,7 @@
 		579ADD2C2C0E4F0F00294392 /* ShareExtensionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareExtensionView.swift; sourceTree = "<group>"; };
 		57D7F82D2C04E04900294392 /* AppExhibit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppExhibit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		57D7F8302C04E04900294392 /* AppExhibitApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppExhibitApp.swift; sourceTree = "<group>"; };
-		57D7F8322C04E04900294392 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		57D7F8322C04E04900294392 /* AppsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppsView.swift; sourceTree = "<group>"; };
 		57D7F8342C04E04900294392 /* AppItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppItem.swift; sourceTree = "<group>"; };
 		57D7F8362C04E04B00294392 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		57D7F8392C04E04B00294392 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -110,6 +115,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5739AA0B2C9C6BC8001EC327 /* FreemiumKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -124,10 +130,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5739AA092C9C6BC8001EC327 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		578881F72C08E65D00294392 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				57D7F8322C04E04900294392 /* ContentView.swift */,
+				5739AA0E2C9C7F5E001EC327 /* MainView.swift */,
+				57D7F8322C04E04900294392 /* AppsView.swift */,
+				5739AA0C2C9C7F2B001EC327 /* SettingsView.swift */,
 				57D7F8422C05117000294392 /* AppDetailView.swift */,
 				578881F82C08E66D00294392 /* AddAppViews */,
 				578881F92C08E69300294392 /* GeneralViews */,
@@ -188,6 +203,7 @@
 			children = (
 				57D7F82F2C04E04900294392 /* AppExhibit */,
 				579ADD1A2C0E483B00294392 /* ShareExtension */,
+				5739AA092C9C6BC8001EC327 /* Frameworks */,
 				57D7F82E2C04E04900294392 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -295,7 +311,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1540;
-				LastUpgradeCheck = 1540;
+				LastUpgradeCheck = 1600;
 				TargetAttributes = {
 					579ADD182C0E483A00294392 = {
 						CreatedOnToolsVersion = 15.4;
@@ -375,10 +391,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				57D7F8492C05E7CB00294392 /* PhotoZoomableContainerView.swift in Sources */,
+				5739AA0F2C9C7F5E001EC327 /* MainView.swift in Sources */,
 				57D7F84F2C05FD3200294392 /* ITunesAPIResult.swift in Sources */,
-				57D7F8332C04E04900294392 /* ContentView.swift in Sources */,
+				57D7F8332C04E04900294392 /* AppsView.swift in Sources */,
 				5759C4E92C08756E00294392 /* FindByAppNameView.swift in Sources */,
 				57D7F8352C04E04900294392 /* AppItem.swift in Sources */,
+				5739AA0D2C9C7F2B001EC327 /* SettingsView.swift in Sources */,
 				578882042C08EA2E00294392 /* Binding+Extension.swift in Sources */,
 				57D7F84C2C05FCB800294392 /* ITunesAPIServiceProtocol.swift in Sources */,
 				578881FE2C08E77500294392 /* AppExhibitError.swift in Sources */,
@@ -589,7 +607,6 @@
 		57D7F83E2C04E04B00294392 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = AppExhibit/AppExhibit.entitlements;
@@ -626,7 +643,6 @@
 		57D7F83F2C04E04B00294392 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = AppExhibit/AppExhibit.entitlements;
@@ -704,6 +720,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		5739AA0A2C9C6BC8001EC327 /* FreemiumKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 57B8B0A92C78C90000294392 /* XCRemoteSwiftPackageReference "FreemiumKit" */;
+			productName = FreemiumKit;
+		};
 		57B8B0AA2C78C90000294392 /* FreemiumKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 57B8B0A92C78C90000294392 /* XCRemoteSwiftPackageReference "FreemiumKit" */;
