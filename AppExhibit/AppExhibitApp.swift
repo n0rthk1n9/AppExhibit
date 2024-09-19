@@ -26,6 +26,8 @@ struct AppExhibitApp: App {
 
   init() {
     FreemiumKit.shared.lastPaidRelease(version: "1.1", buildNum: 6)
+
+    print("\(FreemiumKit.shared.hasPurchased)")
   }
 
   var body: some Scene {
