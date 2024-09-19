@@ -6,12 +6,14 @@
 //
 
 import SwiftUI
+import FreemiumKit
 
 struct ShareExtensionView: View {
   @State private var url: URL
   @State private var viewModel = AddAppViewModel()
   @State private var newAppItem = AppItem()
   @State private var showCreateAppView = false
+  @State var showPaywall = false
 
   init(url: URL) {
     self.url = url
@@ -25,22 +27,31 @@ struct ShareExtensionView: View {
           .textFieldStyle(RoundedBorderTextFieldStyle())
           .padding()
 
-        Button {
-          Task {
-            await fetchAppDetails()
-            showCreateAppView = true
+
+        PaidFeatureView {
+          Button {
+            Task {
+              await fetchAppDetails()
+              showCreateAppView = true
+            }
+          } label: {
+            if viewModel.isLoading {
+              ProgressView()
+            } else {
+              Label("Find by app link", systemImage: "link")
+            }
           }
-        } label: {
-          if viewModel.isLoading {
-            ProgressView()
-          } else {
-            Text("Find")
+          .buttonStyle(.borderedProminent)
+          .disabled(newAppItem.appStoreLink.isEmpty || viewModel.isLoading)
+          .padding()
+        } lockedView: {
+          Button("Find by app link", systemImage: "lock") {
+            self.showPaywall = true
           }
+          .buttonStyle(.borderedProminent)
         }
-        .buttonStyle(.borderedProminent)
-        .disabled(newAppItem.appStoreLink.isEmpty || viewModel.isLoading)
-        .padding()
       }
+      .paywall(isPresented: $showPaywall)
       .navigationTitle("Find App by link")
       .navigationDestination(isPresented: $showCreateAppView) {
         AddAppView(viewModel: $viewModel, newAppItem: $newAppItem) {
@@ -54,6 +65,11 @@ struct ShareExtensionView: View {
         }
       }
       .showCustomAlert(alert: $viewModel.error)
+      .onPurchasesLoaded {
+        if !FreemiumKit.shared.hasPurchased {
+          self.showPaywall = true
+        }
+      }
     }
   }
 

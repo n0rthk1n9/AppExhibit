@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5726DA932C7DFEDA00294392 /* AppExhibit.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 5726DA922C7DFEDA00294392 /* AppExhibit.storekit */; };
+		5739AA082C9C4C62001EC327 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 57D7F8362C04E04B00294392 /* Assets.xcassets */; };
 		5759C4E92C08756E00294392 /* FindByAppNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5759C4E82C08756E00294392 /* FindByAppNameView.swift */; };
 		5759C4EB2C08835900294392 /* FindByAppStoreLinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5759C4EA2C08835900294392 /* FindByAppStoreLinkView.swift */; };
 		578881FC2C08E74C00294392 /* AppExhibitAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578881FB2C08E74C00294392 /* AppExhibitAlert.swift */; };
@@ -331,6 +332,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5739AA082C9C4C62001EC327 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

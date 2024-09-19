@@ -9,6 +9,7 @@ import SwiftData
 import SwiftUI
 import UIKit
 import UniformTypeIdentifiers
+import FreemiumKit
 
 class ShareViewController: UIViewController {
     override func viewDidLoad() {
@@ -59,6 +60,7 @@ class ShareViewController: UIViewController {
                     let contentView = UIHostingController(
                         rootView: ShareExtensionView(url: url)
                             .modelContainer(sharedModelContainer)
+                            .environmentObject(FreemiumKit.shared)
                     )
                     self.addChild(contentView)
                     self.view.addSubview(contentView.view)
