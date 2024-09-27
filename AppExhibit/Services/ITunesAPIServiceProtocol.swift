@@ -8,6 +8,8 @@
 import Foundation
 
 protocol ITunesAPIServiceProtocol {
-  func fetchAppDetails(for id: String) async throws -> [ITunesAPIResult]
-  func fetchApps(for searchTerm: String) async throws -> [ITunesAPIResult]
+    func fetchAppDetails(for id: String) async throws -> [ITunesAPIResult]
+    func fetchApps(for searchTerm: String) async throws -> [ITunesAPIResult]
+    func fetchSoftwareDeveloper(for developerName: String) async throws -> iTunesAPISoftwareDeveloperResults
+    func fetchDeveloperApps(for developerId: Int) async throws -> [ITunesAPIResult]
 }

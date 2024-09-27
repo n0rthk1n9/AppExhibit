@@ -14,6 +14,13 @@
 		5739AA0F2C9C7F5E001EC327 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5739AA0E2C9C7F5E001EC327 /* MainView.swift */; };
 		5759C4E92C08756E00294392 /* FindByAppNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5759C4E82C08756E00294392 /* FindByAppNameView.swift */; };
 		5759C4EB2C08835900294392 /* FindByAppStoreLinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5759C4EA2C08835900294392 /* FindByAppStoreLinkView.swift */; };
+		57774D342CA2F1E100A36D55 /* iTunesAPISoftwareDeveloperResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57774D332CA2F1E100A36D55 /* iTunesAPISoftwareDeveloperResults.swift */; };
+		57774D352CA2F1E100A36D55 /* iTunesAPISoftwareDeveloperResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57774D332CA2F1E100A36D55 /* iTunesAPISoftwareDeveloperResults.swift */; };
+		57774D372CA2F21B00A36D55 /* iTunesAPISoftwareDeveloperResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57774D362CA2F21B00A36D55 /* iTunesAPISoftwareDeveloperResult.swift */; };
+		57774D382CA2F21B00A36D55 /* iTunesAPISoftwareDeveloperResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57774D362CA2F21B00A36D55 /* iTunesAPISoftwareDeveloperResult.swift */; };
+		57774D3A2CA2F52800A36D55 /* FindByDeveloperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57774D392CA2F52800A36D55 /* FindByDeveloperView.swift */; };
+		57774D3C2CA2F54E00A36D55 /* DeveloperSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57774D3B2CA2F54E00A36D55 /* DeveloperSearchViewModel.swift */; };
+		57774D3D2CA2F54E00A36D55 /* DeveloperSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57774D3B2CA2F54E00A36D55 /* DeveloperSearchViewModel.swift */; };
 		578881FC2C08E74C00294392 /* AppExhibitAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578881FB2C08E74C00294392 /* AppExhibitAlert.swift */; };
 		578881FE2C08E77500294392 /* AppExhibitError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578881FD2C08E77500294392 /* AppExhibitError.swift */; };
 		578882022C08E97C00294392 /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578882012C08E97C00294392 /* View+Extension.swift */; };
@@ -81,6 +88,10 @@
 		5739AA0E2C9C7F5E001EC327 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		5759C4E82C08756E00294392 /* FindByAppNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindByAppNameView.swift; sourceTree = "<group>"; };
 		5759C4EA2C08835900294392 /* FindByAppStoreLinkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindByAppStoreLinkView.swift; sourceTree = "<group>"; };
+		57774D332CA2F1E100A36D55 /* iTunesAPISoftwareDeveloperResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iTunesAPISoftwareDeveloperResults.swift; sourceTree = "<group>"; };
+		57774D362CA2F21B00A36D55 /* iTunesAPISoftwareDeveloperResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iTunesAPISoftwareDeveloperResult.swift; sourceTree = "<group>"; };
+		57774D392CA2F52800A36D55 /* FindByDeveloperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindByDeveloperView.swift; sourceTree = "<group>"; };
+		57774D3B2CA2F54E00A36D55 /* DeveloperSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeveloperSearchViewModel.swift; sourceTree = "<group>"; };
 		578881FB2C08E74C00294392 /* AppExhibitAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppExhibitAlert.swift; sourceTree = "<group>"; };
 		578881FD2C08E77500294392 /* AppExhibitError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppExhibitError.swift; sourceTree = "<group>"; };
 		578882012C08E97C00294392 /* View+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extension.swift"; sourceTree = "<group>"; };
@@ -155,6 +166,7 @@
 			children = (
 				5759C4E82C08756E00294392 /* FindByAppNameView.swift */,
 				5759C4EA2C08835900294392 /* FindByAppStoreLinkView.swift */,
+				57774D392CA2F52800A36D55 /* FindByDeveloperView.swift */,
 				57D7F8402C04EB0200294392 /* AddAppView.swift */,
 			);
 			path = AddAppViews;
@@ -174,6 +186,7 @@
 			isa = PBXGroup;
 			children = (
 				57D7F8542C0602EE00294392 /* AddAppViewModel.swift */,
+				57774D3B2CA2F54E00A36D55 /* DeveloperSearchViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -258,6 +271,8 @@
 				57D7F8342C04E04900294392 /* AppItem.swift */,
 				57D7F84E2C05FD3200294392 /* ITunesAPIResult.swift */,
 				57D7F8502C05FD5A00294392 /* ITunesAPIResults.swift */,
+				57774D332CA2F1E100A36D55 /* iTunesAPISoftwareDeveloperResults.swift */,
+				57774D362CA2F21B00A36D55 /* iTunesAPISoftwareDeveloperResult.swift */,
 				578881FB2C08E74C00294392 /* AppExhibitAlert.swift */,
 				578881FD2C08E77500294392 /* AppExhibitError.swift */,
 			);
@@ -372,13 +387,16 @@
 				579ADD342C0E56A900294392 /* AppExhibitError.swift in Sources */,
 				579ADD2A2C0E4E3300294392 /* AppItem.swift in Sources */,
 				579ADD362C0E56B900294392 /* ITunesAPIService.swift in Sources */,
+				57774D382CA2F21B00A36D55 /* iTunesAPISoftwareDeveloperResult.swift in Sources */,
 				579ADD372C0E56F400294392 /* AddAppView.swift in Sources */,
 				579ADD332C0E56A600294392 /* AppExhibitAlert.swift in Sources */,
 				579ADD382C0E573200294392 /* AppIconView.swift in Sources */,
 				579ADD352C0E56B600294392 /* ITunesAPIServiceProtocol.swift in Sources */,
 				579ADD312C0E56A000294392 /* ITunesAPIResult.swift in Sources */,
 				579ADD2D2C0E4F0F00294392 /* ShareExtensionView.swift in Sources */,
+				57774D352CA2F1E100A36D55 /* iTunesAPISoftwareDeveloperResults.swift in Sources */,
 				579ADD392C0E620400294392 /* Binding+Extension.swift in Sources */,
+				57774D3C2CA2F54E00A36D55 /* DeveloperSearchViewModel.swift in Sources */,
 				579ADD302C0E569500294392 /* AddAppViewModel.swift in Sources */,
 				579ADD1C2C0E483B00294392 /* ShareViewController.swift in Sources */,
 				579ADD3A2C0E620700294392 /* View+Extension.swift in Sources */,
@@ -393,6 +411,7 @@
 				57D7F8492C05E7CB00294392 /* PhotoZoomableContainerView.swift in Sources */,
 				5739AA0F2C9C7F5E001EC327 /* MainView.swift in Sources */,
 				57D7F84F2C05FD3200294392 /* ITunesAPIResult.swift in Sources */,
+				57774D342CA2F1E100A36D55 /* iTunesAPISoftwareDeveloperResults.swift in Sources */,
 				57D7F8332C04E04900294392 /* AppsView.swift in Sources */,
 				5759C4E92C08756E00294392 /* FindByAppNameView.swift in Sources */,
 				57D7F8352C04E04900294392 /* AppItem.swift in Sources */,
@@ -405,11 +424,14 @@
 				57D7F8432C05117000294392 /* AppDetailView.swift in Sources */,
 				57D7F8312C04E04900294392 /* AppExhibitApp.swift in Sources */,
 				57D7F8472C05E6DB00294392 /* PhotoZoomableView.swift in Sources */,
+				57774D3D2CA2F54E00A36D55 /* DeveloperSearchViewModel.swift in Sources */,
 				57D7F8532C05FF4400294392 /* ITunesAPIService.swift in Sources */,
+				57774D3A2CA2F52800A36D55 /* FindByDeveloperView.swift in Sources */,
 				57D7F8512C05FD5A00294392 /* ITunesAPIResults.swift in Sources */,
 				57D7F8412C04EB0200294392 /* AddAppView.swift in Sources */,
 				5759C4EB2C08835900294392 /* FindByAppStoreLinkView.swift in Sources */,
 				578882022C08E97C00294392 /* View+Extension.swift in Sources */,
+				57774D372CA2F21B00A36D55 /* iTunesAPISoftwareDeveloperResult.swift in Sources */,
 				57D7F8452C05138100294392 /* AppIconView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
