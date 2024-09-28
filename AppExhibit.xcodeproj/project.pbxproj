@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0AFCC9052CA84F6D0005087B /* LinksKit in Frameworks */ = {isa = PBXBuildFile; productRef = 0AFCC9042CA84F6D0005087B /* LinksKit */; };
 		5726DA932C7DFEDA00294392 /* AppExhibit.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 5726DA922C7DFEDA00294392 /* AppExhibit.storekit */; };
 		5739AA082C9C4C62001EC327 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 57D7F8362C04E04B00294392 /* Assets.xcassets */; };
 		5739AA0B2C9C6BC8001EC327 /* FreemiumKit in Frameworks */ = {isa = PBXBuildFile; productRef = 5739AA0A2C9C6BC8001EC327 /* FreemiumKit */; };
@@ -124,6 +125,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				57B8B0AB2C78C90000294392 /* FreemiumKit in Frameworks */,
+				0AFCC9052CA84F6D0005087B /* LinksKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -332,6 +334,7 @@
 			mainGroup = 57D7F8242C04E04900294392;
 			packageReferences = (
 				57B8B0A92C78C90000294392 /* XCRemoteSwiftPackageReference "FreemiumKit" */,
+				0AFCC9032CA84F6D0005087B /* XCRemoteSwiftPackageReference "LinksKit" */,
 			);
 			productRefGroup = 57D7F82E2C04E04900294392 /* Products */;
 			projectDirPath = "";
@@ -709,6 +712,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		0AFCC9032CA84F6D0005087B /* XCRemoteSwiftPackageReference "LinksKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/FlineDev/LinksKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		57B8B0A92C78C90000294392 /* XCRemoteSwiftPackageReference "FreemiumKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/FlineDev/FreemiumKit.git";
@@ -720,6 +731,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		0AFCC9042CA84F6D0005087B /* LinksKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0AFCC9032CA84F6D0005087B /* XCRemoteSwiftPackageReference "LinksKit" */;
+			productName = LinksKit;
+		};
 		5739AA0A2C9C6BC8001EC327 /* FreemiumKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 57B8B0A92C78C90000294392 /* XCRemoteSwiftPackageReference "FreemiumKit" */;
