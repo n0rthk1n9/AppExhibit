@@ -7,23 +7,19 @@
 
 import FreemiumKit
 import SwiftUI
+import LinksKit
 
 struct SettingsView: View {
   @Environment(\.openURL) private var openURL
 
   var body: some View {
     Form {
-      Section {
+      Section(header: Text("Subscription")) {
         PaidStatusView(style: .decorative(icon: .laurel))
       }
-      Section {
-          Button("Terms and Conditions", systemImage: "text.book.closed") {
-             self.openURL(URL(string: "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/")!)
-          }
-          Button("Privacy", systemImage: "lock") {
-             self.openURL(URL(string: "https://xbow.dev/app-exhibit/privacy")!)
-          }
-       }
+      #if !os(macOS)
+      LinksView()
+      #endif
     }
   }
 }
