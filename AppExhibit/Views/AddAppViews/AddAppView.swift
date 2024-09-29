@@ -70,6 +70,8 @@ struct AddAppView: View {
             }
           } else {
             Text("Add")
+              .padding(.vertical, 5)
+              .frame(minWidth: 200)
           }
         }
         .disabled(newAppItem.name.isEmpty || newAppItem.appStoreLink.isEmpty || viewModel.isLoading || viewModel
