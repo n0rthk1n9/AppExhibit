@@ -208,6 +208,7 @@
 				5739AA092C9C6BC8001EC327 /* Frameworks */,
 				57D7F82E2C04E04900294392 /* Products */,
 			);
+			indentWidth = 2;
 			sourceTree = "<group>";
 		};
 		57D7F82E2C04E04900294392 /* Products */ = {
@@ -714,7 +715,7 @@
 /* Begin XCRemoteSwiftPackageReference section */
 		0AFCC9032CA84F6D0005087B /* XCRemoteSwiftPackageReference "LinksKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/FlineDev/LinksKit";
+			repositoryURL = "https://github.com/FlineDev/LinksKit.git";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 1.0.0;
