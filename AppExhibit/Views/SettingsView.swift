@@ -14,9 +14,12 @@ struct SettingsView: View {
 
   var body: some View {
     Form {
-      Section(header: Text("Subscription")) {
+      Section {
         PaidStatusView(style: .decorative(icon: .laurel))
+          .listRowBackground(Color.accentColor)
+          .padding(.vertical, -10)
       }
+
       #if !os(macOS)
       LinksView()
       #endif
