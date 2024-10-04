@@ -16,6 +16,7 @@ struct AppsView: View {
   @State private var showCreateAppSheet = false
   @State private var showFindByAppNameSheet = false
   @State private var showFindByAppStoreLinkSheet = false
+  @State private var showFindByDeveloperSheet = false
   @State private var showPhotoZoomableSheet = false
   @State var selectedAppStoreLinkQRCodeData: Data? = nil
 
@@ -30,6 +31,9 @@ struct AppsView: View {
               Button("Add by App Store link", systemImage: "link") {
                 self.showFindByAppStoreLinkSheet.toggle()
               }
+              Button("Add by developer", systemImage: "person") {
+                self.showFindByDeveloperSheet.toggle()
+              }
               Button("Add manually", systemImage: "plus") {
                 self.showCreateAppSheet.toggle()
               }
@@ -39,6 +43,9 @@ struct AppsView: View {
               }
               PaidFeatureButton("Add by App Store link", systemImage: "link") {
                 self.showFindByAppStoreLinkSheet.toggle()
+              }
+              PaidFeatureButton("Add by developer", systemImage: "person") {
+                self.showFindByDeveloperSheet.toggle()
               }
               PaidFeatureButton("Add manually", systemImage: "plus") {
                 self.showCreateAppSheet.toggle()
@@ -101,6 +108,9 @@ struct AppsView: View {
               .presentationBackground(.ultraThinMaterial)
               .presentationCornerRadius(16)
           }
+        }
+        .sheet(isPresented: self.$showFindByDeveloperSheet) {
+          FindByDeveloperView()
         }
         .task(id: self.selectedAppStoreLinkQRCodeData) {
           if self.selectedAppStoreLinkQRCodeData != nil {
