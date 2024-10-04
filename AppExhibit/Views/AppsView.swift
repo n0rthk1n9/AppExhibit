@@ -13,6 +13,13 @@ struct AppsView: View {
   @Environment(\.modelContext) private var modelContext
   @Query private var items: [AppItem]
 
+  @EnvironmentObject private var freemiumKit: FreemiumKit
+  @State private var showPaywall: Bool = false
+
+  private var canAddAnotherApp: Bool {
+    self.items.isEmpty || self.freemiumKit.hasPurchased
+  }
+
   @State private var showCreateAppSheet = false
   @State private var showFindByAppNameSheet = false
   @State private var showFindByAppStoreLinkSheet = false
@@ -23,35 +30,6 @@ struct AppsView: View {
   var body: some View {
       NavigationStack {
         List {
-          Section {
-            if self.items.isEmpty {
-              Button("Add by search", systemImage: "magnifyingglass") {
-                self.showFindByAppNameSheet.toggle()
-              }
-              Button("Add by App Store link", systemImage: "link") {
-                self.showFindByAppStoreLinkSheet.toggle()
-              }
-              Button("Add by developer", systemImage: "person") {
-                self.showFindByDeveloperSheet.toggle()
-              }
-              Button("Add manually", systemImage: "plus") {
-                self.showCreateAppSheet.toggle()
-              }
-            } else {
-              PaidFeatureButton("Add by search", systemImage: "magnifyingglass") {
-                self.showFindByAppNameSheet.toggle()
-              }
-              PaidFeatureButton("Add by App Store link", systemImage: "link") {
-                self.showFindByAppStoreLinkSheet.toggle()
-              }
-              PaidFeatureButton("Add by developer", systemImage: "person") {
-                self.showFindByDeveloperSheet.toggle()
-              }
-              PaidFeatureButton("Add manually", systemImage: "plus") {
-                self.showCreateAppSheet.toggle()
-              }
-            }
-          }
           if self.items.isEmpty {
             ContentUnavailableView {
               Label("Add your first app", systemImage: "app.fill")
@@ -60,13 +38,12 @@ struct AppsView: View {
                 "Add all your precious apps you want to easily share with the people around you just by tapping the + button"
               )
             } actions: {
-              Button {
-                self.showFindByAppNameSheet.toggle()
-              } label: {
-                Image(systemName: "plus")
+              Menu("Add", systemImage: "plus") {
+                self.addMenuContents
               }
+              .labelStyle(.iconOnly)
+              .font(.title2)
             }
-
           } else {
             ForEach(self.items) { item in
               NavigationLink(value: item) {
@@ -87,6 +64,13 @@ struct AppsView: View {
               }
             }
             .onDelete(perform: self.deleteItems)
+          }
+        }
+        .toolbar {
+          ToolbarItem {
+            Menu("Add", systemImage: "plus") {
+              self.addMenuContents
+            }
           }
         }
         .navigationTitle("App Exhibit")
@@ -122,6 +106,38 @@ struct AppsView: View {
             self.selectedAppStoreLinkQRCodeData = nil
           }
         }
+        .paywall(isPresented: self.$showPaywall)
+    }
+  }
+
+  @ViewBuilder
+  private var addMenuContents: some View {
+    if self.canAddAnotherApp {
+      Button("Add by search", systemImage: "magnifyingglass") {
+        self.showFindByAppNameSheet.toggle()
+      }
+      Button("Add by App Store link", systemImage: "link") {
+        self.showFindByAppStoreLinkSheet.toggle()
+      }
+      Button("Add by developer", systemImage: "person") {
+        self.showFindByDeveloperSheet.toggle()
+      }
+      Button("Add manually", systemImage: "plus") {
+        self.showCreateAppSheet = true
+      }
+    } else {
+      Button("Add by search", systemImage: "lock") {
+        self.showPaywall = true
+      }
+      Button("Add by App Store link", systemImage: "lock") {
+        self.showPaywall = true
+      }
+      Button("Add by developer", systemImage: "lock") {
+        self.showPaywall = true
+      }
+      Button("Add manually", systemImage: "lock") {
+        self.showPaywall = true
+      }
     }
   }
 
