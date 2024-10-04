@@ -7,6 +7,7 @@
 
 import FreemiumKit
 import SwiftUI
+import LinksKit
 
 struct SettingsView: View {
   @Environment(\.openURL) private var openURL
@@ -15,15 +16,13 @@ struct SettingsView: View {
     Form {
       Section {
         PaidStatusView(style: .decorative(icon: .laurel))
+          .listRowBackground(Color.accentColor)
+          .padding(.vertical, -10)
       }
-      Section {
-          Button("Terms and Conditions", systemImage: "text.book.closed") {
-             self.openURL(URL(string: "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/")!)
-          }
-          Button("Privacy", systemImage: "lock") {
-             self.openURL(URL(string: "https://xbow.dev/app-exhibit/privacy")!)
-          }
-       }
+
+      #if !os(macOS)
+      LinksView()
+      #endif
     }
   }
 }

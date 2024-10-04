@@ -1,13 +1,22 @@
 {
-  "originHash" : "00db71d38409083bfb7f6fe63a249cdb8ebb52a4e7960624762be6a4de44ee66",
+  "originHash" : "930115c0d264c86439d0c83454a4044c07050c475322ff23f654cfd7bc852c93",
   "pins" : [
     {
       "identity" : "freemiumkit",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/FlineDev/FreemiumKit.git",
       "state" : {
-        "revision" : "965d3fffe7bf2ce428d3dd6eaded2293665c64b9",
-        "version" : "1.7.1"
+        "revision" : "86591ea6ecdc3ce6b09eef3fac9ff3b883d4f74f",
+        "version" : "1.7.3"
+      }
+    },
+    {
+      "identity" : "linkskit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/FlineDev/LinksKit.git",
+      "state" : {
+        "revision" : "7b56c9b2209a9162056ee6b42b09a86f22f8c1e4",
+        "version" : "1.0.1"
       }
     }
   ],
