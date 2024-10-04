@@ -19,7 +19,7 @@ enum AppExhibitError: Error, LocalizedError, AppExhibitAlert {
     case .invalidResponseCode:
       return "Something went wrong while downloading the content"
     case .other:
-      return "Error"
+      return "Unknown Error"
     }
   }
 
@@ -31,6 +31,14 @@ enum AppExhibitError: Error, LocalizedError, AppExhibitAlert {
       return "Please try again later"
     case let .other(error):
       return error.localizedDescription
+    }
+  }
+
+  var errorDescription: String? {
+    switch self {
+    case .invalidURL: title
+    case .invalidResponseCode: title
+    case .other(let error): "\(title): \(error.localizedDescription)"
     }
   }
 
