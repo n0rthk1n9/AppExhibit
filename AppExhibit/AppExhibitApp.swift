@@ -56,7 +56,7 @@ struct AppExhibitApp: App {
     ])
 
     LinksKit.configure(
-      providerToken: "123456",
+      providerToken: "121426791",
       linkSections: [
         .helpLinks(appID: "6503256642", supportEmail: "appexhibit@xbow.dev"),
         .developerSocialLinks(title: String(localized: "Developer Links"), platforms: [.twitter, .mastodon(instance: "mastodon.social")], handle: "n0rthk1n9"),
