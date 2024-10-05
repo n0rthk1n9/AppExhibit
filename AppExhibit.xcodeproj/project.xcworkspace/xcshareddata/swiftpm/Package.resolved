@@ -15,8 +15,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/FlineDev/LinksKit.git",
       "state" : {
-        "revision" : "7b56c9b2209a9162056ee6b42b09a86f22f8c1e4",
-        "version" : "1.0.1"
+        "revision" : "fdc0c18810d645e9fd2a4952d438ccd60d580895",
+        "version" : "1.0.3"
       }
     }
   ],
