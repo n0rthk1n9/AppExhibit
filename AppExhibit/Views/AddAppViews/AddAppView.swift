@@ -7,6 +7,7 @@
 
 import CoreImage.CIFilterBuiltins
 import PhotosUI
+import SwiftData
 import SwiftUI
 
 struct AddAppView: View {
@@ -74,8 +75,11 @@ struct AddAppView: View {
               .frame(minWidth: 200)
           }
         }
-        .disabled(newAppItem.name.isEmpty || newAppItem.appStoreLink.isEmpty || viewModel.isLoading || viewModel
-          .isLoadingScreenshots)
+        .disabled(
+          newAppItem.name.isEmpty || newAppItem.appStoreLink.isEmpty || viewModel.isLoading
+            || viewModel
+              .isLoadingScreenshots
+        )
         .buttonStyle(.borderedProminent)
         .padding()
       }
@@ -105,6 +109,7 @@ struct AddAppView: View {
   private func addAppItem() {
     withAnimation {
       modelContext.insert(newAppItem)
+      saveContext(modelContext)
     }
   }
 
@@ -118,6 +123,14 @@ struct AddAppView: View {
     }
 
     return UIImage(systemName: "xmark.circle") ?? UIImage()
+  }
+
+  private func saveContext(_ context: ModelContext) {
+    do {
+      try context.save()
+    } catch {
+      print("Failed to save model context: \(error)")
+    }
   }
 }
 

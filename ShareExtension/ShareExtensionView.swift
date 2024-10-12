@@ -5,8 +5,8 @@
 //  Created by Jan Armbrust on 03.06.24.
 //
 
-import SwiftUI
 import FreemiumKit
+import SwiftUI
 
 struct ShareExtensionView: View {
   @State private var url: URL
@@ -14,10 +14,12 @@ struct ShareExtensionView: View {
   @State private var newAppItem = AppItem()
   @State private var showCreateAppView = false
   @State var showPaywall = false
+  let onDismiss: () -> Void  // Add this line
 
-  init(url: URL) {
+  init(url: URL, onDismiss: @escaping () -> Void) {  // Update initializer
     self.url = url
-    newAppItem.appStoreLink = url.absoluteString
+    self.onDismiss = onDismiss  // Set the onDismiss closure
+    _newAppItem = State(initialValue: AppItem(appStoreLink: url.absoluteString))
   }
 
   var body: some View {
@@ -26,7 +28,6 @@ struct ShareExtensionView: View {
         TextField("App Store Link", text: $newAppItem.appStoreLink)
           .textFieldStyle(RoundedBorderTextFieldStyle())
           .padding()
-
 
         PaidFeatureView {
           Button {
@@ -55,13 +56,13 @@ struct ShareExtensionView: View {
       .navigationTitle("Find App by link")
       .navigationDestination(isPresented: $showCreateAppView) {
         AddAppView(viewModel: $viewModel, newAppItem: $newAppItem) {
-          close()
+          onDismiss()
           showCreateAppView = false
         }
       }
       .toolbar {
         Button("Cancel") {
-          close()
+          onDismiss()
         }
       }
       .showCustomAlert(alert: $viewModel.error)
@@ -71,10 +72,6 @@ struct ShareExtensionView: View {
         }
       }
     }
-  }
-
-  func close() {
-    NotificationCenter.default.post(name: NSNotification.Name("close"), object: nil)
   }
 
   private func fetchAppDetails() async {
@@ -99,5 +96,7 @@ struct ShareExtensionView: View {
 }
 
 #Preview {
-  ShareExtensionView(url: URL(string: "https://apple.com")!)
+  ShareExtensionView(url: URL(string: "https://apple.com")!) {
+    print("Preview: Dismiss action triggered")
+  }
 }
