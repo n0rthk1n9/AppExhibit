@@ -11,7 +11,7 @@ import SwiftUI
 
 struct AppsView: View {
   @Environment(\.modelContext) private var modelContext
-  @Query private var items: [AppItem]
+  @Query(sort: \AppItem.name, order: .forward) private var items: [AppItem]
 
   @EnvironmentObject private var freemiumKit: FreemiumKit
   @State private var showPaywall: Bool = false
@@ -146,8 +146,17 @@ struct AppsView: View {
       for index in offsets {
         self.modelContext.delete(self.items[index])
       }
+      saveContext(modelContext)
     }
   }
+  
+  private func saveContext(_ context: ModelContext) {
+      do {
+        try context.save()
+      } catch {
+        print("Failed to save model context: \(error)")
+      }
+    }
 }
 
 #Preview {
