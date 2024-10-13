@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A02FDBA2CBA74DA006F659B /* SampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A02FDB92CBA74DA006F659B /* SampleData.swift */; };
+		0A02FDBC2CBA7FD8006F659B /* SampleData+PreviewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A02FDBB2CBA7FD8006F659B /* SampleData+PreviewModifier.swift */; };
+		0A0822B62CBA9075007E9424 /* SampleData+PreviewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A02FDBB2CBA7FD8006F659B /* SampleData+PreviewModifier.swift */; };
+		0A0822B72CBA9075007E9424 /* SampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A02FDB92CBA74DA006F659B /* SampleData.swift */; };
 		0AFCC9052CA84F6D0005087B /* LinksKit in Frameworks */ = {isa = PBXBuildFile; productRef = 0AFCC9042CA84F6D0005087B /* LinksKit */; };
 		2E166F332CA9BDED00788B4F /* ProgressState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E166F322CA9BDEB00788B4F /* ProgressState.swift */; };
 		2E166F342CA9BDED00788B4F /* ProgressState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E166F322CA9BDEB00788B4F /* ProgressState.swift */; };
@@ -86,6 +90,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0A02FDB92CBA74DA006F659B /* SampleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleData.swift; sourceTree = "<group>"; };
+		0A02FDBB2CBA7FD8006F659B /* SampleData+PreviewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SampleData+PreviewModifier.swift"; sourceTree = "<group>"; };
 		2E166F322CA9BDEB00788B4F /* ProgressState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressState.swift; sourceTree = "<group>"; };
 		5726DA922C7DFEDA00294392 /* AppExhibit.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = AppExhibit.storekit; sourceTree = "<group>"; };
 		5739AA0C2C9C7F2B001EC327 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
@@ -267,6 +273,8 @@
 			isa = PBXGroup;
 			children = (
 				57D7F8392C04E04B00294392 /* Preview Assets.xcassets */,
+				0A02FDB92CBA74DA006F659B /* SampleData.swift */,
+				0A02FDBB2CBA7FD8006F659B /* SampleData+PreviewModifier.swift */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";
@@ -410,6 +418,8 @@
 				579ADD382C0E573200294392 /* AppIconView.swift in Sources */,
 				579ADD352C0E56B600294392 /* ITunesAPIServiceProtocol.swift in Sources */,
 				579ADD312C0E56A000294392 /* ITunesAPIResult.swift in Sources */,
+				0A0822B62CBA9075007E9424 /* SampleData+PreviewModifier.swift in Sources */,
+				0A0822B72CBA9075007E9424 /* SampleData.swift in Sources */,
 				579ADD2D2C0E4F0F00294392 /* ShareExtensionView.swift in Sources */,
 				57774D352CA2F1E100A36D55 /* iTunesAPISoftwareDeveloperResults.swift in Sources */,
 				579ADD392C0E620400294392 /* Binding+Extension.swift in Sources */,
@@ -431,7 +441,9 @@
 				57774D342CA2F1E100A36D55 /* iTunesAPISoftwareDeveloperResults.swift in Sources */,
 				57D7F8332C04E04900294392 /* AppsView.swift in Sources */,
 				5759C4E92C08756E00294392 /* FindByAppNameView.swift in Sources */,
+				0A02FDBC2CBA7FD8006F659B /* SampleData+PreviewModifier.swift in Sources */,
 				57D7F8352C04E04900294392 /* AppItem.swift in Sources */,
+				0A02FDBA2CBA74DA006F659B /* SampleData.swift in Sources */,
 				5739AA0D2C9C7F2B001EC327 /* SettingsView.swift in Sources */,
 				578882042C08EA2E00294392 /* Binding+Extension.swift in Sources */,
 				57D7F84C2C05FCB800294392 /* ITunesAPIServiceProtocol.swift in Sources */,
@@ -477,7 +489,7 @@
 				INFOPLIST_FILE = ShareExtension/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = ShareExtension;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -505,7 +517,7 @@
 				INFOPLIST_FILE = ShareExtension/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = ShareExtension;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -665,7 +677,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -701,7 +713,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

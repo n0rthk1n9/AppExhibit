@@ -159,7 +159,7 @@ struct AppsView: View {
     }
 }
 
-#Preview {
+#Preview(traits: .sampleData) {
   AppsView()
-    .modelContainer(for: AppItem.self, inMemory: true)
+    .environmentObject(FreemiumKit.shared)
 }
