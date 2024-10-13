@@ -45,7 +45,7 @@ struct FindByAppStoreLinkView: View {
 
         case .failed(let error):
           ContentUnavailableView {
-            Label("Search Failed", systemImage: "exclamationmark.magnifyingglass")
+            Label("Adding by App Store link failed", systemImage: "x.circle")
           } description: {
             Text(error.localizedDescription)
           } actions: {

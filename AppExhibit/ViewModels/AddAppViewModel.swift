@@ -82,11 +82,12 @@ class AddAppViewModel {
     self.loadingState = .inProgress
 
     guard !urlString.isEmpty else {
-      self.loadingState = .failed(error: AppExhibitError.invalidResponseCode)
+      self.loadingState = .failed(error: AppExhibitError.notAnAppStoreLink)
       return nil
     }
     
     guard let url = URL(string: urlString) else {
+      self.loadingState = .failed(error: AppExhibitError.notAnAppStoreLink)
       return nil
     }
 
@@ -125,7 +126,7 @@ class AddAppViewModel {
 
     do {
       guard !appDetails.isEmpty else {
-        self.loadingState = .failed(error: AppExhibitError.invalidResponseCode)
+        self.loadingState = .failed(error: AppExhibitError.notAnAppStoreLink)
         return
       }
       var appIconURL: URL?
@@ -152,7 +153,7 @@ class AddAppViewModel {
     isLoadingScreenshots = true
     guard !appDetails.isEmpty else {
       isLoadingScreenshots = false
-      self.loadingState = .failed(error: AppExhibitError.invalidResponseCode)
+      self.loadingState = .failed(error: AppExhibitError.notAnAppStoreLink)
       return
     }
     self.loadingState = .inProgress
