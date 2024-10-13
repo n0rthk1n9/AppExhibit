@@ -75,6 +75,6 @@ struct AppDetailView: View {
   }
 }
 
-#Preview {
-  AppDetailView(item: AppItem())
+#Preview(traits: .sampleData) {
+  AppDetailView(item: SampleData.sampleApp1)
 }

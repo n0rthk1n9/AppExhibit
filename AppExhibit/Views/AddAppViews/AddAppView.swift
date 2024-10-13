@@ -134,7 +134,6 @@ struct AddAppView: View {
   }
 }
 
-#Preview {
-  AddAppView(viewModel: .constant(AddAppViewModel()), newAppItem: .constant(AppItem()))
-    .modelContainer(for: AppItem.self, inMemory: true)
+#Preview(traits: .sampleData) {
+  AddAppView(viewModel: .constant(AddAppViewModel()), newAppItem: .constant(SampleData.sampleApp1))
 }
