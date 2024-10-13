@@ -34,7 +34,8 @@ class AddAppViewModel {
 
   @MainActor
   func getAppDetails(for id: String) async {
-    isLoading = true
+    self.loadingState = .inProgress
+    appDetails = []
 
     do {
       let fetchedAppDetails = try await iTunesAPIService.fetchAppDetails(for: id)
@@ -42,15 +43,15 @@ class AddAppViewModel {
       appDetails = fetchedAppDetails
 
     } catch let error as AppExhibitError {
-      self.error = error
+      self.loadingState = .failed(error: error)
     } catch {
       if (error as? URLError)?.code == .cancelled {
         return
       }
-      self.error = .other(error: error)
+      self.loadingState = .failed(error: .other(error: error))
     }
 
-    isLoading = false
+    self.loadingState = .successful
   }
 
   @MainActor
@@ -78,6 +79,13 @@ class AddAppViewModel {
   }
 
   func extractAppID(from urlString: String) -> String? {
+    self.loadingState = .inProgress
+
+    guard !urlString.isEmpty else {
+      self.loadingState = .failed(error: AppExhibitError.invalidResponseCode)
+      return nil
+    }
+    
     guard let url = URL(string: urlString) else {
       return nil
     }
@@ -96,48 +104,58 @@ class AddAppViewModel {
         }
       }
     } catch let error as AppExhibitError {
-      self.error = error
+      self.loadingState = .failed(error: error)
       return nil
     } catch {
       if (error as? URLError)?.code == .cancelled {
         return nil
       }
-      self.error = .other(error: error)
+      self.loadingState = .failed(error: .other(error: error))
       return nil
     }
+
+    self.loadingState = .successful
 
     return nil
   }
 
   @MainActor
   func getAppIcon() async {
-    isLoading = true
+    self.loadingState = .inProgress
 
     do {
-      if !appDetails.isEmpty {
-        var appIconURL: URL?
-        if let appIconURLString = appDetails.first?.artworkUrl100 {
-          appIconURL = URL(string: appIconURLString)
-        }
-        if let appIconURL {
-          (appIcon, _) = try await URLSession.shared.data(from: appIconURL)
-        }
+      guard !appDetails.isEmpty else {
+        self.loadingState = .failed(error: AppExhibitError.invalidResponseCode)
+        return
+      }
+      var appIconURL: URL?
+      if let appIconURLString = appDetails.first?.artworkUrl100 {
+        appIconURL = URL(string: appIconURLString)
+      }
+      if let appIconURL {
+        (appIcon, _) = try await URLSession.shared.data(from: appIconURL)
       }
     } catch let error as AppExhibitError {
-      self.error = error
+      self.loadingState = .failed(error: error)
     } catch {
       if (error as? URLError)?.code == .cancelled {
         return
       }
-      self.error = .other(error: error)
+      self.loadingState = .failed(error: .other(error: error))
     }
 
-    isLoading = false
+    self.loadingState = .successful
   }
 
   @MainActor
   func getScreenshots() async {
     isLoadingScreenshots = true
+    guard !appDetails.isEmpty else {
+      isLoadingScreenshots = false
+      self.loadingState = .failed(error: AppExhibitError.invalidResponseCode)
+      return
+    }
+    self.loadingState = .inProgress
 
     screenshots = []
 
@@ -151,14 +169,15 @@ class AddAppViewModel {
         }
       }
     } catch let error as AppExhibitError {
-      self.error = error
+      self.loadingState = .failed(error: error)
     } catch {
       if (error as? URLError)?.code == .cancelled {
         return
       }
-      self.error = .other(error: error)
+      self.loadingState = .failed(error: .other(error: error))
     }
 
     isLoadingScreenshots = false
+    self.loadingState = .successful
   }
 }
