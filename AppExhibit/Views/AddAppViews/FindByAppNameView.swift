@@ -15,7 +15,51 @@ struct FindByAppNameView: View {
 
   var body: some View {
     NavigationStack {
-      List(viewModel.apps, id: \.self) { app in
+      Group {
+        switch viewModel.loadingState {
+        case .notStarted:
+          ContentUnavailableView(
+            "Start searching",
+            systemImage: "magnifyingglass",
+            description: Text("Enter the name of an app on the App Store to find it")
+          )
+
+        case .inProgress:
+          ProgressView("Searching…")
+
+        case .failed(let error):
+          ContentUnavailableView {
+            Label("Search Failed", systemImage: "exclamationmark.magnifyingglass")
+          } description: {
+            Text(error.localizedDescription)
+          } actions: {
+            Button("Try Again", systemImage: "arrow.circlepath") {
+              viewModel.searchTask = Task {
+                await viewModel.getApps()
+              }
+            }
+          }
+
+        case .successful:
+          self.resultsList
+        }
+      }
+      .navigationTitle("Find App by name")
+    }
+    .searchable(text: $viewModel.searchTerm, prompt: "Enter app name")
+    .onChange(of: viewModel.searchTerm, { oldValue, newValue in
+      guard !newValue.isEmpty else { return }
+      viewModel.searchTask?.cancel()
+      viewModel.searchTask = Task {
+        try? await Task.sleep(for: .milliseconds(300))
+        await viewModel.getApps()
+      }
+    })
+  }
+
+  var resultsList: some View {
+    List {
+      ForEach(viewModel.apps, id: \.self) { app in
         NavigationLink {
           AddAppView(viewModel: $viewModel, newAppItem: $newAppItem) {
             dismiss()
@@ -44,19 +88,6 @@ struct FindByAppNameView: View {
             }
             Text(app.trackCensoredName)
           }
-        }
-      }
-      .navigationTitle("Find App by name")
-      .showCustomAlert(alert: $viewModel.error)
-    }
-    .searchable(text: $viewModel.searchTerm)
-    .task(id: viewModel.searchTerm) {
-      if !viewModel.searchTerm.isEmpty {
-        viewModel.searchTask?.cancel()
-
-        viewModel.searchTask = Task {
-          try? await Task.sleep(nanoseconds: 300_000_000)
-          await viewModel.getApps(for: viewModel.searchTerm)
         }
       }
     }

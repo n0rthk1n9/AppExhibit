@@ -16,6 +16,8 @@ class AddAppViewModel {
   var searchTerm: String = ""
   var appStoreLink: String = ""
 
+  var loadingState: ProgressState = .notStarted
+
   var isLoading = false
   var isLoadingScreenshots = false
   var error: AppExhibitError?
@@ -52,8 +54,11 @@ class AddAppViewModel {
   }
 
   @MainActor
-  func getApps(for searchTerm: String) async {
-    isLoading = true
+  func getApps() async {
+    guard !searchTerm.isEmpty else { return }
+
+    self.loadingState = .inProgress
+    self.apps = []
 
     do {
       let fetchedApps = try await iTunesAPIService.fetchApps(for: searchTerm)
@@ -61,15 +66,15 @@ class AddAppViewModel {
       apps = fetchedApps
 
     } catch let error as AppExhibitError {
-      self.error = error
+      self.loadingState = .failed(error: error)
     } catch {
       if (error as? URLError)?.code == .cancelled {
         return
       }
-      self.error = .other(error: error)
+      self.loadingState = .failed(error: .other(error: error))
     }
 
-    isLoading = false
+    self.loadingState = .successful
   }
 
   func extractAppID(from urlString: String) -> String? {
