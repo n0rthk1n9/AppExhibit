@@ -1,5 +1,5 @@
 //
-//  DeveloperSearchViewModel.swift
+//  FindByDeveloperViewModel.swift
 //  AppExhibit
 //
 //  Created by Jan Armbrust on 24.09.24.
