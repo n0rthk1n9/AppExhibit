@@ -159,7 +159,10 @@ struct AppsView: View {
     }
 }
 
+// Hack to making archive build work
+#if DEBUG
 #Preview(traits: .sampleData) {
   AppsView()
     .environmentObject(FreemiumKit.shared)
 }
+#endif

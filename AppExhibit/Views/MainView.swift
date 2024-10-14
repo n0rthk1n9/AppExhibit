@@ -23,7 +23,10 @@ struct MainView: View {
     }
 }
 
+// Hack to making archive build work
+#if DEBUG
 #Preview(traits: .sampleData) {
     MainView()
     .environmentObject(FreemiumKit.shared)
 }
+#endif

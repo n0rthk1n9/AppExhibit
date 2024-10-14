@@ -137,6 +137,9 @@ struct AddAppView: View {
   }
 }
 
+// Hack to making archive build work
+#if DEBUG
 #Preview(traits: .sampleData) {
   AddAppView(viewModel: .constant(AddAppViewModel()), newAppItem: .constant(SampleData.sampleApp1))
 }
+#endif
