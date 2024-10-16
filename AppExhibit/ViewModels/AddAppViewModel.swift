@@ -16,6 +16,8 @@ class AddAppViewModel {
   var searchTerm: String = ""
   var appStoreLink: String = ""
 
+  var loadingState: ProgressState = .notStarted
+
   var isLoading = false
   var isLoadingScreenshots = false
   var error: AppExhibitError?
@@ -32,7 +34,8 @@ class AddAppViewModel {
 
   @MainActor
   func getAppDetails(for id: String) async {
-    isLoading = true
+    self.loadingState = .inProgress
+    appDetails = []
 
     do {
       let fetchedAppDetails = try await iTunesAPIService.fetchAppDetails(for: id)
@@ -40,20 +43,23 @@ class AddAppViewModel {
       appDetails = fetchedAppDetails
 
     } catch let error as AppExhibitError {
-      self.error = error
+      self.loadingState = .failed(error: error)
     } catch {
       if (error as? URLError)?.code == .cancelled {
         return
       }
-      self.error = .other(error: error)
+      self.loadingState = .failed(error: .other(error: error))
     }
 
-    isLoading = false
+    self.loadingState = .successful
   }
 
   @MainActor
-  func getApps(for searchTerm: String) async {
-    isLoading = true
+  func getApps() async {
+    guard !searchTerm.isEmpty else { return }
+
+    self.loadingState = .inProgress
+    self.apps = []
 
     do {
       let fetchedApps = try await iTunesAPIService.fetchApps(for: searchTerm)
@@ -61,19 +67,27 @@ class AddAppViewModel {
       apps = fetchedApps
 
     } catch let error as AppExhibitError {
-      self.error = error
+      self.loadingState = .failed(error: error)
     } catch {
       if (error as? URLError)?.code == .cancelled {
         return
       }
-      self.error = .other(error: error)
+      self.loadingState = .failed(error: .other(error: error))
     }
 
-    isLoading = false
+    self.loadingState = .successful
   }
 
   func extractAppID(from urlString: String) -> String? {
+    self.loadingState = .inProgress
+
+    guard !urlString.isEmpty else {
+      self.loadingState = .failed(error: AppExhibitError.notAnAppStoreLink)
+      return nil
+    }
+    
     guard let url = URL(string: urlString) else {
+      self.loadingState = .failed(error: AppExhibitError.notAnAppStoreLink)
       return nil
     }
 
@@ -91,48 +105,58 @@ class AddAppViewModel {
         }
       }
     } catch let error as AppExhibitError {
-      self.error = error
+      self.loadingState = .failed(error: error)
       return nil
     } catch {
       if (error as? URLError)?.code == .cancelled {
         return nil
       }
-      self.error = .other(error: error)
+      self.loadingState = .failed(error: .other(error: error))
       return nil
     }
+
+    self.loadingState = .successful
 
     return nil
   }
 
   @MainActor
   func getAppIcon() async {
-    isLoading = true
+    self.loadingState = .inProgress
 
     do {
-      if !appDetails.isEmpty {
-        var appIconURL: URL?
-        if let appIconURLString = appDetails.first?.artworkUrl100 {
-          appIconURL = URL(string: appIconURLString)
-        }
-        if let appIconURL {
-          (appIcon, _) = try await URLSession.shared.data(from: appIconURL)
-        }
+      guard !appDetails.isEmpty else {
+        self.loadingState = .failed(error: AppExhibitError.notAnAppStoreLink)
+        return
+      }
+      var appIconURL: URL?
+      if let appIconURLString = appDetails.first?.artworkUrl100 {
+        appIconURL = URL(string: appIconURLString)
+      }
+      if let appIconURL {
+        (appIcon, _) = try await URLSession.shared.data(from: appIconURL)
       }
     } catch let error as AppExhibitError {
-      self.error = error
+      self.loadingState = .failed(error: error)
     } catch {
       if (error as? URLError)?.code == .cancelled {
         return
       }
-      self.error = .other(error: error)
+      self.loadingState = .failed(error: .other(error: error))
     }
 
-    isLoading = false
+    self.loadingState = .successful
   }
 
   @MainActor
   func getScreenshots() async {
     isLoadingScreenshots = true
+    guard !appDetails.isEmpty else {
+      isLoadingScreenshots = false
+      self.loadingState = .failed(error: AppExhibitError.notAnAppStoreLink)
+      return
+    }
+    self.loadingState = .inProgress
 
     screenshots = []
 
@@ -146,14 +170,15 @@ class AddAppViewModel {
         }
       }
     } catch let error as AppExhibitError {
-      self.error = error
+      self.loadingState = .failed(error: error)
     } catch {
       if (error as? URLError)?.code == .cancelled {
         return
       }
-      self.error = .other(error: error)
+      self.loadingState = .failed(error: .other(error: error))
     }
 
     isLoadingScreenshots = false
+    self.loadingState = .successful
   }
 }

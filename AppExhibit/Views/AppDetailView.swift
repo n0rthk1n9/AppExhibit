@@ -75,6 +75,9 @@ struct AppDetailView: View {
   }
 }
 
+// Hack to making archive build work
+#if DEBUG
 #Preview(traits: .sampleData) {
   AppDetailView(item: SampleData.sampleApp1)
 }
+#endif

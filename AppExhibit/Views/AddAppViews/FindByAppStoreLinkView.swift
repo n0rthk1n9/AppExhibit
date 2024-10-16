@@ -17,19 +17,65 @@ struct FindByAppStoreLinkView: View {
   var body: some View {
     NavigationStack {
       VStack {
-        TextField("App Store Link", text: $newAppItem.appStoreLink)
-          .textFieldStyle(RoundedBorderTextFieldStyle())
-          .padding()
+        switch viewModel.loadingState {
+        case .notStarted:
 
-        Button("Find") {
-          Task {
-            await fetchAppDetails()
-            showCreateAppView = true
+          TextField("App Store Link", text: $newAppItem.appStoreLink)
+            .textFieldStyle(RoundedBorderTextFieldStyle())
+            .padding()
+
+          Button(action: {
+            Task {
+              await fetchAppDetails()
+            }
+          }) {
+            Text("Find App")
+              .frame(maxWidth: .infinity)
+              .font(.title2)
+              .bold()
+              .padding(.horizontal)
+              .padding(.vertical, 8)
           }
+          .buttonStyle(.borderedProminent)
+          .padding()
+          .disabled(newAppItem.appStoreLink.isEmpty)
+
+        case .inProgress:
+          ProgressView("Getting app details…")
+
+        case .failed(let error):
+          ContentUnavailableView {
+            Label("Adding by App Store link failed", systemImage: "x.circle")
+          } description: {
+            Text(error.localizedDescription)
+          } actions: {
+            Button("Try Again", systemImage: "arrow.circlepath") {
+              viewModel.loadingState = .notStarted
+            }
+          }
+
+        case .successful:
+          TextField("App Store Link", text: $newAppItem.appStoreLink)
+            .textFieldStyle(RoundedBorderTextFieldStyle())
+            .padding()
+
+          Button(action: {
+            Task {
+              await fetchAppDetails()
+            }
+          }) {
+            Text("Find App")
+              .frame(maxWidth: .infinity)
+              .font(.title2)
+              .bold()
+              .padding(.horizontal)
+              .padding(.vertical, 8)
+          }
+          .buttonStyle(.borderedProminent)
+          .padding()
+          .disabled(newAppItem.appStoreLink.isEmpty)
+
         }
-        .buttonStyle(.borderedProminent)
-        .disabled(newAppItem.appStoreLink.isEmpty)
-        .padding()
       }
       .navigationTitle("Find App by link")
       .navigationDestination(isPresented: $showCreateAppView) {
@@ -59,6 +105,17 @@ struct FindByAppStoreLinkView: View {
     await viewModel.getScreenshots()
     Task { @MainActor in
       newAppItem.screenshots = viewModel.screenshots
+    }
+    switch viewModel.loadingState {
+      
+    case .notStarted:
+      showCreateAppView = false
+    case .inProgress:
+      showCreateAppView = false
+    case .failed(error: _):
+      showCreateAppView = false
+    case .successful:
+      showCreateAppView = true
     }
   }
 }

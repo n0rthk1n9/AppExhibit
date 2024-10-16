@@ -71,8 +71,11 @@ struct AddAppView: View {
             }
           } else {
             Text("Add")
-              .padding(.vertical, 5)
-              .frame(minWidth: 200)
+              .frame(maxWidth: .infinity)
+              .font(.title2)
+              .bold()
+              .padding(.horizontal)
+              .padding(.vertical, 8)
           }
         }
         .disabled(
@@ -134,6 +137,9 @@ struct AddAppView: View {
   }
 }
 
+// Hack to making archive build work
+#if DEBUG
 #Preview(traits: .sampleData) {
   AddAppView(viewModel: .constant(AddAppViewModel()), newAppItem: .constant(SampleData.sampleApp1))
 }
+#endif
