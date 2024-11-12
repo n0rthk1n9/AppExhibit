@@ -6,8 +6,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/FlineDev/FreemiumKit.git",
       "state" : {
-        "revision" : "86591ea6ecdc3ce6b09eef3fac9ff3b883d4f74f",
-        "version" : "1.7.3"
+        "revision" : "afdcaebebab117114809e9bb33008dcb0526fdf7",
+        "version" : "1.12.1"
       }
     },
     {
