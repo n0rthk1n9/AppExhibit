@@ -15,10 +15,15 @@ struct AppsView: View {
 
   @EnvironmentObject private var freemiumKit: FreemiumKit
   @State private var showPaywall: Bool = false
+  @State private var isGridView = true
 
   private var canAddAnotherApp: Bool {
     self.items.isEmpty || self.freemiumKit.hasPurchased
   }
+  
+  private let columns = [
+      GridItem(.adaptive(minimum: 100, maximum: 150), spacing: 20)
+  ]
 
   @State private var showCreateAppSheet = false
   @State private var showFindByAppNameSheet = false
@@ -29,7 +34,7 @@ struct AppsView: View {
 
   var body: some View {
       NavigationStack {
-        List {
+        Group {
           if self.items.isEmpty {
             ContentUnavailableView {
               Label("Add your first app", systemImage: "app.fill")
@@ -45,29 +50,68 @@ struct AppsView: View {
               .font(.title2)
             }
           } else {
-            ForEach(self.items) { item in
-              NavigationLink(value: item) {
-                HStack {
-                  if let appIconData = item.icon, let appIcon = UIImage(data: appIconData) {
-                    AppIconView(appIcon: appIcon, size: 64)
-                  }
-                  Text(item.name)
-                  if let appStoreLinkQRCodeData = item.qrCode {
-                    Spacer()
-                    Image(systemName: "qrcode")
-                      .onTapGesture {
-                        self.selectedAppStoreLinkQRCodeData = appStoreLinkQRCodeData
+            if isGridView {
+              VStack {
+                LazyVGrid(columns: columns, spacing: 20) {
+                    ForEach(items) { item in
+                        ZStack {
+                            if let appIconData = item.icon, let appIcon = UIImage(data: appIconData) {
+                                AppIconView(appIcon: appIcon, size: 64)
+                                .opacity(0.5)
+                            }
+                            if let appStoreLinkQRCodeData = item.qrCode {
+                              if let appStoreLinkQRCode = UIImage(data: appStoreLinkQRCodeData) {
+                                Image(uiImage: appStoreLinkQRCode)
+                                  .resizable()
+                                  .scaledToFit()
+                                  .onTapGesture {
+                                      self.selectedAppStoreLinkQRCodeData = appStoreLinkQRCodeData
+                                  }
+                              }
+                            }
+                        }
+                        .padding()
+                        .background(Color(.secondarySystemBackground))
+                        .cornerRadius(8)
+                    }
+                }
+                Spacer()
+              }
+              .padding()
+            } else {
+              List {
+                ForEach(self.items) { item in
+                  NavigationLink(value: item) {
+                    HStack {
+                      if let appIconData = item.icon, let appIcon = UIImage(data: appIconData) {
+                        AppIconView(appIcon: appIcon, size: 64)
                       }
-                      .padding(.trailing)
+                      Text(item.name)
+                      if let appStoreLinkQRCodeData = item.qrCode {
+                        Spacer()
+                        Image(systemName: "qrcode")
+                          .onTapGesture {
+                            self.selectedAppStoreLinkQRCodeData = appStoreLinkQRCodeData
+                          }
+                          .padding(.trailing)
+                      }
+                    }
                   }
                 }
+                .onDelete(perform: self.deleteItems)
               }
             }
-            .onDelete(perform: self.deleteItems)
           }
         }
         .toolbar {
-          ToolbarItem {
+          ToolbarItem(placement: .topBarTrailing) {
+              Button {
+                  isGridView.toggle()
+              } label: {
+                  Image(systemName: isGridView ? "list.bullet" : "square.grid.2x2")
+              }
+          }
+          ToolbarItem(placement: .topBarTrailing) {
             Menu("Add", systemImage: "plus") {
               self.addMenuContents
             }
