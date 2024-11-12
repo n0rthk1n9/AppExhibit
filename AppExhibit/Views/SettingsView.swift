@@ -29,5 +29,5 @@ struct SettingsView: View {
 
 #Preview {
     SettingsView()
-    .environmentObject(FreemiumKit.shared)
+    .environmentObject(FreemiumKit.preview)
 }

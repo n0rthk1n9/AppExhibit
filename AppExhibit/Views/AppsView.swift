@@ -163,6 +163,6 @@ struct AppsView: View {
 #if DEBUG
 #Preview(traits: .sampleData) {
   AppsView()
-    .environmentObject(FreemiumKit.shared)
+    .environmentObject(FreemiumKit.preview)
 }
 #endif
