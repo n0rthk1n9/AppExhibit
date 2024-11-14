@@ -5,7 +5,7 @@
 //  Created by Jan Armbrust on 28.05.24.
 //
 
-import Foundation
+import SwiftUI
 
 @Observable
 class AddAppViewModel {
@@ -15,6 +15,7 @@ class AddAppViewModel {
   var apps: [ITunesAPIResult] = []
   var searchTerm: String = ""
   var appStoreLink: String = ""
+  var qrCode: Data?
 
   var loadingState: ProgressState = .notStarted
 
@@ -85,7 +86,7 @@ class AddAppViewModel {
       self.loadingState = .failed(error: AppExhibitError.notAnAppStoreLink)
       return nil
     }
-    
+
     guard let url = URL(string: urlString) else {
       self.loadingState = .failed(error: AppExhibitError.notAnAppStoreLink)
       return nil
@@ -180,5 +181,17 @@ class AddAppViewModel {
 
     isLoadingScreenshots = false
     self.loadingState = .successful
+  }
+
+  @MainActor
+  func generateQRCodeIfNeeded() {
+    if let appIconData = appIcon, let appIconImage = UIImage(data: appIconData) {
+      // Generate QR code with app icon as logo
+      let orangeColor = UIColor(red: 0.93, green: 0.31, blue: 0.23, alpha: 1.00)
+      if let ciQRCodeImage = URL(string: appStoreLink)?.qrImage(using: orangeColor, logo: appIconImage) {
+        qrCode = UIImage(ciImage: ciQRCodeImage).pngData()
+      }
+    }
+
   }
 }

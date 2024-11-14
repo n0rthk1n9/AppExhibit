@@ -88,24 +88,10 @@ struct AddAppView: View {
       }
       .navigationTitle("Add App")
       .task(id: selectedPhoto) {
-        if let appIconData = try? await selectedPhoto?.loadTransferable(type: Data.self) {
-          newAppItem.icon = appIconData
-        }
-      }
-      .onChange(of: newAppItem.appStoreLink) { _, newAppStoreLink in
-        withAnimation {
-          appStoreLinkQRCode = generateQRCode(from: newAppStoreLink)
-          newAppItem.qrCode = appStoreLinkQRCode.pngData()
-        }
-      }
-      .onAppear {
-        if !newAppItem.appStoreLink.isEmpty {
-          withAnimation {
-            appStoreLinkQRCode = generateQRCode(from: newAppItem.appStoreLink)
-            newAppItem.qrCode = appStoreLinkQRCode.pngData()
+          if let appIconData = try? await selectedPhoto?.loadTransferable(type: Data.self) {
+            newAppItem.icon = appIconData
           }
         }
-      }
     }
   }
 
@@ -114,18 +100,6 @@ struct AddAppView: View {
       modelContext.insert(newAppItem)
       saveContext(modelContext)
     }
-  }
-
-  private func generateQRCode(from appStoreLink: String) -> UIImage {
-    filter.message = Data(appStoreLink.utf8)
-
-    if let outputImage = filter.outputImage {
-      if let cgImage = context.createCGImage(outputImage, from: outputImage.extent) {
-        return UIImage(cgImage: cgImage)
-      }
-    }
-
-    return UIImage(systemName: "xmark.circle") ?? UIImage()
   }
 
   private func saveContext(_ context: ModelContext) {

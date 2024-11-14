@@ -66,6 +66,7 @@ struct FindByAppNameView: View {
           }
           .task {
             newAppItem.appStoreLink = app.trackViewUrl
+            viewModel.appStoreLink = app.trackViewUrl
             await fetchAppDetails()
             viewModel.searchTerm = ""
           }
@@ -99,6 +100,8 @@ struct FindByAppNameView: View {
     newAppItem.name = viewModel.appDetails.first?.trackCensoredName ?? ""
     await viewModel.getAppIcon()
     newAppItem.icon = viewModel.appIcon
+    viewModel.generateQRCodeIfNeeded()
+    newAppItem.qrCode = viewModel.qrCode
     newAppItem.appStoreDescription = viewModel.appDetails.first?.description ?? ""
     await viewModel.getScreenshots()
     newAppItem.screenshots = viewModel.screenshots
