@@ -47,14 +47,16 @@ struct FindByAppNameView: View {
       .navigationTitle("Find App by name")
     }
     .searchable(text: $viewModel.searchTerm, prompt: "Enter app name")
-    .onChange(of: viewModel.searchTerm, { oldValue, newValue in
-      guard !newValue.isEmpty else { return }
-      viewModel.searchTask?.cancel()
-      viewModel.searchTask = Task {
-        try? await Task.sleep(for: .milliseconds(300))
-        await viewModel.getApps()
-      }
-    })
+    .onChange(
+      of: viewModel.searchTerm,
+      { oldValue, newValue in
+        guard !newValue.isEmpty else { return }
+        viewModel.searchTask?.cancel()
+        viewModel.searchTask = Task {
+          try? await Task.sleep(for: .milliseconds(300))
+          await viewModel.getApps()
+        }
+      })
   }
 
   var resultsList: some View {

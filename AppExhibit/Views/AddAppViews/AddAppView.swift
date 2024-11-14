@@ -88,10 +88,10 @@ struct AddAppView: View {
       }
       .navigationTitle("Add App")
       .task(id: selectedPhoto) {
-          if let appIconData = try? await selectedPhoto?.loadTransferable(type: Data.self) {
-            newAppItem.icon = appIconData
-          }
+        if let appIconData = try? await selectedPhoto?.loadTransferable(type: Data.self) {
+          newAppItem.icon = appIconData
         }
+      }
     }
   }
 
@@ -113,7 +113,7 @@ struct AddAppView: View {
 
 // Hack to making archive build work
 #if DEBUG
-#Preview(traits: .sampleData) {
-  AddAppView(viewModel: .constant(AddAppViewModel()), newAppItem: .constant(SampleData.sampleApp1))
-}
+  #Preview(traits: .sampleData) {
+    AddAppView(viewModel: .constant(AddAppViewModel()), newAppItem: .constant(SampleData.sampleApp1))
+  }
 #endif
