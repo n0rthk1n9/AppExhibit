@@ -68,4 +68,82 @@ extension CIImage {
 
     return blendFilter.outputImage
   }
+
+  func generateColorPalette(clusterCount: Int = 4) -> [UIColor] {
+    // Step 1: Apply the CIKMeans filter
+    let kMeansFilter = CIFilter(
+      name: "CIKMeans",
+      parameters: [
+        kCIInputImageKey: self,
+        "inputExtent": CIVector(cgRect: extent),
+        "inputCount": clusterCount,
+      ])
+
+    guard let kMeansOutput = kMeansFilter?.outputImage else { return [] }
+
+    // Step 2: Render the clusters to extract colors
+    var kMeansBitmap = [UInt8](repeating: 0, count: clusterCount * 4)  // RGBA for each cluster
+    let context = CIContext()
+    context.render(
+      kMeansOutput, toBitmap: &kMeansBitmap, rowBytes: clusterCount * 4,
+      bounds: CGRect(x: 0, y: 0, width: clusterCount, height: 1), format: .RGBA8, colorSpace: nil)
+
+    // Step 3: Convert clusters into a palette of UIColor
+    var palette: [UIColor] = []
+    for i in 0..<clusterCount {
+      let r = CGFloat(kMeansBitmap[i * 4]) / 255.0
+      let g = CGFloat(kMeansBitmap[i * 4 + 1]) / 255.0
+      let b = CGFloat(kMeansBitmap[i * 4 + 2]) / 255.0
+      let a = CGFloat(kMeansBitmap[i * 4 + 3]) / 255.0
+
+      let color = UIColor(red: r, green: g, blue: b, alpha: a)
+      palette.append(color)
+    }
+
+    return palette
+  }
+
+  func detectAccentColor(
+      fromPalette palette: [UIColor],
+      luminanceThreshold: CGFloat = 0.3,
+      saturationThreshold: CGFloat = 0.2,
+      isDarkMode: Bool = false
+  ) -> UIColor? {
+      var selectedColor: UIColor?
+      var maxSaturation: CGFloat = 0
+
+      for color in palette {
+          var hue: CGFloat = 0
+          var saturation: CGFloat = 0
+          var brightness: CGFloat = 0
+          color.getHue(&hue, saturation: &saturation, brightness: &brightness, alpha: nil)
+
+          // Skip neutral colors (low brightness or saturation)
+          if brightness > luminanceThreshold && saturation > saturationThreshold {
+              // Select the color with the highest saturation
+              if saturation > maxSaturation {
+                  maxSaturation = saturation
+                  selectedColor = color
+              }
+          }
+      }
+
+      // Handle cases where no suitable color is found or a neutral color dominates
+      if selectedColor == nil || isNeutralColor(selectedColor!) {
+          // For dark mode, use white as the fallback; for light mode, use black
+          return isDarkMode ? UIColor.white : UIColor.black
+      }
+
+      return selectedColor
+  }
+
+  // Helper function to check if a color is neutral (close to black, white, or gray)
+  private func isNeutralColor(_ color: UIColor) -> Bool {
+      var brightness: CGFloat = 0
+      var saturation: CGFloat = 0
+      color.getHue(nil, saturation: &saturation, brightness: &brightness, alpha: nil)
+
+      // Neutral colors have low saturation and brightness close to 0 or 1
+      return (brightness < 0.2 || brightness > 0.8) && saturation < 0.2
+  }
 }

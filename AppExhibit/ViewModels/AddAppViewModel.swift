@@ -186,12 +186,15 @@ class AddAppViewModel {
   @MainActor
   func generateQRCodeIfNeeded() {
     if let appIconData = appIcon, let appIconImage = UIImage(data: appIconData) {
+      // Determine if the system is in dark mode
+      let isDarkMode = UITraitCollection.current.userInterfaceStyle == .dark
+
       // Generate QR code with app icon as logo
-      let orangeColor = UIColor(red: 0.93, green: 0.31, blue: 0.23, alpha: 1.00)
-      if let ciQRCodeImage = URL(string: appStoreLink)?.qrImage(using: orangeColor, logo: appIconImage) {
+      if let appStoreURL = URL(string: appStoreLink),
+        let ciQRCodeImage = appStoreURL.qrImage(logo: appIconImage, isDarkMode: isDarkMode)
+      {
         qrCode = UIImage(ciImage: ciQRCodeImage).pngData()
       }
     }
-
   }
 }
