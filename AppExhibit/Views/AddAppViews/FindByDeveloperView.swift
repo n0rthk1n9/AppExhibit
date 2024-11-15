@@ -81,6 +81,7 @@ struct FindByDeveloperView: View {
                 }
                 .task {
                   newAppItem.appStoreLink = app.trackViewUrl
+                  addAppViewModel.appStoreLink = app.trackViewUrl
                   await fetchAppDetails()
                   viewModel.searchTerm = ""
                 }
@@ -115,6 +116,8 @@ struct FindByDeveloperView: View {
     newAppItem.name = addAppViewModel.appDetails.first?.trackCensoredName ?? ""
     await addAppViewModel.getAppIcon()
     newAppItem.icon = addAppViewModel.appIcon
+    addAppViewModel.generateQRCodeIfNeeded()
+    newAppItem.qrCode = addAppViewModel.qrCode
     newAppItem.appStoreDescription = addAppViewModel.appDetails.first?.description ?? ""
     await addAppViewModel.getScreenshots()
     newAppItem.screenshots = addAppViewModel.screenshots
