@@ -27,6 +27,6 @@ struct MainView: View {
 #if DEBUG
 #Preview(traits: .sampleData) {
     MainView()
-    .environmentObject(FreemiumKit.preview)
+    .environmentObject(FreemiumKit.shared)
 }
 #endif
