@@ -15,7 +15,7 @@ struct AppsView: View {
 
   @EnvironmentObject private var freemiumKit: FreemiumKit
   @State private var showPaywall: Bool = false
-  @State private var isGridView = true
+  @State private var isGridView = false
 
   private var canAddAnotherApp: Bool {
     self.items.isEmpty || self.freemiumKit.hasPurchased
@@ -51,7 +51,7 @@ struct AppsView: View {
           }
         } else {
           if isGridView {
-            VStack {
+            ScrollView {
               LazyVGrid(columns: columns, spacing: 20) {
                 ForEach(items) { item in
                     if let appStoreLinkQRCodeData = item.qrCode {
