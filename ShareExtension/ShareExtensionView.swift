@@ -39,7 +39,12 @@ struct ShareExtensionView: View {
             if viewModel.isLoading {
               ProgressView()
             } else {
-              Label("Find by app link", systemImage: "link")
+              Text("Find App")
+                .frame(maxWidth: .infinity)
+                .font(.title2)
+                .bold()
+                .padding(.horizontal)
+                .padding(.vertical, 8)
             }
           }
           .buttonStyle(.borderedProminent)
@@ -85,6 +90,9 @@ struct ShareExtensionView: View {
     await viewModel.getAppIcon()
     Task { @MainActor in
       newAppItem.icon = viewModel.appIcon
+      viewModel.appStoreLink = newAppItem.appStoreLink
+      viewModel.generateQRCodeIfNeeded()
+      newAppItem.qrCode = viewModel.qrCode
       newAppItem.appStoreDescription = viewModel.appDetails.first?.description ?? ""
     }
 
