@@ -5,7 +5,6 @@
 //  Created by Jan Armbrust on 27.05.24.
 //
 
-import CoreImage.CIFilterBuiltins
 import PhotosUI
 import SwiftData
 import SwiftUI
@@ -19,8 +18,6 @@ struct AddAppView: View {
   @State private var selectedPhoto: PhotosPickerItem?
   @State private var appStoreLinkQRCode = UIImage()
 
-  let context = CIContext()
-  let filter = CIFilter.qrCodeGenerator()
   var onCreate: (() -> Void)?
 
   var body: some View {
