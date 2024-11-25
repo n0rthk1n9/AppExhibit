@@ -9,6 +9,7 @@ import SwiftUI
 
 struct AppDetailView: View {
   @Environment(\.openURL) var openURL
+  @Environment(\.colorScheme) var colorScheme
 
   let item: AppItem
 
@@ -30,12 +31,12 @@ struct AppDetailView: View {
               } label: {
                 Image(systemName: "qrcode")
               }
-              .modifier(DetailViewButtonStyle(color: .accent))
+              .modifier(DetailViewButtonStyle(color: .blue))
               if let appStoreUrl = URL(string: item.appStoreLink) {
                 ShareLink(item: appStoreUrl) {
                   Image(systemName: "square.and.arrow.up")
                 }
-                .modifier(DetailViewButtonStyle(color: .accent))
+                .modifier(DetailViewButtonStyle(color: .blue))
               }
 
             }
@@ -49,7 +50,7 @@ struct AppDetailView: View {
             .bold()
             .frame(maxWidth: .infinity, minHeight: 40)
             .foregroundStyle(.white)
-            .background(.accent)
+            .background(.blue)
             .clipShape(RoundedRectangle(cornerRadius: 10))
           }
         }
@@ -86,6 +87,8 @@ struct AppDetailView: View {
 }
 
 struct DetailViewButtonStyle: ViewModifier {
+  @Environment(\.colorScheme) var colorScheme
+  
   let color: Color
 
   func body(content: Content) -> some View {
@@ -93,9 +96,13 @@ struct DetailViewButtonStyle: ViewModifier {
       .font(.title3)
       .bold()
       .frame(maxWidth: .infinity, minHeight: 40)
-      .background(color)
-      .foregroundStyle(.white)
+      .background(colorScheme == .dark ? .black : .white)
+      .foregroundStyle(color)
       .clipShape(RoundedRectangle(cornerRadius: 10))
+      .overlay(
+        RoundedRectangle(cornerRadius: 10)
+          .stroke(color, lineWidth: 2)
+      )
   }
 }
 

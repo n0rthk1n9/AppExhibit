@@ -34,7 +34,7 @@ struct AppExhibitApp: App {
     WindowGroup {
       MainView()
         .environmentObject(FreemiumKit.shared)
-        .tint(.accent)
+        .tint(.blue)
     }
     .modelContainer(self.sharedModelContainer)
   }
