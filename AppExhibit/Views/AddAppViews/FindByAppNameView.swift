@@ -47,14 +47,16 @@ struct FindByAppNameView: View {
       .navigationTitle("Find App by name")
     }
     .searchable(text: $viewModel.searchTerm, prompt: "Enter app name")
-    .onChange(of: viewModel.searchTerm, { oldValue, newValue in
-      guard !newValue.isEmpty else { return }
-      viewModel.searchTask?.cancel()
-      viewModel.searchTask = Task {
-        try? await Task.sleep(for: .milliseconds(300))
-        await viewModel.getApps()
-      }
-    })
+    .onChange(
+      of: viewModel.searchTerm,
+      { oldValue, newValue in
+        guard !newValue.isEmpty else { return }
+        viewModel.searchTask?.cancel()
+        viewModel.searchTask = Task {
+          try? await Task.sleep(for: .milliseconds(300))
+          await viewModel.getApps()
+        }
+      })
   }
 
   var resultsList: some View {
@@ -66,6 +68,7 @@ struct FindByAppNameView: View {
           }
           .task {
             newAppItem.appStoreLink = app.trackViewUrl
+            viewModel.appStoreLink = app.trackViewUrl
             await fetchAppDetails()
             viewModel.searchTerm = ""
           }
@@ -99,6 +102,8 @@ struct FindByAppNameView: View {
     newAppItem.name = viewModel.appDetails.first?.trackCensoredName ?? ""
     await viewModel.getAppIcon()
     newAppItem.icon = viewModel.appIcon
+    viewModel.generateQRCodeIfNeeded()
+    newAppItem.qrCode = viewModel.qrCode
     newAppItem.appStoreDescription = viewModel.appDetails.first?.description ?? ""
     await viewModel.getScreenshots()
     newAppItem.screenshots = viewModel.screenshots

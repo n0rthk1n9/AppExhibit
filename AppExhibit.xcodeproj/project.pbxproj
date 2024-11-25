@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		0A02FDBA2CBA74DA006F659B /* SampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A02FDB92CBA74DA006F659B /* SampleData.swift */; };
 		0A02FDBC2CBA7FD8006F659B /* SampleData+PreviewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A02FDBB2CBA7FD8006F659B /* SampleData+PreviewModifier.swift */; };
+		0A05C7DE2CE3ECCA002436F5 /* CIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A05C7DD2CE3ECCA002436F5 /* CIImage+Extension.swift */; };
+		0A05C7DF2CE3ECCA002436F5 /* CIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A05C7DD2CE3ECCA002436F5 /* CIImage+Extension.swift */; };
+		0A05C7E12CE3ED03002436F5 /* URL+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A05C7E02CE3ED03002436F5 /* URL+Extension.swift */; };
+		0A05C7E22CE3ED03002436F5 /* URL+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A05C7E02CE3ED03002436F5 /* URL+Extension.swift */; };
 		0A0822B62CBA9075007E9424 /* SampleData+PreviewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A02FDBB2CBA7FD8006F659B /* SampleData+PreviewModifier.swift */; };
 		0A0822B72CBA9075007E9424 /* SampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A02FDB92CBA74DA006F659B /* SampleData.swift */; };
 		0AA66E3B2CBC264D00DB3F9E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 57D7F8392C04E04B00294392 /* Preview Assets.xcassets */; };
@@ -93,6 +97,8 @@
 /* Begin PBXFileReference section */
 		0A02FDB92CBA74DA006F659B /* SampleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleData.swift; sourceTree = "<group>"; };
 		0A02FDBB2CBA7FD8006F659B /* SampleData+PreviewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SampleData+PreviewModifier.swift"; sourceTree = "<group>"; };
+		0A05C7DD2CE3ECCA002436F5 /* CIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CIImage+Extension.swift"; sourceTree = "<group>"; };
+		0A05C7E02CE3ED03002436F5 /* URL+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Extension.swift"; sourceTree = "<group>"; };
 		2E166F322CA9BDEB00788B4F /* ProgressState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressState.swift; sourceTree = "<group>"; };
 		5726DA922C7DFEDA00294392 /* AppExhibit.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = AppExhibit.storekit; sourceTree = "<group>"; };
 		5739AA0C2C9C7F2B001EC327 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
@@ -216,6 +222,8 @@
 			children = (
 				578882012C08E97C00294392 /* View+Extension.swift */,
 				578882032C08EA2E00294392 /* Binding+Extension.swift */,
+				0A05C7DD2CE3ECCA002436F5 /* CIImage+Extension.swift */,
+				0A05C7E02CE3ED03002436F5 /* URL+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -410,8 +418,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A05C7DE2CE3ECCA002436F5 /* CIImage+Extension.swift in Sources */,
 				2E166F342CA9BDED00788B4F /* ProgressState.swift in Sources */,
 				579ADD342C0E56A900294392 /* AppExhibitError.swift in Sources */,
+				0A05C7E12CE3ED03002436F5 /* URL+Extension.swift in Sources */,
 				579ADD2A2C0E4E3300294392 /* AppItem.swift in Sources */,
 				579ADD362C0E56B900294392 /* ITunesAPIService.swift in Sources */,
 				57774D382CA2F21B00A36D55 /* iTunesAPISoftwareDeveloperResult.swift in Sources */,
@@ -457,8 +467,10 @@
 				57D7F8472C05E6DB00294392 /* PhotoZoomableView.swift in Sources */,
 				57774D3D2CA2F54E00A36D55 /* FindByDeveloperViewModel.swift in Sources */,
 				57D7F8532C05FF4400294392 /* ITunesAPIService.swift in Sources */,
+				0A05C7DF2CE3ECCA002436F5 /* CIImage+Extension.swift in Sources */,
 				2E166F332CA9BDED00788B4F /* ProgressState.swift in Sources */,
 				57774D3A2CA2F52800A36D55 /* FindByDeveloperView.swift in Sources */,
+				0A05C7E22CE3ED03002436F5 /* URL+Extension.swift in Sources */,
 				57D7F8512C05FD5A00294392 /* ITunesAPIResults.swift in Sources */,
 				57D7F8412C04EB0200294392 /* AddAppView.swift in Sources */,
 				5759C4EB2C08835900294392 /* FindByAppStoreLinkView.swift in Sources */,
@@ -485,7 +497,7 @@
 				CODE_SIGN_ENTITLEMENTS = ShareExtension/ShareExtension.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 14;
 				DEVELOPMENT_TEAM = G7HRH2B3C7;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ShareExtension/Info.plist;
@@ -497,7 +509,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.2.1;
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = dev.xbow.AppExhibit.ShareExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -513,7 +525,7 @@
 				CODE_SIGN_ENTITLEMENTS = ShareExtension/ShareExtension.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 14;
 				DEVELOPMENT_TEAM = G7HRH2B3C7;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ShareExtension/Info.plist;
@@ -525,7 +537,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.2.1;
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = dev.xbow.AppExhibit.ShareExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -666,7 +678,7 @@
 				CODE_SIGN_ENTITLEMENTS = AppExhibit/AppExhibit.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 14;
 				DEVELOPMENT_ASSET_PATHS = "\"AppExhibit/Preview Content\"";
 				DEVELOPMENT_TEAM = G7HRH2B3C7;
 				ENABLE_PREVIEWS = YES;
@@ -684,7 +696,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.1;
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = dev.xbow.AppExhibit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -702,7 +714,7 @@
 				CODE_SIGN_ENTITLEMENTS = AppExhibit/AppExhibit.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 14;
 				DEVELOPMENT_ASSET_PATHS = "\"AppExhibit/Preview Content\"";
 				DEVELOPMENT_TEAM = G7HRH2B3C7;
 				ENABLE_PREVIEWS = YES;
@@ -720,7 +732,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.1;
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = dev.xbow.AppExhibit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

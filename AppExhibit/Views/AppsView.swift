@@ -15,10 +15,15 @@ struct AppsView: View {
 
   @EnvironmentObject private var freemiumKit: FreemiumKit
   @State private var showPaywall: Bool = false
+  @State private var isGridView = false
 
   private var canAddAnotherApp: Bool {
     self.items.isEmpty || self.freemiumKit.hasPurchased
   }
+
+  private let columns = [
+    GridItem(.adaptive(minimum: 100, maximum: 200), spacing: 20)
+  ]
 
   @State private var showCreateAppSheet = false
   @State private var showFindByAppNameSheet = false
@@ -28,85 +33,118 @@ struct AppsView: View {
   @State var selectedAppStoreLinkQRCodeData: Data? = nil
 
   var body: some View {
-      NavigationStack {
-        List {
-          if self.items.isEmpty {
-            ContentUnavailableView {
-              Label("Add your first app", systemImage: "app.fill")
-            } description: {
-              Text(
-                "Add all your precious apps you want to easily share with the people around you just by tapping the + button"
-              )
-            } actions: {
-              Menu("Add", systemImage: "plus") {
-                self.addMenuContents
-              }
-              .labelStyle(.iconOnly)
-              .font(.title2)
-            }
-          } else {
-            ForEach(self.items) { item in
-              NavigationLink(value: item) {
-                HStack {
-                  if let appIconData = item.icon, let appIcon = UIImage(data: appIconData) {
-                    AppIconView(appIcon: appIcon, size: 64)
-                  }
-                  Text(item.name)
-                  if let appStoreLinkQRCodeData = item.qrCode {
-                    Spacer()
-                    Image(systemName: "qrcode")
-                      .onTapGesture {
-                        self.selectedAppStoreLinkQRCodeData = appStoreLinkQRCodeData
-                      }
-                      .padding(.trailing)
-                  }
-                }
-              }
-            }
-            .onDelete(perform: self.deleteItems)
-          }
-        }
-        .toolbar {
-          ToolbarItem {
+    NavigationStack {
+      Group {
+        if self.items.isEmpty {
+          ContentUnavailableView {
+            Label("Add your first app", systemImage: "app.fill")
+          } description: {
+            Text(
+              "Add all your precious apps you want to easily share with the people around you just by tapping the + button"
+            )
+          } actions: {
             Menu("Add", systemImage: "plus") {
               self.addMenuContents
             }
+            .labelStyle(.iconOnly)
+            .font(.title2)
+          }
+        } else {
+          if isGridView {
+            ScrollView {
+              LazyVGrid(columns: columns, spacing: 20) {
+                ForEach(items) { item in
+                    if let appStoreLinkQRCodeData = item.qrCode {
+                      if let appStoreLinkQRCode = UIImage(data: appStoreLinkQRCodeData) {
+                        Image(uiImage: appStoreLinkQRCode)
+                          .resizable()
+                          .scaledToFit()
+                          .onTapGesture {
+                            self.selectedAppStoreLinkQRCodeData = appStoreLinkQRCodeData
+                          }
+                      }
+                    }
+                }
+                .padding()
+                .background(Color(.secondarySystemBackground))
+                .cornerRadius(8)
+              }
+              Spacer()
+            }
+            .padding()
+          } else {
+            List {
+              ForEach(self.items) { item in
+                NavigationLink(value: item) {
+                  HStack {
+                    if let appIconData = item.icon, let appIcon = UIImage(data: appIconData) {
+                      AppIconView(appIcon: appIcon, size: 64)
+                    }
+                    Text(item.name)
+                    if let appStoreLinkQRCodeData = item.qrCode {
+                      Spacer()
+                      Image(systemName: "qrcode")
+                        .onTapGesture {
+                          self.selectedAppStoreLinkQRCodeData = appStoreLinkQRCodeData
+                        }
+                        .padding(.trailing)
+                    }
+                  }
+                }
+              }
+              .onDelete(perform: self.deleteItems)
+            }
           }
         }
-        .navigationTitle("App Exhibit")
-        .navigationDestination(for: AppItem.self) { item in
-          AppDetailView(item: item)
-        }
-        .sheet(isPresented: self.$showCreateAppSheet) {
-          AddAppView(viewModel: .constant(AddAppViewModel()), newAppItem: .constant(AppItem()))
-        }
-        .sheet(isPresented: self.$showFindByAppNameSheet) {
-          FindByAppNameView()
-        }
-        .sheet(isPresented: self.$showFindByAppStoreLinkSheet) {
-          FindByAppStoreLinkView()
-        }
-        .sheet(isPresented: self.$showPhotoZoomableSheet) {
-          if let selectedAppStoreLinkQRCodeData {
-            PhotoZoomableView(appStoreLinkQRCodeData: selectedAppStoreLinkQRCodeData)
-              .presentationBackground(.ultraThinMaterial)
-              .presentationCornerRadius(16)
+      }
+      .toolbar {
+        ToolbarItem(placement: .topBarTrailing) {
+          Button {
+            isGridView.toggle()
+          } label: {
+            Image(systemName: isGridView ? "list.bullet" : "square.grid.2x2")
           }
         }
-        .sheet(isPresented: self.$showFindByDeveloperSheet) {
-          FindByDeveloperView()
-        }
-        .task(id: self.selectedAppStoreLinkQRCodeData) {
-          if self.selectedAppStoreLinkQRCodeData != nil {
-            self.showPhotoZoomableSheet.toggle()
+        ToolbarItem(placement: .topBarTrailing) {
+          Menu("Add", systemImage: "plus") {
+            self.addMenuContents
           }
         }
-        .onChange(of: self.showPhotoZoomableSheet) { _, newValue in
-          if newValue == false {
-            self.selectedAppStoreLinkQRCodeData = nil
-          }
+      }
+      .navigationTitle("App Exhibit")
+      .navigationDestination(for: AppItem.self) { item in
+        AppDetailView(item: item)
+      }
+      .sheet(isPresented: self.$showCreateAppSheet) {
+        AddAppView(viewModel: .constant(AddAppViewModel()), newAppItem: .constant(AppItem()))
+      }
+      .sheet(isPresented: self.$showFindByAppNameSheet) {
+        FindByAppNameView()
+      }
+      .sheet(isPresented: self.$showFindByAppStoreLinkSheet) {
+        FindByAppStoreLinkView()
+      }
+      .sheet(isPresented: self.$showPhotoZoomableSheet) {
+        if let selectedAppStoreLinkQRCodeData {
+          PhotoZoomableView(appStoreLinkQRCodeData: selectedAppStoreLinkQRCodeData)
+            .presentationBackground(.ultraThinMaterial)
+            .presentationCornerRadius(16)
         }
-        .paywall(isPresented: self.$showPaywall)
+      }
+      .sheet(isPresented: self.$showFindByDeveloperSheet) {
+        FindByDeveloperView()
+      }
+      .task(id: self.selectedAppStoreLinkQRCodeData) {
+        if self.selectedAppStoreLinkQRCodeData != nil {
+          self.showPhotoZoomableSheet.toggle()
+        }
+      }
+      .onChange(of: self.showPhotoZoomableSheet) { _, newValue in
+        if newValue == false {
+          self.selectedAppStoreLinkQRCodeData = nil
+        }
+      }
+      .paywall(isPresented: self.$showPaywall)
     }
   }
 
@@ -149,20 +187,20 @@ struct AppsView: View {
       saveContext(modelContext)
     }
   }
-  
+
   private func saveContext(_ context: ModelContext) {
-      do {
-        try context.save()
-      } catch {
-        print("Failed to save model context: \(error)")
-      }
+    do {
+      try context.save()
+    } catch {
+      print("Failed to save model context: \(error)")
     }
+  }
 }
 
 // Hack to making archive build work
 #if DEBUG
-#Preview(traits: .sampleData) {
-  AppsView()
-    .environmentObject(FreemiumKit.shared)
-}
+  #Preview(traits: .sampleData) {
+    AppsView()
+      .environmentObject(FreemiumKit.shared)
+  }
 #endif

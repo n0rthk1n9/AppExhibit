@@ -5,7 +5,6 @@
 //  Created by Jan Armbrust on 27.05.24.
 //
 
-import CoreImage.CIFilterBuiltins
 import PhotosUI
 import SwiftData
 import SwiftUI
@@ -19,8 +18,6 @@ struct AddAppView: View {
   @State private var selectedPhoto: PhotosPickerItem?
   @State private var appStoreLinkQRCode = UIImage()
 
-  let context = CIContext()
-  let filter = CIFilter.qrCodeGenerator()
   var onCreate: (() -> Void)?
 
   var body: some View {
@@ -92,20 +89,6 @@ struct AddAppView: View {
           newAppItem.icon = appIconData
         }
       }
-      .onChange(of: newAppItem.appStoreLink) { _, newAppStoreLink in
-        withAnimation {
-          appStoreLinkQRCode = generateQRCode(from: newAppStoreLink)
-          newAppItem.qrCode = appStoreLinkQRCode.pngData()
-        }
-      }
-      .onAppear {
-        if !newAppItem.appStoreLink.isEmpty {
-          withAnimation {
-            appStoreLinkQRCode = generateQRCode(from: newAppItem.appStoreLink)
-            newAppItem.qrCode = appStoreLinkQRCode.pngData()
-          }
-        }
-      }
     }
   }
 
@@ -114,18 +97,6 @@ struct AddAppView: View {
       modelContext.insert(newAppItem)
       saveContext(modelContext)
     }
-  }
-
-  private func generateQRCode(from appStoreLink: String) -> UIImage {
-    filter.message = Data(appStoreLink.utf8)
-
-    if let outputImage = filter.outputImage {
-      if let cgImage = context.createCGImage(outputImage, from: outputImage.extent) {
-        return UIImage(cgImage: cgImage)
-      }
-    }
-
-    return UIImage(systemName: "xmark.circle") ?? UIImage()
   }
 
   private func saveContext(_ context: ModelContext) {
@@ -139,7 +110,7 @@ struct AddAppView: View {
 
 // Hack to making archive build work
 #if DEBUG
-#Preview(traits: .sampleData) {
-  AddAppView(viewModel: .constant(AddAppViewModel()), newAppItem: .constant(SampleData.sampleApp1))
-}
+  #Preview(traits: .sampleData) {
+    AddAppView(viewModel: .constant(AddAppViewModel()), newAppItem: .constant(SampleData.sampleApp1))
+  }
 #endif

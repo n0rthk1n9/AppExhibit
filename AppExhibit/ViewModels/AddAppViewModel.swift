@@ -5,7 +5,7 @@
 //  Created by Jan Armbrust on 28.05.24.
 //
 
-import Foundation
+import SwiftUI
 
 @Observable
 class AddAppViewModel {
@@ -15,6 +15,7 @@ class AddAppViewModel {
   var apps: [ITunesAPIResult] = []
   var searchTerm: String = ""
   var appStoreLink: String = ""
+  var qrCode: Data?
 
   var loadingState: ProgressState = .notStarted
 
@@ -85,7 +86,7 @@ class AddAppViewModel {
       self.loadingState = .failed(error: AppExhibitError.notAnAppStoreLink)
       return nil
     }
-    
+
     guard let url = URL(string: urlString) else {
       self.loadingState = .failed(error: AppExhibitError.notAnAppStoreLink)
       return nil
@@ -180,5 +181,20 @@ class AddAppViewModel {
 
     isLoadingScreenshots = false
     self.loadingState = .successful
+  }
+
+  @MainActor
+  func generateQRCodeIfNeeded() {
+    if let appIconData = appIcon, let appIconImage = UIImage(data: appIconData) {
+      // Determine if the system is in dark mode
+      let isDarkMode = UITraitCollection.current.userInterfaceStyle == .dark
+
+      // Generate QR code with app icon as logo
+      if let appStoreURL = URL(string: appStoreLink),
+        let ciQRCodeImage = appStoreURL.qrImage(logo: appIconImage, isDarkMode: isDarkMode)
+      {
+        qrCode = UIImage(ciImage: ciQRCodeImage).pngData()
+      }
+    }
   }
 }

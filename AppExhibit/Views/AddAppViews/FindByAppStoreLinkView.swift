@@ -99,6 +99,9 @@ struct FindByAppStoreLinkView: View {
     await viewModel.getAppIcon()
     Task { @MainActor in
       newAppItem.icon = viewModel.appIcon
+      viewModel.appStoreLink = newAppItem.appStoreLink
+      viewModel.generateQRCodeIfNeeded()
+      newAppItem.qrCode = viewModel.qrCode
       newAppItem.appStoreDescription = viewModel.appDetails.first?.description ?? ""
     }
 

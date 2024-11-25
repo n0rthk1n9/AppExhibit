@@ -21,7 +21,6 @@ struct AppIconView: View {
           RoundedRectangle(cornerRadius: 0.2 * size, style: .continuous)
         )
     }
-    .padding(.trailing)
   }
 }
 

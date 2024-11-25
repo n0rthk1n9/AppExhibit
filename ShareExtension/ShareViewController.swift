@@ -69,6 +69,7 @@ class ShareViewController: UIViewController {
             )
             .modelContainer(sharedModelContainer)
             .environmentObject(FreemiumKit.shared)
+            .tint(.accent)
           )
           self.addChild(contentView)
           self.view.addSubview(contentView.view)
