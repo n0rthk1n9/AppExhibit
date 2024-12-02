@@ -9,8 +9,12 @@ import SwiftUI
 
 struct FindByAppNameView_NEW: View {
   @Environment(\.dismiss) private var dismiss
+  
   @State private var progressState: ProgressState = .notStarted
   @State private var searchTerm: String = ""
+  @State private var apps: [ITunesAPIResult] = []
+  
+  private let iTunesAPIService: ITunesAPIServiceProtocol = ITunesAPIService()
   
   var body: some View {
     NavigationStack {
@@ -27,12 +31,36 @@ struct FindByAppNameView_NEW: View {
         case .failed:
           Text("Failed to find app")
         case .successful:
-          Text("App found")
+          List {
+            ForEach(apps, id: \.self) { app in
+              Text(app.trackCensoredName)
+            }
+          }
         }
       }
       .navigationTitle("Find App by name")
     }
     .searchable(text: $searchTerm, prompt: "Enter app name")
+    .onChange(of: searchTerm) { oldValue, newValue in
+      guard !newValue.isEmpty else { return }
+      Task {
+        try? await Task.sleep(for: .milliseconds(300))
+        await search()
+      }
+    }
+  }
+  
+  private func search() async {
+    progressState = .inProgress
+    
+    do {
+      apps = try await iTunesAPIService.fetchApps(for: searchTerm)
+    } catch {
+      progressState = .failed(error: AppExhibitError.invalidResponseCode)
+      print("could not fetch apps")
+    }
+    
+    progressState = .successful
   }
 }
 
