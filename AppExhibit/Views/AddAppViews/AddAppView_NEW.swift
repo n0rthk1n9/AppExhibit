@@ -38,7 +38,6 @@ struct AddAppView_NEW: View {
               if let appIconData = appItem.icon, let appIcon = UIImage(data: appIconData) {
                 AppIconView(appIcon: appIcon, size: 150)
               }
-              
             }
             Section {
               TextField("App Store or TestFlight Link", text: $appItem.appStoreLink)
@@ -72,6 +71,7 @@ struct AddAppView_NEW: View {
       appItem.name = appDetails.first?.trackCensoredName ?? ""
       appItem.appStoreDescription = appDetails.first?.description ?? ""
       await getAppIcon()
+      generateQRCodeIfNeeded()
     }
   }
   
@@ -162,6 +162,20 @@ struct AddAppView_NEW: View {
     }
 
     self.progressState = .successful
+  }
+  
+  private func generateQRCodeIfNeeded() {
+    if let appIconData = appItem.icon, let appIconImage = UIImage(data: appIconData) {
+      // Determine if the system is in dark mode
+      let isDarkMode = UITraitCollection.current.userInterfaceStyle == .dark
+
+      // Generate QR code with app icon as logo
+      if let appStoreURL = URL(string: appStoreLink),
+        let ciQRCodeImage = appStoreURL.qrImage(logo: appIconImage, isDarkMode: isDarkMode)
+      {
+        appItem.qrCode = UIImage(ciImage: ciQRCodeImage).pngData()
+      }
+    }
   }
 }
 
