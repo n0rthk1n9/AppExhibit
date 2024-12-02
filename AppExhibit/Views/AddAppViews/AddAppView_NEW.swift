@@ -35,9 +35,10 @@ struct AddAppView_NEW: View {
               TextField("App Name", text: $appItem.name)
             }
             Section {
-              Rectangle()
-                .fill(Color.blue)
-                .frame(width: 100, height: 100)
+              if let appIconData = appItem.icon, let appIcon = UIImage(data: appIconData) {
+                AppIconView(appIcon: appIcon, size: 150)
+              }
+              
             }
             Section {
               TextField("App Store or TestFlight Link", text: $appItem.appStoreLink)
@@ -69,6 +70,8 @@ struct AddAppView_NEW: View {
       appItem.appStoreLink = appStoreLink
       await getAppDetails(for: appID)
       appItem.name = appDetails.first?.trackCensoredName ?? ""
+      appItem.appStoreDescription = appDetails.first?.description ?? ""
+      await getAppIcon()
     }
   }
   
@@ -114,7 +117,7 @@ struct AddAppView_NEW: View {
     return nil
   }
   
-  func getAppDetails(for id: String) async {
+  private func getAppDetails(for id: String) async {
     self.progressState = .inProgress
 
     do {
@@ -122,6 +125,33 @@ struct AddAppView_NEW: View {
 
       appDetails = fetchedAppDetails
 
+    } catch let error as AppExhibitError {
+      self.progressState = .failed(error: error)
+    } catch {
+      if (error as? URLError)?.code == .cancelled {
+        return
+      }
+      self.progressState = .failed(error: .other(error: error))
+    }
+
+    self.progressState = .successful
+  }
+  
+  private func getAppIcon() async {
+    self.progressState = .inProgress
+
+    do {
+      guard !appDetails.isEmpty else {
+        self.progressState = .failed(error: AppExhibitError.notAnAppStoreLink)
+        return
+      }
+      var appIconURL: URL?
+      if let appIconURLString = appDetails.first?.artworkUrl100 {
+        appIconURL = URL(string: appIconURLString)
+      }
+      if let appIconURL {
+        (appItem.icon, _) = try await URLSession.shared.data(from: appIconURL)
+      }
     } catch let error as AppExhibitError {
       self.progressState = .failed(error: error)
     } catch {
