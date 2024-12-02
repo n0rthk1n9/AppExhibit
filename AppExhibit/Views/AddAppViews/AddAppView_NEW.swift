@@ -60,11 +60,11 @@ struct AddAppView_NEW: View {
         }
     }
     .task {
-      await fetchAppDetails()
+      await createAppItem()
     }
   }
   
-  private func fetchAppDetails() async {
+  private func createAppItem() async {
     if let appID = extractAppID(from: appStoreLink) {
       appItem.appStoreLink = appStoreLink
       await getAppDetails(for: appID)
