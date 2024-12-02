@@ -34,7 +34,9 @@ struct FindByAppNameView_NEW: View {
           List {
             ForEach(apps, id: \.self) { app in
               NavigationLink {
-                AddAppView_NEW(appStoreLink: app.trackViewUrl)
+                AddAppView_NEW(appStoreLink: app.trackViewUrl) {
+                  dismiss()
+                }
               } label: {
                 Text(app.trackCensoredName)
               }

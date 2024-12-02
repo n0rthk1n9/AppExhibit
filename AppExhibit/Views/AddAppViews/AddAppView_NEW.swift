@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct AddAppView_NEW: View {
+  @Environment(\.modelContext) private var modelContext
+  @Environment(\.dismiss) var dismiss
+  
   @State private var progressState: ProgressState = .notStarted
   @State var appItem: AppItem = AppItem()
   @State private var appDetails: [ITunesAPIResult] = []
@@ -15,6 +18,7 @@ struct AddAppView_NEW: View {
   private let iTunesAPIService: ITunesAPIServiceProtocol = ITunesAPIService()
   
   let appStoreLink: String
+  var onCreate: (() -> Void)?
 
   var body: some View {
     NavigationStack {
@@ -45,7 +49,12 @@ struct AddAppView_NEW: View {
           }
           .padding(.top)
           Button {
-            // add app
+            addAppItem()
+            if let onCreate {
+              onCreate()
+            } else {
+              dismiss()
+            }
           } label: {
             Text("Add")
               .frame(maxWidth: .infinity)
@@ -72,6 +81,7 @@ struct AddAppView_NEW: View {
       appItem.appStoreDescription = appDetails.first?.description ?? ""
       await getAppIcon()
       generateQRCodeIfNeeded()
+      await getScreenshots()
     }
   }
   
@@ -175,6 +185,43 @@ struct AddAppView_NEW: View {
       {
         appItem.qrCode = UIImage(ciImage: ciQRCodeImage).pngData()
       }
+    }
+  }
+  
+  private func getScreenshots() async {
+    self.progressState = .inProgress
+    
+    guard !appDetails.isEmpty else {
+      self.progressState = .failed(error: AppExhibitError.notAnAppStoreLink)
+      return
+    }
+    
+    appItem.screenshots = []
+
+    do {
+      if let screenshotUrls = appDetails.first?.screenshotUrls {
+        for screenshotUrlString in screenshotUrls {
+          if let screenshotURL = URL(string: screenshotUrlString) {
+            let (screenshotData, _) = try await URLSession.shared.data(from: screenshotURL)
+            appItem.screenshots?.append(screenshotData)
+          }
+        }
+      }
+    } catch let error as AppExhibitError {
+      self.progressState = .failed(error: error)
+    } catch {
+      if (error as? URLError)?.code == .cancelled {
+        return
+      }
+      self.progressState = .failed(error: .other(error: error))
+    }
+
+    self.progressState = .successful
+  }
+  
+  private func addAppItem() {
+    withAnimation {
+      modelContext.insert(appItem)
     }
   }
 }
