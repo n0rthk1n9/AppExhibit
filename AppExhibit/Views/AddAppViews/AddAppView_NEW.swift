@@ -65,7 +65,8 @@ struct AddAppView_NEW: View {
   }
   
   private func fetchAppDetails() async {
-    if let appID = extractAppID(from: appItem.appStoreLink) {
+    if let appID = extractAppID(from: appStoreLink) {
+      appItem.appStoreLink = appStoreLink
       await getAppDetails(for: appID)
       appItem.name = appDetails.first?.trackCensoredName ?? ""
     }

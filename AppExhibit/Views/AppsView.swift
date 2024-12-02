@@ -122,6 +122,9 @@ struct AppsView: View {
 //      .sheet(isPresented: self.$showFindByAppNameSheet) {
 //        FindByAppNameView()
 //      }
+      .sheet(isPresented: self.$showFindByAppNameSheet) {
+        FindByAppNameView_NEW()
+      }
       .sheet(isPresented: self.$showFindByAppStoreLinkSheet) {
         FindByAppStoreLinkView()
       }
@@ -152,6 +155,9 @@ struct AppsView: View {
   @ViewBuilder
   private var addMenuContents: some View {
     if self.canAddAnotherApp {
+      Button("Add by search", systemImage: "magnifyingglass") {
+        self.showFindByAppNameSheet.toggle()
+      }
       // TODO: Remove
 //      Button("Add by search", systemImage: "magnifyingglass") {
 //        self.showFindByAppNameSheet.toggle()
@@ -166,6 +172,9 @@ struct AppsView: View {
         self.showCreateAppSheet = true
       }
     } else {
+      Button("Add by search", systemImage: "magnifyingglass") {
+        self.showFindByAppNameSheet.toggle()
+      }
       // TODO: Remove
 //      Button("Add by search", systemImage: "lock") {
 //        self.showPaywall = true
