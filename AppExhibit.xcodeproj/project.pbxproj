@@ -56,6 +56,7 @@
 				AppExhibit.storekit,
 				AppExhibitApp.swift,
 				Info.plist,
+				Views/AddAppViews/FindByAppNameView_NEW.swift,
 				Views/AddAppViews/FindByAppNameView.swift,
 				Views/AddAppViews/FindByAppStoreLinkView.swift,
 				Views/AddAppViews/FindByDeveloperView.swift,
