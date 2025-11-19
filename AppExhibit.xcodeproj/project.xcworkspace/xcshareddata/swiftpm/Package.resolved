@@ -6,8 +6,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/FlineDev/FreemiumKit.git",
       "state" : {
-        "revision" : "3e8f78f8fd45d7b1ec1a0f91c2f29407b0af484a",
-        "version" : "1.13.0"
+        "revision" : "49ad4b299a96c412670696da311452b9db0d5b95",
+        "version" : "1.18.3"
       }
     },
     {
@@ -15,8 +15,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/FlineDev/LinksKit.git",
       "state" : {
-        "revision" : "fdc0c18810d645e9fd2a4952d438ccd60d580895",
-        "version" : "1.0.3"
+        "revision" : "d42e5a6fcc929b8982090c75873ffc705e7b89a8",
+        "version" : "1.2.0"
       }
     }
   ],
